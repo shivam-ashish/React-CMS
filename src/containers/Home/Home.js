@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import fire from '../../config/fire';
-import classes from'./Home.module.css';
+import Fire from '../../config/fire';
+import classes from './Home.module.css';
 
 class Home extends Component {
   constructor(props) {
@@ -9,17 +9,19 @@ class Home extends Component {
   }
 
 
-logout() {
-    fire.auth().signOut();
+  logout = () => {
+    Fire.auth().signOut();
   }
 
   render() {
     return (
       <div className={classes.box}>
-        <button onClick={this.logout} className={classes.logOut}>Log Out</button><br />        <button className={classes.blogs}>BLOGS</button>
-        <button className={classes.news}>NEWS</button>
+        <button type="button" onClick={this.logout} className={classes.logOut}>Log Out</button>
+        <br />
+        <button type="button" className={classes.blogs}>BLOGS</button>
+        <button type="button" className={classes.news}>NEWS</button>
       </div>
-    )
+    );
   }
 }
 
