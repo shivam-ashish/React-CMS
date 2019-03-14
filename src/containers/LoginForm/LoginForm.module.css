@@ -12,7 +12,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
     width: 350px;
-    height: 420px;
+    height: auto;
     box-sizing: border-box;
     background: #fff;
     padding: 20px 40px;
@@ -42,7 +42,7 @@
     padding: 10px;
   }
   
-  .loginForm input[type="email"], input[type="password"]{
+  .loginForm input[type="text"],input[type="email"], input[type="password"]{
     border: none;
     border-bottom: 1px solid #8b8989;
     background: transparent;
