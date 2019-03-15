@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import classes from './LoginForm.module.css';
 import Fire from '../../config/fire';
+import firebase from 'firebase';
 // import user from '../../assets/user.png';
 
 class LoginForm extends Component {
@@ -13,6 +14,8 @@ class LoginForm extends Component {
     this.state = {
       email: '',
       password: '',
+      name: '',
+      display: false,
     };
   }
 
@@ -37,24 +40,55 @@ class LoginForm extends Component {
     Fire.auth().createUserWithEmailAndPassword(email, password)
       .then((u) => {
         console.log(u);
+        const { name } = this.state;
+        const database = firebase.database();
+        const ref = database.ref('users');
+        const data = {
+          user_name: name,
+        };
+        ref.push(data);
       })
       .catch((error) => {
         console.log(error);
       });
   }
 
+  toggle = () => {
+    const { display } = this.state;
+    this.setState({
+      display: !display,
+    });
+  }
+
   render() {
-    const { email, password } = this.state;
+    const { email, password, name } = this.state;
     return (
       <div className={classes.box}>
-        <div className={classes.loginForm}>
+      {
+            this.state.display ?
+            <div className={classes.loginForm}>
+            <h1>Sign UP Here</h1>
+            <label htmlFor="email">Name : </label>
+            <input value={name} onChange={this.handleChange} type="text" name="name" />
+            <label htmlFor="email">Email Address : </label>
+            <input value={email} onChange={this.handleChange} type="email" name="email" />
+            <label htmlFor="email">Password : </label>
+            <input value={password} onChange={this.handleChange} type="password" name="password" />
+            <button type="submit" className={classes.loginBtn} onClick={this.toggle}>Back to Login</button>
+            <button type="submit" className={classes.loginBtn} onClick={this.signup}>Sign Up</button>
+        </div>
+        :
+            <div className={classes.loginForm}>
           <h1>Login Here</h1>
           <label htmlFor="email">Email Address : </label>
           <input value={email} onChange={this.handleChange} type="email" name="email" />
           <label htmlFor="email">Password : </label>
           <input value={password} onChange={this.handleChange} type="password" name="password" />
           <button type="submit" className={classes.loginBtn} onClick={this.login}>Login</button>
+          <button type="submit" className={classes.loginBtn} onClick={this.toggle}>Sign Up</button>
         </div>
+        
+      }
       </div>
     );
   }

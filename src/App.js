@@ -1,36 +1,24 @@
 import React, { Component } from 'react';
-import fire from './config/fire';
-import Home from './containers/Home/Home';
-import LoginForm from './containers/LoginForm/LoginForm';
+import { BrowserRouter } from 'react-router-dom';
+import Route from 'react-router-dom/Route';
+import FirebaseAuth from './containers/FirebaseAuth/FirebaseAuth';
+import Blogs from './containers/Blogs/Blogs';
+import News from './containers/News/News';
+import { Provider } from './containers/DataStore/MyContext';
 
+// eslint-disable-next-line react/prefer-stateless-function
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      user: {},
-    };
-  }
-
-  componentDidMount() {
-    this.authListener();
-  }
-
-
-  authListener() {
-    fire.auth().onAuthStateChanged((user) => {
-      if (user) {
-        this.setState({ user });
-      } else {
-        this.setState({ user: null });
-      }
-    });
-  }
-
   render() {
     return (
-      <div>
-        {this.state.user ? (<Home />) : (<LoginForm />)}
-      </div>
+      <BrowserRouter>
+        <div>
+        <Provider>
+          <Route path="/" exact component={FirebaseAuth} />
+          <Route path="/blogs" exact component={Blogs} />
+          <Route path="/news" exact component={News} />
+        </Provider>
+        </div>
+      </BrowserRouter>
     );
   }
 }

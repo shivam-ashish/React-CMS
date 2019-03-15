@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import Fire from '../../config/fire';
 import classes from './Home.module.css';
 
@@ -18,8 +19,8 @@ class Home extends Component {
       <div className={classes.box}>
         <button type="button" onClick={this.logout} className={classes.logOut}>Log Out</button>
         <br />
-        <button type="button" className={classes.blogs}>BLOGS</button>
-        <button type="button" className={classes.news}>NEWS</button>
+        <Link to="/blogs"><button type="button" className={classes.blogs}>BLOGS</button></Link>
+        <Link to="/news"><button type="button" className={classes.news}>NEWS</button></Link>
       </div>
     );
   }
