@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import fire from '../../config/fire';
 import Home from '../Home/Home';
 import LoginForm from '../LoginForm/LoginForm';
-import MyContext from '../DataStore/MyContext';
 
 class FirebaseAuth extends Component {
   constructor(props) {
