@@ -6,6 +6,13 @@ import Login from './Login';
 import Signup from './Signup';
 
 class LoginForm extends Component {
+  constructor() {
+    super();
+    this.state = {
+      display: false,
+    };
+  }
+
   handleChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   }
@@ -18,14 +25,21 @@ class LoginForm extends Component {
   }
 
   render() {
+    const { display } = this.state;
     // const {
     //   email, password, name, display,
     // } = this.state;
     return (
       <div className={classes.box}>
         <Consumer>
-          {value => (
+          {/* {value => (
             console.log(value)
+          )
+          } */}
+          {value => (
+            display
+              ? <Signup val={value} />
+              : <Login val={value} />
           )
           }
         </Consumer>
