@@ -12,9 +12,9 @@ class MyProvider extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: '',
-      password: '',
-      name: '',
+      email: 'as',
+      password: 'as',
+      name: 'as',
       display: false,
     };
   }
