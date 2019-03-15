@@ -33,6 +33,9 @@ class Signup extends Component {
            console.log(error);
          });
      }
+     handleChange = (e) => {
+      this.setState({ [e.target.name]: e.target.value });
+    }
     
   render() {
     return (
@@ -44,7 +47,7 @@ class Signup extends Component {
             <input value={this.state.email} onChange={this.handleChange} type="email" name="email" />
             <label htmlFor="email">Password : </label>
             <input value={this.state.password} onChange={this.handleChange} type="password" name="password" />
-            <button type="submit" className={classes.loginBtn} onClick={this.toggle}>Back to Login</button>
+            <button type="submit" className={classes.loginBtn} onClick={this.props.toggle}>Back to Login</button>
             <button type="submit" className={classes.loginBtn} onClick={()=> this.signup}>Sign Up</button>
             </div>
     )
