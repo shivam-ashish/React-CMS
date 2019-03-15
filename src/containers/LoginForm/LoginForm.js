@@ -1,8 +1,9 @@
 /* eslint-disable jsx-a11y/label-has-for */
 import React, { Component } from 'react';
+import firebase from 'firebase';
 import classes from './LoginForm.module.css';
 import Fire from '../../config/fire';
-import firebase from 'firebase';
+import { Provider, Consumer } from '../DataStore/MyContext';
 // import user from '../../assets/user.png';
 
 class LoginForm extends Component {
@@ -35,7 +36,7 @@ class LoginForm extends Component {
   }
 
   signup = (e) => {
-    const { email, password } = this.state;
+     const { email, password } = this.state;
     e.preventDefault();
     Fire.auth().createUserWithEmailAndPassword(email, password)
       .then((u) => {
@@ -61,37 +62,38 @@ class LoginForm extends Component {
   }
 
   render() {
-    const { email, password, name } = this.state;
+    const { email, password, name, display } = this.state;
     return (
       <div className={classes.box}>
-      {
-            this.state.display ?
+      <Consumer>
+        {(context) => (
+            display ?
             <div className={classes.loginForm}>
             <h1>Sign UP Here</h1>
             <label htmlFor="email">Name : </label>
-            <input value={name} onChange={this.handleChange} type="text" name="name" />
+            <input value={name} onChange={this.handleChange} type="text" name="name"/>
             <label htmlFor="email">Email Address : </label>
             <input value={email} onChange={this.handleChange} type="email" name="email" />
             <label htmlFor="email">Password : </label>
             <input value={password} onChange={this.handleChange} type="password" name="password" />
             <button type="submit" className={classes.loginBtn} onClick={this.toggle}>Back to Login</button>
-            <button type="submit" className={classes.loginBtn} onClick={this.signup}>Sign Up</button>
-        </div>
-        :
+            <button type="submit" className={classes.loginBtn} onClick={()=> this.signup}>Sign Up</button>
+            </div>
+          :
             <div className={classes.loginForm}>
-          <h1>Login Here</h1>
-          <label htmlFor="email">Email Address : </label>
-          <input value={email} onChange={this.handleChange} type="email" name="email" />
-          <label htmlFor="email">Password : </label>
-          <input value={password} onChange={this.handleChange} type="password" name="password" />
-          <button type="submit" className={classes.loginBtn} onClick={this.login}>Login</button>
-          <button type="submit" className={classes.loginBtn} onClick={this.toggle}>Sign Up</button>
-        </div>
-        
-      }
-      </div>
+            <h1>Login Here</h1>
+            <label htmlFor="email">Email Address : </label>
+            <input value={email} onChange={this.handleChange} type="email" name="email" />
+            <label htmlFor="email">Password : </label>
+            <input value={password} onChange={this.handleChange} type="password" name="password" />
+            <button type="submit" className={classes.loginBtn} onClick={this.login}>Login</button>
+            <button type="submit" className={classes.loginBtn} onClick={this.toggle}>Sign Up</button>  
+            </div>
+        )}
+      </Consumer>
+      </div>  
     );
   }
 }
-
+    
 export default LoginForm;

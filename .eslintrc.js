@@ -29,5 +29,6 @@ module.exports = {
       "controlComponents": ["CustomInput"],
       "depth": 3,
     }],
+    "linebreak-style": [0]
   },
 };

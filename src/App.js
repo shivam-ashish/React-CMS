@@ -12,11 +12,11 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div>
-        <Provider>
-          <Route path="/" exact component={FirebaseAuth} />
-          <Route path="/blogs" exact component={Blogs} />
-          <Route path="/news" exact component={News} />
-        </Provider>
+          <Provider>
+            <Route path="/" exact component={FirebaseAuth} />
+            <Route path="/blogs" exact component={Blogs} />
+            <Route path="/news" exact component={News} />
+          </Provider>
         </div>
       </BrowserRouter>
     );

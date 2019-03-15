@@ -5,34 +5,34 @@ import LoginForm from '../LoginForm/LoginForm';
 import MyContext from '../DataStore/MyContext';
 
 class FirebaseAuth extends Component {
-    constructor(props) {
-      super(props)
-    
-      this.state = {
-         user: {},
-      }
-    }
+  constructor(props) {
+    super(props);
 
-    componentDidMount() {
-        this.authListener();
-      }
+    this.state = {
+      user: {},
+    };
+  }
 
-    authListener() {
+  componentDidMount() {
+    this.authListener();
+  }
+
+  authListener() {
     fire.auth().onAuthStateChanged((user) => {
-        if (user) {
+      if (user) {
         this.setState({ user });
-        } else {
+      } else {
         this.setState({ user: null });
-        }
+      }
     });
-    }
-    
+  }
+
   render() {
     return (
       <div>
         {this.state.user ? (<Home />) : (<LoginForm />)}
       </div>
-    )
+    );
   }
 }
 
