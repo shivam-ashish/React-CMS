@@ -8,11 +8,24 @@ import { Provider } from './containers/DataStore/MyContext';
 
 // eslint-disable-next-line react/prefer-stateless-function
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      email: '',
+      password: '',
+      name: '',
+      display: false,
+    };
+  }
+
   render() {
     return (
       <BrowserRouter>
         <div>
-          <Provider>
+          <Provider value={{
+            state: this.state,
+          }}
+          >
             <Route path="/" exact component={FirebaseAuth} />
             <Route path="/blogs" exact component={Blogs} />
             <Route path="/news" exact component={News} />
