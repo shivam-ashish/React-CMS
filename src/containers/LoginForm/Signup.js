@@ -33,6 +33,7 @@ class Signup extends Component {
            console.log(error);
          });
      }
+     
      handleChange = (e) => {
       this.setState({ [e.target.name]: e.target.value });
     }

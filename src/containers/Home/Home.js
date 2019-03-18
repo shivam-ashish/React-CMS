@@ -17,7 +17,7 @@ class Home extends Component {
   render() {
     return (
       <div className={classes.box}>
-        <button type="button" onClick={this.logout} className={classes.logOut}>Log Out</button>
+        <Link to="/"><button type="button" onClick={this.logout} className={classes.logOut}>Log Out</button></Link>
         <br />
         <Link to="/blogs"><button type="button" className={classes.blogs}>BLOGS</button></Link>
         <Link to="/news"><button type="button" className={classes.news}>NEWS</button></Link>

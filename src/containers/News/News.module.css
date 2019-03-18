@@ -11,14 +11,14 @@
     padding: 0px;
     text-align: center;
     font-size: 50px;
-    color: #DC143C;
+    color: #FFA500;
     font-weight: 600;
 }
 .add{
     border: none;
     outline: none;
     color: #fff;
-    background: #e50000;
+    background: #CCCC00;
     height: 50px;
     width: 90px;
     font-size: 18px;
@@ -28,7 +28,7 @@
     box-shadow: 10px 6px 9px 1px #696969;
 }
 .add:hover{
-  background: #ff0000;
+  background: #FFFF66;
 }
 .logOut{
   border: none;
@@ -49,7 +49,7 @@
 .box ul li{
   list-style: none;
   display: inline-block;
-  border: 1px solid red;
+  border: 1px solid #FFA500;
   width: 180px;
   height: 150px;
   margin: 20px;
@@ -59,11 +59,11 @@
   width: 20%;
   outline: none;
   color: #fff;
-  background: #DC143C;
+  background: #FFA500;
   border: none;
   cursor: pointer;
   box-shadow: 10px 6px 9px 1px #696969;
 }
 .box ul li:hover{
-  background: #CD5C5C;
+  background: #FFFF66;
 }

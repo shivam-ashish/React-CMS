@@ -34,8 +34,8 @@ class LoginForm extends Component {
           } */}
           {value => (
             display
-              ? <Signup val={value} />
-              : <Login val={value} />
+              ? <Signup val={value} toggle={this.toggle} />
+              : <Login val={value} toggle={this.toggle} />
           )
           }
         </Consumer>

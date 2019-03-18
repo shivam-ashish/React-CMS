@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import fire from '../../config/fire';
 import Home from '../Home/Home';
 import LoginForm from '../LoginForm/LoginForm';
+import { Redirect } from 'react-router-dom';
 
 class FirebaseAuth extends Component {
   constructor(props) {
