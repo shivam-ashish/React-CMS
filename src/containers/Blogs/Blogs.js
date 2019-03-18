@@ -56,9 +56,7 @@ class Blogs extends Component {
     const { map2 } = this.state;
     return (
       <div className={classes.box}>
-        <Navbar />
         <Link to="/AddNewPost">
-        <Link to="/auth/home/AddNewPost">
           <button
             className={classes.add}
             type="button"

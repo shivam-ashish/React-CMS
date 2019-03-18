@@ -10,6 +10,7 @@
     left: 90%;
     cursor: pointer;
     box-shadow: 10px 6px 9px 1px #696969;
+    top: 1%;
 }
 .logOut:hover{
     background: #ff0000;

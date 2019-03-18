@@ -2,10 +2,10 @@
     margin: 0;
     text-align: center;
 }
-.navbar ul{
+.navlist{
     display: inline;
 }
 .navbar li{
     display: inline-block;
-    margin: 20px;
+    margin: 10px;
 }

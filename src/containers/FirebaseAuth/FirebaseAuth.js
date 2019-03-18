@@ -32,12 +32,7 @@ class FirebaseAuth extends Component {
     return (
       <div>
         {
-          user ? (
-            <div>
-              <Navbar />
-              <Home />
-            </div>
-          ) : (<LoginForm />)
+          user ? (<Home />) : (<LoginForm />)
         }
       </div>
     );

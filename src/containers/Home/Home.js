@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import Navbar from '../Navbar/Navbar';
-import { Link } from 'react-router-dom';
 import Fire from '../../config/fire';
 import classes from './Home.module.css';
 // import Btn from '../../commonComponents/LogOut/Btn';
@@ -19,7 +18,6 @@ class Home extends Component {
   render() {
     return (
       <div className={classes.box}>
-        <Navbar />
         <br />
         <Link to="/blogs"><button type="button" className={classes.blogs}>BLOGS</button></Link>
         <Link to="/news"><button type="button" className={classes.news}>NEWS</button></Link>
