@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import Navbar from '../Navbar/Navbar';
 import Fire from '../../config/fire';
 import classes from './Home.module.css';
 
@@ -17,7 +18,7 @@ class Home extends Component {
   render() {
     return (
       <div className={classes.box}>
-        <Link to="/"><button type="button" onClick={this.logout} className={classes.logOut}>Log Out</button></Link>
+        <Navbar />
         <br />
         <Link to="/blogs"><button type="button" className={classes.blogs}>BLOGS</button></Link>
         <Link to="/news"><button type="button" className={classes.news}>NEWS</button></Link>

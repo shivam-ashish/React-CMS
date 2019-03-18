@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import Navbar from '../Navbar/Navbar';
 import firebase from 'firebase';
 import classes from './Blogs.module.css';
 import Fire from '../../config/fire';
@@ -48,16 +49,19 @@ class Blogs extends Component {
     console.log(err);
   }
 
-  logout = () => {
-    Fire.auth().signOut();
-  }
+  // logout = () => {
+  //   Fire.auth().signOut();
+  // }
 
   render() {
     const { map2 } = this.state;
     return (
       <div className={classes.box}>
-        <Link to="/AddNewPost"><button className={classes.add}>Add Post</button></Link>
-        <Link to="/"><button onClick={this.logout} className={classes.logOut}>Log Out</button></Link>
+        <Navbar />
+        <Link to="/AddNewPost">
+          <button
+            className={classes.add}>Add Post</button>
+        </Link>
         <h1>BLOGS</h1>
         <ul>
           {map2}
