@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import Navbar from '../Navbar/Navbar';
 import firebase from 'firebase';
+import Navbar from '../Navbar/Navbar';
 import classes from './Blogs.module.css';
-import Fire from '../../config/fire';
-import Add from '../../commonComponents/Add/Add';
 // eslint-disable-next-line react/prefer-stateless-function
 class Blogs extends Component {
   constructor(props) {
@@ -58,16 +56,14 @@ class Blogs extends Component {
     const { map2 } = this.state;
     return (
       <div className={classes.box}>
-<<<<<<< HEAD
-        <Add />
-        <Link to="/"><button onClick={this.logout} className={classes.logOut}>Log Out</button></Link>
-=======
-        <Navbar />
-        <Link to="/AddNewPost">
+        <Link to="/auth/home/AddNewPost">
           <button
-            className={classes.add}>Add Post</button>
+            className={classes.add}
+            type="button"
+          >
+            Add Post
+          </button>
         </Link>
->>>>>>> c3c44f92610f71b180f0e22479d597aefdff7acd
         <h1>BLOGS</h1>
         <ul>
           {map2}

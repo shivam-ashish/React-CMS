@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import Btn from '../../commonComponents/Btn/Btn';
 import Fire from '../../config/fire';
 // import classes from '../'
 
@@ -25,18 +25,7 @@ class Navbar extends Component {
         <li>
           News
         </li>
-        {/* <button type="button" onClick={this.logoutHandler}>
-          Logout
-        </button> */}
-        <Link to="/">
-          <button
-            type="button"
-            onClick={this.logoutHandler}
-            // className={classes.logOut}
-          >
-            Log Out
-          </button>
-        </Link>
+        <Btn type="logout" />
       </div>
     );
   }

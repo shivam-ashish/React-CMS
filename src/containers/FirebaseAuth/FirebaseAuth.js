@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import fire from '../../config/fire';
 import Home from '../Home/Home';
+import Navbar from '../Navbar/Navbar';
 import LoginForm from '../LoginForm/LoginForm';
 
 class FirebaseAuth extends Component {
@@ -30,7 +31,14 @@ class FirebaseAuth extends Component {
     const { user } = this.state;
     return (
       <div>
-        {user ? (<Home />) : (<LoginForm />)}
+        {
+          user ? (
+            <div>
+              <Navbar />
+              <Home />
+            </div>
+          ) : (<LoginForm />)
+        }
       </div>
     );
   }
