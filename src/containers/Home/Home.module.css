@@ -41,19 +41,3 @@
 .news:hover{
     background: #FFFF66;
 }
-.logOut{
-    border: none;
-    outline: none;
-    color: #fff;
-    background: #e50000;
-    height: 50px;
-    width: 90px;
-    font-size: 18px;
-    position: absolute;
-    left: 90%;
-    cursor: pointer;
-    box-shadow: 10px 6px 9px 1px #696969;
-}
-.logOut:hover{
-    background: #ff0000;
-}

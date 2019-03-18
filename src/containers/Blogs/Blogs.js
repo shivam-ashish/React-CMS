@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import firebase from 'firebase';
 import classes from './Blogs.module.css';
 import Fire from '../../config/fire';
+import Add from '../../commonComponents/Add/Add';
 // eslint-disable-next-line react/prefer-stateless-function
 class Blogs extends Component {
   constructor(props) {
@@ -56,7 +57,7 @@ class Blogs extends Component {
     const { map2 } = this.state;
     return (
       <div className={classes.box}>
-        <Link to="/AddNewPost"><button className={classes.add}>Add Post</button></Link>
+        <Add />
         <Link to="/"><button onClick={this.logout} className={classes.logOut}>Log Out</button></Link>
         <h1>BLOGS</h1>
         <ul>

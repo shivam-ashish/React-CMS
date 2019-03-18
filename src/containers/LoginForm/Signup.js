@@ -53,7 +53,7 @@ class Signup extends Component {
         <label htmlFor="email">Password : </label>
         <input value={this.state.password} onChange={this.handleChange} type="password" name="password" />
         <button type="submit" className={classes.loginBtn} onClick={this.props.toggle}>Back to Login</button>
-        <button type="submit" className={classes.loginBtn} onClick={() => this.signup}>Sign Up</button>
+        <button type="submit" className={classes.loginBtn} onClick={(e) => this.signup(e)}>Sign Up</button>
       </div>
     );
   }
