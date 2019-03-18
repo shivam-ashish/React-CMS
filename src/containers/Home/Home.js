@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import Navbar from '../Navbar/Navbar';
+import { Link } from 'react-router-dom';
 import Fire from '../../config/fire';
 import classes from './Home.module.css';
-import LogOut from '../../commonComponents/LogOut/LogOut';
+// import Btn from '../../commonComponents/LogOut/Btn';
 
 class Home extends Component {
   constructor(props) {
     super(props);
     this.logout = this.logout.bind(this);
   }
-
 
   logout = () => {
     Fire.auth().signOut();

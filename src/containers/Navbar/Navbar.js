@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import Btn from '../../commonComponents/Btn/Btn';
 import Fire from '../../config/fire';
 import classes from './Navbar.module.css';
 import LogOut from '../../commonComponents/LogOut/LogOut';
@@ -29,6 +29,7 @@ class Navbar extends Component {
         </li>
       </ul>
         <LogOut />
+        <Btn type="logout" />
       </div>
     );
   }
