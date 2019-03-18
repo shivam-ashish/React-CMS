@@ -1,12 +1,12 @@
 import firebase from 'firebase';
 
 const config = {
-  apiKey: 'AIzaSyAD2dJzrcd0YghrNAh8f3lgeUT-bnTnYvg',
-  authDomain: 'react-cms-20e8a.firebaseapp.com',
-  databaseURL: 'https://react-cms-20e8a.firebaseio.com',
-  projectId: 'react-cms-20e8a',
-  storageBucket: 'react-cms-20e8a.appspot.com',
-  messagingSenderId: '862750705974',
+  apiKey: 'AIzaSyCSjK0ElDeKM4HhzBDmN1rW75GOeh_zM4I',
+  authDomain: 'react-cms-f61b8.firebaseapp.com',
+  databaseURL: 'https://react-cms-f61b8.firebaseio.com',
+  projectId: 'react-cms-f61b8',
+  storageBucket: '',
+  messagingSenderId: '916097412424',
 };
 
 // var config = {
