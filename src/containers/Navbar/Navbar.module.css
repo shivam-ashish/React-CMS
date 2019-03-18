@@ -1,0 +1,11 @@
+.navbar{
+    margin: 0;
+    text-align: center;
+}
+.navbar ul{
+    display: inline;
+}
+.navbar li{
+    display: inline-block;
+    margin: 20px;
+}

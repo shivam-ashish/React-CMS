@@ -11,7 +11,7 @@ class Login extends Component {
       email: '',
       password: '',
     };
-  }
+  } 
 
   login = (e) => {
     const { email, password } = this.state;
@@ -20,7 +20,7 @@ class Login extends Component {
       .then(() => {
       })
       .catch((error) => {
-        console.log(error);
+        alert(error.message);
       });
   }
 

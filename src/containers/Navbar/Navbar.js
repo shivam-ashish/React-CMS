@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Fire from '../../config/fire';
-// import classes from '../'
+import classes from './Navbar.module.css';
+import LogOut from '../../commonComponents/LogOut/LogOut';
 
 class Navbar extends Component {
   constructor() {
@@ -18,25 +19,16 @@ class Navbar extends Component {
 
   render() {
     return (
-      <div>
+      <div className={classes.navbar}>
+      <ul>
         <li>
           Blogs
         </li>
         <li>
           News
         </li>
-        {/* <button type="button" onClick={this.logoutHandler}>
-          Logout
-        </button> */}
-        <Link to="/">
-          <button
-            type="button"
-            onClick={this.logoutHandler}
-            // className={classes.logOut}
-          >
-            Log Out
-          </button>
-        </Link>
+      </ul>
+        <LogOut />
       </div>
     );
   }

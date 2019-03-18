@@ -58,16 +58,11 @@ class Blogs extends Component {
     const { map2 } = this.state;
     return (
       <div className={classes.box}>
-<<<<<<< HEAD
-        <Add />
-        <Link to="/"><button onClick={this.logout} className={classes.logOut}>Log Out</button></Link>
-=======
         <Navbar />
         <Link to="/AddNewPost">
           <button
             className={classes.add}>Add Post</button>
         </Link>
->>>>>>> c3c44f92610f71b180f0e22479d597aefdff7acd
         <h1>BLOGS</h1>
         <ul>
           {map2}
