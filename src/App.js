@@ -9,6 +9,7 @@ import AddNewPost from './containers/Blogs/AddNew/AddNewPost';
 import AddNewNews from './containers/News/AddNew/AddNewNews';
 import { Provider } from './containers/DataStore/MyContext';
 import Navbar from './containers/Navbar/Navbar';
+import Login from './containers/LoginForm/Login';
 
 class App extends Component {
   state = {
