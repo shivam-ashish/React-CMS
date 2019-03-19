@@ -48,10 +48,13 @@ class App extends Component {
                   <FirebaseAuth
                     changeLoginState={changeLoginState}
                     updateUser={updateUser}
+                    // isLoggedIn={this.state.isLoggedIn}
                   />
                 )}
               />
               {isLoggedIn && <Route path="/home" component={Home} />}
+              {console.log("Login state=",this.state.isLoggedIn)}
+
               {/* <Route path="/blogs" component={Blogs} />
               <Route path="/AddNewPost" component={AddNewPost} />
               <Route path="/AddNewNews" component={AddNewNews} />
