@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Navbar from '../Navbar/Navbar';
@@ -21,18 +21,25 @@ class Home extends Component {
   }
 
   render() {
+    const { path } = this.props.match;
     return (
       <div className={classes.box}>
-        <BrowserRouter>
-          <Switch>
-            <Route path="/blogs" component={Blogs} />
-            <Route path="/AddNewPost" component={AddNewPost} />
-            <Route path="/AddNewNews" component={AddNewNews} />
-            <Route path="/news" component={News} />
-          </Switch>
-        </BrowserRouter>
-        <Link to="/blogs"><button type="button" className={classes.blogs}>BLOGS</button></Link>
-        <Link to="/news"><button type="button" className={classes.news}>NEWS</button></Link>
+        {console.log('Home compo', path)}
+        <Navbar />
+        <Switch>
+          <Route path={`${path}/blogs`} component={Blogs} />
+          <Route path={`${path}/news`} component={News} />
+          <Route
+            path="/"
+            render={() => (
+              <>
+                <Link to={`${path}/blogs`}><button type="button" className={classes.blogs}>BLOGS</button></Link>
+
+                <Link to={`${path}/news`}><button type="button" className={classes.news}>NEWS</button></Link>
+              </>
+            )}
+          />
+        </Switch>
       </div>
     );
   }

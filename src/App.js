@@ -15,11 +15,18 @@ class App extends Component {
   state = {
     isLoggedIn: false,
     user: null,
+    pr: null,
   }
 
-  changeLoginState = (bool) => {
-    this.setState({ isLoggedIn: bool });
+  changeLoginState = (bool, props) => {
+    this.setState({
+      isLoggedIn: bool,
+      pr: props,
+    });
     console.log('called from firebase auth');
+    if (this.state.isLoggedIn === true) {
+      this.state.pr.history.push('/home');
+    }
   }
 
   updateUser = (user) => {
@@ -35,7 +42,6 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div>
-          <Navbar />
           <Provider value={{
             state: this.state,
           }}
@@ -44,16 +50,24 @@ class App extends Component {
               <Route
                 path="/auth"
                 exact
-                render={() => (
+                render={props => (
                   <FirebaseAuth
+                    {...props}
                     changeLoginState={changeLoginState}
                     updateUser={updateUser}
                     // isLoggedIn={this.state.isLoggedIn}
                   />
                 )}
               />
-              {isLoggedIn && <Route path="/home" component={Home} />}
-              {console.log("Login state=",this.state.isLoggedIn)}
+              {isLoggedIn && (
+              <Route
+                path="/home"
+                component={Home}
+                render={props => (
+                  <Home {...props} />
+                )}
+              />
+              )}
 
               {/* <Route path="/blogs" component={Blogs} />
               <Route path="/AddNewPost" component={AddNewPost} />

@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Switch, Route } from 'react-router-dom';
 import firebase from 'firebase';
 import classes from './News.module.css';
 import Fire from '../../config/fire';
+import AddNewNews from './AddNew/AddNewNews';
 // eslint-disable-next-line react/prefer-stateless-function
 class News extends Component {
   constructor(props) {
@@ -54,14 +55,25 @@ class News extends Component {
 
   render() {
     const { map2 } = this.state;
+    const { path } = this.props.match;
     return (
       <div className={classes.box}>
-        <Link to="/AddNewNews"><button className={classes.add}>Add News</button></Link>
-        <Link to="/"><button onClick={this.logout} className={classes.logOut}>Log Out</button></Link>
-        <h1>News</h1>
-        <ul>
-          {map2}
-        </ul>
+        <Switch>
+          <Route path={`${path}/AddNewNews`} component={AddNewNews} />
+          <Route
+            path="/"
+            render={() => (
+              <>
+                <Link to={`${path}/AddNewNews`}>
+                <button className={classes.add}>Add News</button></Link>
+                <h1>News</h1>
+                <ul>
+                {map2}
+              </ul>
+              </>
+            )}
+          />
+        </Switch>
       </div>
     );
   }

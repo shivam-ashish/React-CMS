@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import fire from '../../config/fire';
+import { Link } from 'react-router-dom';
 import Home from '../Home/Home';
 import axios from 'axios';
 // import Navbar from '../Navbar/Navbar';
@@ -26,14 +27,13 @@ class FirebaseAuth extends Component {
   }
 
   authListener() {
-    const { changeLoginState , updateUser } = this.props;
+    const { changeLoginState, updateUser } = this.props;
     fire.auth().onAuthStateChanged((user) => {
       if (user) {
         console.log(changeLoginState);
-        changeLoginState(true);
+        changeLoginState(true,this.props);
         updateUser(user);
-      }
-      else{
+      } else {
         changeLoginState(false);
         updateUser(null);
       }
@@ -41,6 +41,8 @@ class FirebaseAuth extends Component {
   }
 
   render() {
+    console.log("URL matching",this.props);
+    
     return (
       <div>
         <LoginForm />
