@@ -1,24 +1,31 @@
 import React, { Component } from 'react';
 import fire from '../../config/fire';
 import Home from '../Home/Home';
+import axios from 'axios';
 // import Navbar from '../Navbar/Navbar';
 import LoginForm from '../LoginForm/LoginForm';
 
 class FirebaseAuth extends Component {
-  // constructor(props) {
-  //   super(props);
-  //   console.log(this.props);
-  //   this.state = {
-  //     user: {},
-  //   };
-  // }
-
   componentDidMount() {
-    this.authListener();
+    const key = 'AIzaSyCSjK0ElDeKM4HhzBDmN1rW75GOeh_zM4I';
+    const signUpUrl = `https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=${key}`;
+
+    axios.post(signUpUrl, {
+      email: 'vs12@gmail.com',
+      password: 'fhgfhdhdh',
+      returnSecureToken: true,
+    })
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    console.log('Heyy');
   }
 
   authListener() {
-    const { changeLoginState, updateUser } = this.props;
+    const { changeLoginState , updateUser } = this.props;
     fire.auth().onAuthStateChanged((user) => {
       if (user) {
         console.log(changeLoginState);
