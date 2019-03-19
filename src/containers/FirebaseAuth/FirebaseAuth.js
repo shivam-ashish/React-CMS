@@ -1,39 +1,37 @@
 import React, { Component } from 'react';
 import fire from '../../config/fire';
 import Home from '../Home/Home';
-import Navbar from '../Navbar/Navbar';
+// import Navbar from '../Navbar/Navbar';
 import LoginForm from '../LoginForm/LoginForm';
 
 class FirebaseAuth extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      user: {},
-    };
-  }
+  // constructor(props) {
+  //   super(props);
+  //   console.log(this.props);
+  //   this.state = {
+  //     user: {},
+  //   };
+  // }
 
   componentDidMount() {
     this.authListener();
   }
 
   authListener() {
+    const { changeLoginState, updateUser } = this.props;
     fire.auth().onAuthStateChanged((user) => {
       if (user) {
-        this.setState({ user });
-      } else {
-        this.setState({ user: null });
+        console.log(changeLoginState);
+        changeLoginState(true);
+        updateUser(user);
       }
     });
   }
 
   render() {
-    const { user } = this.state;
     return (
       <div>
-        {
-          user ? (<Home />) : (<LoginForm />)
-        }
+        <LoginForm />
       </div>
     );
   }

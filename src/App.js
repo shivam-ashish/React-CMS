@@ -13,14 +13,23 @@ import Navbar from './containers/Navbar/Navbar';
 class App extends Component {
   state = {
     isLoggedIn: false,
+    user: null,
   }
 
   changeLoginState = (bool) => {
     this.setState({ isLoggedIn: bool });
+    console.log('called from firebase auth');
+  }
+
+  updateUser = (user) => {
+    this.setState({ user });
   }
 
   render() {
-    const { isLoggedIn } = this.state;
+    const { isLoggedIn, user } = this.state;
+    const { changeLoginState, updateUser } = this;
+
+    console.log('user', user);
 
     return (
       <BrowserRouter>
@@ -31,7 +40,16 @@ class App extends Component {
           }}
           >
             <Switch>
-              <Route path="/auth" exact component={FirebaseAuth} />
+              <Route
+                path="/auth"
+                exact
+                render={() => (
+                  <FirebaseAuth
+                    changeLoginState={changeLoginState}
+                    updateUser={updateUser}
+                  />
+                )}
+              />
               {isLoggedIn && <Route path="/home" component={Home} />}
               {/* <Route path="/blogs" component={Blogs} />
               <Route path="/AddNewPost" component={AddNewPost} />
