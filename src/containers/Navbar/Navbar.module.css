@@ -1,6 +1,8 @@
 .navbar{
     margin: 0;
     text-align: center;
+    background: white;
+    height: 50px;
 }
 .navlist{
     display: inline;

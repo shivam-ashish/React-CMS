@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import {
-  BrowserRouter, Redirect, Switch, Route, Router,
-} from 'react-router-dom';
+import { BrowserRouter, Redirect, Switch, withRouter } from 'react-router-dom';
+import Route from 'react-router-dom/Route';
 import FirebaseAuth from './containers/FirebaseAuth/FirebaseAuth';
 import Blogs from './containers/Blogs/Blogs';
 import News from './containers/News/News';
@@ -17,11 +16,18 @@ class App extends Component {
   state = {
     isLoggedIn: false,
     user: null,
+    pr: null,
   }
 
-  changeLoginState = (bool) => {
-    this.setState({ isLoggedIn: bool });
+  changeLoginState = (bool, props) => {
+    this.setState({
+      isLoggedIn: bool,
+      pr: props,
+    });
     console.log('called from firebase auth');
+    if (this.state.isLoggedIn === true) {
+      this.state.pr.history.push('/home');
+    }
   }
 
   updateUser = (user) => {
@@ -43,15 +49,41 @@ class App extends Component {
 
     return (
       <BrowserRouter>
-        <Provider value={store}>
-          <Navbar />
-          <Switch>
-            <Route path="/" component={Blogs} />
-          </Switch>
-        </Provider>
+        <div>
+          <Provider value={{
+            state: this.state,
+          }}
+          >
+            <Switch>
+              <Route
+                path="/auth"
+                exact
+                render={props => (
+                  <FirebaseAuth
+                    {...props}
+                    changeLoginState={changeLoginState}
+                    updateUser={updateUser}
+                    // isLoggedIn={this.state.isLoggedIn}
+                  />
+                )}
+              />
+              {isLoggedIn && (
+              <Route
+                path="/home"
+                component={Home}
+                // render={props => (
+                //   <Home {...props} />
+                // )}
+              />
+              )}
+              <Redirect from="/" to="/auth" />
+            </Switch>
+          </Provider>
+        </div>
       </BrowserRouter>
     );
   }
 }
 
+withRouter(Home);
 export default App;

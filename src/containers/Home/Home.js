@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Navbar from '../Navbar/Navbar';
 import Fire from '../../config/fire';
@@ -8,6 +8,7 @@ import Blogs from '../Blogs/Blogs';
 import AddNewPost from '../Blogs/AddNew/AddNewPost';
 import News from '../News/News';
 import AddNewNews from '../News/AddNew/AddNewNews';
+import BlogsAndNewsPage from './BlogsAndNewsPage/BlogsAndNewsPage';
 // import Btn from '../../commonComponents/LogOut/Btn';
 
 class Home extends Component {
@@ -21,18 +22,21 @@ class Home extends Component {
   }
 
   render() {
+    const { path } = this.props.match;
     return (
       <div className={classes.box}>
-        <BrowserRouter>
-          <Switch>
-            <Route path="/blogs" component={Blogs} />
-            <Route path="/AddNewPost" component={AddNewPost} />
-            <Route path="/AddNewNews" component={AddNewNews} />
-            <Route path="/news" component={News} />
-          </Switch>
-        </BrowserRouter>
-        <Link to="/blogs"><button type="button" className={classes.blogs}>BLOGS</button></Link>
-        <Link to="/news"><button type="button" className={classes.news}>NEWS</button></Link>
+        {console.log('Home compo', path)}
+        <Navbar {...this.props} />
+        <Switch>
+          <Route path={`${path}/blogs`} component={Blogs} />
+          <Route path={`${path}/news`} component={News} />
+          <Route
+            path="/"
+            render={() => (
+              <BlogsAndNewsPage {...this.props} />
+            )}
+          />
+        </Switch>
       </div>
     );
   }
