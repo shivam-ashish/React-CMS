@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Redirect, Switch } from 'react-router-dom';
-import Route from 'react-router-dom/Route';
+import {
+  BrowserRouter, Redirect, Switch, Route, Router,
+} from 'react-router-dom';
 import FirebaseAuth from './containers/FirebaseAuth/FirebaseAuth';
 import Blogs from './containers/Blogs/Blogs';
 import News from './containers/News/News';
 import Home from './containers/Home/Home';
 import AddNewPost from './containers/Blogs/AddNew/AddNewPost';
 import AddNewNews from './containers/News/AddNew/AddNewNews';
+// import MyProvider from './containers/DataStore/MyContext';
 import { Provider } from './containers/DataStore/MyContext';
 import Navbar from './containers/Navbar/Navbar';
 import Login from './containers/LoginForm/Login';
@@ -32,37 +34,21 @@ class App extends Component {
 
     console.log('user', user);
 
+    const store = {
+      isLoggedIn,
+      user,
+      changeLoginState,
+      updateUser
+    }
+
     return (
       <BrowserRouter>
-        <div>
+        <Provider value={store}>
           <Navbar />
-          <Provider value={{
-            state: this.state,
-          }}
-          >
-            <Switch>
-              <Route
-                path="/auth"
-                exact
-                render={() => (
-                  <FirebaseAuth
-                    changeLoginState={changeLoginState}
-                    updateUser={updateUser}
-                    // isLoggedIn={this.state.isLoggedIn}
-                  />
-                )}
-              />
-              {isLoggedIn && <Route path="/home" component={Home} />}
-              {console.log("Login state=",this.state.isLoggedIn)}
-
-              {/* <Route path="/blogs" component={Blogs} />
-              <Route path="/AddNewPost" component={AddNewPost} />
-              <Route path="/AddNewNews" component={AddNewNews} />
-              <Route path="/news" component={News} /> */}
-              <Redirect from="/" to="/auth" />
-            </Switch>
-          </Provider>
-        </div>
+          <Switch>
+            <Route path="/" component={Blogs} />
+          </Switch>
+        </Provider>
       </BrowserRouter>
     );
   }

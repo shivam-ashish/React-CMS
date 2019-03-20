@@ -30,10 +30,11 @@ class FirebaseAuth extends Component {
     fire.auth().onAuthStateChanged((user) => {
       if (user) {
         console.log(changeLoginState);
+        console.log(this.props);
         changeLoginState(true);
         updateUser(user);
       }
-      else{
+      else {
         changeLoginState(false);
         updateUser(null);
       }
