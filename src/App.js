@@ -50,9 +50,7 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div>
-          <Provider value={{
-            state: this.state,
-          }}
+          <Provider value={store}
           >
             <Switch>
               <Route
