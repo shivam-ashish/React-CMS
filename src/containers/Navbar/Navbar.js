@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Btn from '../../commonComponents/Btn/Btn';
 import Fire from '../../config/fire';
 import classes from './Navbar.module.css';
+import Blogs from '../Blogs/Blogs';
+import News from '../News/News';
 
 class Navbar extends Component {
   constructor() {
@@ -18,21 +20,23 @@ class Navbar extends Component {
   }
 
   render() {
+    const { path } = this.props.match;
     return (
       <div className={classes.navbar}>
         <ul>
-          <NavLink to="/blogs">
+          <Link to={`${path}/blogs`}>
             <li>
           Blogs
             </li>
-          </NavLink>
-          <NavLink to="/news" active="color: green">
+          </Link>
+          <Link to={`${path}/news`}>
             <li>
           News
             </li>
-          </NavLink>
+          </Link>
         </ul>
         <Btn type="logout" />
+
       </div>
     );
   }

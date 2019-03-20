@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Redirect, Switch } from 'react-router-dom';
+import { BrowserRouter, Redirect, Switch, withRouter } from 'react-router-dom';
 import Route from 'react-router-dom/Route';
 import FirebaseAuth from './containers/FirebaseAuth/FirebaseAuth';
 import Blogs from './containers/Blogs/Blogs';
@@ -63,16 +63,11 @@ class App extends Component {
               <Route
                 path="/home"
                 component={Home}
-                render={props => (
-                  <Home {...props} />
-                )}
+                // render={props => (
+                //   <Home {...props} />
+                // )}
               />
               )}
-
-              {/* <Route path="/blogs" component={Blogs} />
-              <Route path="/AddNewPost" component={AddNewPost} />
-              <Route path="/AddNewNews" component={AddNewNews} />
-              <Route path="/news" component={News} /> */}
               <Redirect from="/" to="/auth" />
             </Switch>
           </Provider>
@@ -82,4 +77,5 @@ class App extends Component {
   }
 }
 
+withRouter(Home);
 export default App;
