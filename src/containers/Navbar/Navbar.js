@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import Btn from '../../commonComponents/Btn/Btn';
 import Fire from '../../config/fire';
 import classes from './Navbar.module.css';
-import Blogs from '../Blogs/Blogs';
-import News from '../News/News';
+// import Blogs from '../Blogs/Blogs';
+// import News from '../News/News';
 
 class Navbar extends Component {
   constructor() {

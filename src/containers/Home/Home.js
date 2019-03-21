@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import { Link, withRouter } from 'react-router-dom';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+// import { Link, withRouter } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import Navbar from '../Navbar/Navbar';
 import Fire from '../../config/fire';
 import classes from './Home.module.css';
 import Blogs from '../Blogs/Blogs';
-import AddNewPost from '../Blogs/AddNew/AddNewPost';
+// import AddNewPost from '../Blogs/AddNew/AddNewPost';
 import News from '../News/News';
-import AddNewNews from '../News/AddNew/AddNewNews';
+// import AddNewNews from '../News/AddNew/AddNewNews';
 import BlogsAndNewsPage from './BlogsAndNewsPage/BlogsAndNewsPage';
 // import Btn from '../../commonComponents/LogOut/Btn';
 

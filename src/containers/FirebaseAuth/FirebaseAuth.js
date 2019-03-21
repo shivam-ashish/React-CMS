@@ -1,36 +1,26 @@
 import React, { Component } from 'react';
 import fire from '../../config/fire';
-import { Link } from 'react-router-dom';
-import Home from '../Home/Home';
-import axios from 'axios';
+// import { Link } from 'react-router-dom';
+// import { Consumer} from '../DataStore/MyContext';
+// import Home from '../Home/Home';
+// import axios from 'axios';
 // import Navbar from '../Navbar/Navbar';
 import LoginForm from '../LoginForm/LoginForm';
 
 class FirebaseAuth extends Component {
+  // constructor(props){
+  //   super(props);
+  // }
   componentDidMount() {
     this.authListener();
-    // const key = 'AIzaSyCSjK0ElDeKM4HhzBDmN1rW75GOeh_zM4I';
-    // const signUpUrl = `https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=${key}`;
-
-    // axios.post(signUpUrl, {
-    //   email: 'vs12@gmail.com',
-    //   password: 'fhgfhdhdh',
-    //   returnSecureToken: true,
-    // })
-    //   .then((response) => {
-    //     console.log(response);
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
-    // console.log('Heyy');
   }
 
   authListener() {
-    const { changeLoginState, updateUser } = this.props;
+    console.log('value of props in firebase sent by consumer',this.props.value);
+    const { changeLoginState, updateUser } = this.props.value;
     fire.auth().onAuthStateChanged((user) => {
       if (user) {
-        console.log(changeLoginState);
+        // console.log(changeLoginState);
         changeLoginState(true, this.props);
         updateUser(user);
       } else {
@@ -41,11 +31,20 @@ class FirebaseAuth extends Component {
   }
 
   render() {
-    console.log("URL matching",this.props);
-    
+    // console.log("URL matching",this.props);
+    // console.log(this.props.value);
     return (
       <div>
         <LoginForm />
+        {/* <Consumer>
+          {(value) => {
+            // console.log(value);
+            // const {user, changeLoginState, isLoggedIn, updateUser } = value;
+            return(
+              <LoginForm />
+            );
+          }}
+        </Consumer> */}
       </div>
     );
   }

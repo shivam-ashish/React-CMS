@@ -2,15 +2,9 @@ import React, { Component } from 'react';
 import { BrowserRouter, Redirect, Switch, withRouter } from 'react-router-dom';
 import Route from 'react-router-dom/Route';
 import FirebaseAuth from './containers/FirebaseAuth/FirebaseAuth';
-import Blogs from './containers/Blogs/Blogs';
-import News from './containers/News/News';
 import Home from './containers/Home/Home';
-import AddNewPost from './containers/Blogs/AddNew/AddNewPost';
-import AddNewNews from './containers/News/AddNew/AddNewNews';
-// import MyProvider from './containers/DataStore/MyContext';
-import { Provider } from './containers/DataStore/MyContext';
-import Navbar from './containers/Navbar/Navbar';
-import Login from './containers/LoginForm/Login';
+import { Provider, Consumer } from './containers/DataStore/MyContext';
+import wrapper from './containers/hoc/aux';
 
 class App extends Component {
   state = {
@@ -24,21 +18,21 @@ class App extends Component {
       isLoggedIn: bool,
       pr: props,
     });
-    console.log('called from firebase auth');
+    // console.log('called from firebase auth');
     if (this.state.isLoggedIn === true) {
       this.state.pr.history.push('/home');
     }
   }
 
-  updateUser = (user) => {
-    this.setState({ user });
+  updateUser = (updatedUser) => {
+    this.setState({ user : updatedUser});
   }
 
   render() {
     const { isLoggedIn, user } = this.state;
     const { changeLoginState, updateUser } = this;
 
-    console.log('user', user);
+    // console.log('user', user);
 
     const store = {
       isLoggedIn,
@@ -52,30 +46,36 @@ class App extends Component {
         <div>
           <Provider value={store}
           >
-            <Switch>
-              <Route
-                path="/auth"
-                exact
-                render={props => (
-                  <FirebaseAuth
-                    {...props}
-                    changeLoginState={changeLoginState}
-                    updateUser={updateUser}
-                    // isLoggedIn={this.state.isLoggedIn}
-                  />
-                )}
-              />
-              {isLoggedIn && (
-              <Route
-                path="/home"
-                component={Home}
-                // render={props => (
-                //   <Home {...props} />
-                // )}
-              />
-              )}
-              <Redirect from="/" to="/auth" />
-            </Switch>
+            <Consumer>
+              {(value) => {
+                return(
+                  <Switch>
+                    <Route
+                      path="/auth"
+                      exact
+                      render={() => (
+                        <FirebaseAuth
+                          value={value}
+                          // changeLoginState={changeLoginState}
+                          // updateUser={updateUser}
+                          // isLoggedIn={this.state.isLoggedIn}
+                        />
+                      )}
+                    />
+                    {isLoggedIn && (
+                    <Route
+                      path="/home"
+                      component={Home}
+                      // render={props => (
+                      //   <Home {...props} />
+                      // )}
+                    />
+                    )}
+                    <Redirect from="/" to="/auth" />
+              </Switch>
+                );
+              }}
+            </Consumer>
           </Provider>
         </div>
       </BrowserRouter>
@@ -84,4 +84,4 @@ class App extends Component {
 }
 
 withRouter(Home);
-export default App;
+export default wrapper(App);
