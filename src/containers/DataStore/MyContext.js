@@ -2,6 +2,9 @@ import React from 'react';
 
 const MyContext = React.createContext(null);
 
-export const Provider = MyContext.Provider;
+const { Provider, Consumer } = MyContext;
 
-export const Consumer = MyContext.Consumer;
+export {
+  Provider,
+  Consumer,
+};

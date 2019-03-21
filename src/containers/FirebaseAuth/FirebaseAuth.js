@@ -4,15 +4,12 @@ import fire from '../../config/fire';
 import LoginForm from '../LoginForm/LoginForm';
 
 class FirebaseAuth extends Component {
-  // constructor(props){
-  //   super(props);
-  // }
   componentDidMount() {
     this.authListener();
   }
 
   authListener() {
-    console.log('value of props in firebase sent by consumer',this.props.value);
+    // console.log('value of props in firebase sent by consumer', this.props.value);
     const { changeLoginState, updateUser } = this.props.value;
     fire.auth().onAuthStateChanged((user) => {
       if (user) {
@@ -29,15 +26,6 @@ class FirebaseAuth extends Component {
     return (
       <div>
         <LoginForm />
-        {/* <Consumer>
-          {(value) => {
-            // console.log(value);
-            // const {user, changeLoginState, isLoggedIn, updateUser } = value;
-            return(
-              <LoginForm />
-            );
-          }}
-        </Consumer> */}
       </div>
     );
   }

@@ -4,7 +4,6 @@ import Route from 'react-router-dom/Route';
 import FirebaseAuth from './containers/FirebaseAuth/FirebaseAuth';
 import Home from './containers/Home/Home';
 import { Provider, Consumer } from './containers/DataStore/MyContext';
-import wrapper from './containers/hoc/aux';
 
 class App extends Component {
   state = {
@@ -25,7 +24,7 @@ class App extends Component {
   }
 
   updateUser = (updatedUser) => {
-    this.setState({ user : updatedUser});
+    this.setState({ user: updatedUser });
   }
 
   render() {
@@ -40,62 +39,30 @@ class App extends Component {
 
     return (
       <BrowserRouter>
-        <div>
-          <Provider value={store}
-          >
-            <Consumer>
-              {(value) => {
-                return(
-                  <Switch>
-                    <Route
-                      path="/auth"
-                      exact
-                      render={() => (
-                        <FirebaseAuth
-                          value={value}
-                          // changeLoginState={changeLoginState}
-                          // updateUser={updateUser}
-                          // isLoggedIn={this.state.isLoggedIn}
-                        />
-                      )}
+        <Provider value={store}>
+          <Consumer>
+            {value => (
+              <Switch>
+                <Route
+                  path="/auth"
+                  exact
+                  render={() => (
+                    <FirebaseAuth
+                      value={value}
                     />
-                    {isLoggedIn && (
-                    <Route
-                      path="/home"
-                      component={Home}
-                      // render={props => (
-                      //   <Home {...props} />
-                      // )}
-                    />
-                    )}
-                    <Redirect from="/" to="/auth" />
-              </Switch>
-                );
-              }}
-            </Consumer>
-          <Provider value={store}>
-            <Switch>
-              <Route
-                path="/auth"
-                exact
-                render={() => (
-                  <FirebaseAuth
-                    changeLoginState={changeLoginState}
-                    updateUser={updateUser}
-                    // isLoggedIn={this.state.isLoggedIn}
+                  )}
+                />
+                {isLoggedIn && (
+                  <Route
+                    path="/home"
+                    component={Home}
                   />
                 )}
-              />
-              {isLoggedIn && (
-              <Route
-                path="/home"
-                component={Home}
-              />
-              )}
-              <Redirect from="/" to="/auth" />
-            </Switch>
-          </Provider>
-        </div>
+                <Redirect from="/" to="/auth" />
+              </Switch>
+            )}
+          </Consumer>
+        </Provider>
       </BrowserRouter>
     );
   }
