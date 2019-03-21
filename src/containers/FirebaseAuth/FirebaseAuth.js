@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import fire from '../../config/fire';
-// import { Link } from 'react-router-dom';
-// import { Consumer} from '../DataStore/MyContext';
-// import Home from '../Home/Home';
-// import axios from 'axios';
-// import Navbar from '../Navbar/Navbar';
 import LoginForm from '../LoginForm/LoginForm';
 
 class FirebaseAuth extends Component {
@@ -20,7 +16,6 @@ class FirebaseAuth extends Component {
     const { changeLoginState, updateUser } = this.props.value;
     fire.auth().onAuthStateChanged((user) => {
       if (user) {
-        // console.log(changeLoginState);
         changeLoginState(true, this.props);
         updateUser(user);
       } else {
@@ -31,8 +26,6 @@ class FirebaseAuth extends Component {
   }
 
   render() {
-    // console.log("URL matching",this.props);
-    // console.log(this.props.value);
     return (
       <div>
         <LoginForm />
@@ -50,4 +43,4 @@ class FirebaseAuth extends Component {
   }
 }
 
-export default FirebaseAuth;
+export default withRouter(FirebaseAuth);

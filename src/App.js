@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Redirect, Switch, withRouter } from 'react-router-dom';
+import { BrowserRouter, Redirect, Switch } from 'react-router-dom';
 import Route from 'react-router-dom/Route';
 import FirebaseAuth from './containers/FirebaseAuth/FirebaseAuth';
 import Home from './containers/Home/Home';
@@ -18,9 +18,9 @@ class App extends Component {
       isLoggedIn: bool,
       pr: props,
     });
-    // console.log('called from firebase auth');
-    if (this.state.isLoggedIn === true) {
-      this.state.pr.history.push('/home');
+    const { isLoggedIn, pr } = this.state;
+    if (isLoggedIn === true) {
+      pr.history.push('/home');
     }
   }
 
@@ -31,15 +31,12 @@ class App extends Component {
   render() {
     const { isLoggedIn, user } = this.state;
     const { changeLoginState, updateUser } = this;
-
-    // console.log('user', user);
-
     const store = {
       isLoggedIn,
       user,
       changeLoginState,
-      updateUser
-    }
+      updateUser,
+    };
 
     return (
       <BrowserRouter>
@@ -76,6 +73,27 @@ class App extends Component {
                 );
               }}
             </Consumer>
+          <Provider value={store}>
+            <Switch>
+              <Route
+                path="/auth"
+                exact
+                render={() => (
+                  <FirebaseAuth
+                    changeLoginState={changeLoginState}
+                    updateUser={updateUser}
+                    // isLoggedIn={this.state.isLoggedIn}
+                  />
+                )}
+              />
+              {isLoggedIn && (
+              <Route
+                path="/home"
+                component={Home}
+              />
+              )}
+              <Redirect from="/" to="/auth" />
+            </Switch>
           </Provider>
         </div>
       </BrowserRouter>
@@ -83,5 +101,4 @@ class App extends Component {
   }
 }
 
-withRouter(Home);
-export default wrapper(App);
+export default App;

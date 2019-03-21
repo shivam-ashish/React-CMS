@@ -20,7 +20,6 @@ class Signup extends Component {
     e.preventDefault();
     Fire.auth().createUserWithEmailAndPassword(email, password)
       .then((u) => {
-        console.log(u);
         const { name } = this.state;
         const database = firebase.database();
         const ref = database.ref('users');

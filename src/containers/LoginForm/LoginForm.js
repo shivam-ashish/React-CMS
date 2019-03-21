@@ -22,16 +22,9 @@ class LoginForm extends Component {
 
   render() {
     const { display } = this.state;
-    // const {
-    //   email, password, name, display,
-    // } = this.state;
     return (
       <div className={classes.box}>
         <Consumer>
-          {/* {value => (
-            console.log(value)
-          )
-          } */}
           {value => (
             display
               ? <Signup val={value} toggle={this.toggle} />
