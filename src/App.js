@@ -3,7 +3,7 @@ import { BrowserRouter, Redirect, Switch } from 'react-router-dom';
 import Route from 'react-router-dom/Route';
 import FirebaseAuth from './containers/FirebaseAuth/FirebaseAuth';
 import Home from './containers/Home/Home';
-import { Provider, Consumer } from './containers/DataStore/MyContext';
+import { Provider } from './containers/DataStore/MyContext';
 
 class App extends Component {
   state = {
@@ -12,15 +12,15 @@ class App extends Component {
     pr: null,
   }
 
-  changeLoginState = (bool, props) => {
+  changeLoginState = (bool) => {
     this.setState({
       isLoggedIn: bool,
-      pr: props,
+      // pr: props,
     });
-    const { isLoggedIn, pr } = this.state;
-    if (isLoggedIn === true) {
-      pr.history.push('/home');
-    }
+    // const { isLoggedIn, pr } = this.state;
+    // if (isLoggedIn === true) {
+    //   pr.history.push('/home');
+    // }
   }
 
   updateUser = (updatedUser) => {
@@ -39,28 +39,22 @@ class App extends Component {
     return (
       <BrowserRouter>
         <Provider value={store}>
-          <Consumer>
-            {value => (
-              <Switch>
-                <Route
-                  path="/auth"
-                  exact
-                  render={() => (
-                    <FirebaseAuth
-                      value={value}
-                    />
-                  )}
-                />
-                {isLoggedIn && (
-                  <Route
-                    path="/home"
-                    component={Home}
-                  />
-                )}
-                <Redirect from="/" to="/auth" />
-              </Switch>
+          <Switch>
+            <Route
+              path="/auth"
+              exact
+              render={() => (
+                <FirebaseAuth />
+              )}
+            />
+            {isLoggedIn && (
+            <Route
+              path="/home"
+              component={Home}
+            />
             )}
-          </Consumer>
+            <Redirect from="/" to="/auth" />
+          </Switch>
         </Provider>
       </BrowserRouter>
     );
