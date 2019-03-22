@@ -6,16 +6,19 @@ import firebase from 'firebase';
 import classes from './Blogs.module.css';
 import EditPost from './EditPost/EditPost';
 import AddNewPost from './AddNew/AddNewPost';
+import MDSpinner from 'react-md-spinner';
 
 class BlogsPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
       list: [],
+      spinner: false,
     };
   }
 
   componentDidMount() {
+    this.setState({ spinner: true });
     const database = firebase.database();
     const ref = database.ref('blogs');
     ref.on('value', this.gotData, this.errData);
@@ -41,7 +44,7 @@ class BlogsPage extends Component {
                 className={classes.update}
               >
               Edit
-</button>
+              </button>
             </Link>
             {blogs[key].title}
           </div>
@@ -50,7 +53,7 @@ class BlogsPage extends Component {
         </li>
       )),
     });
-    // this.setState({ map2: map1 });
+    this.setState({ spinner: false });
   }
 
   errData = (err) => {
@@ -62,7 +65,7 @@ class BlogsPage extends Component {
   }
 
   render() {
-    const { list } = this.state;
+    const { list, spinner } = this.state;
     const { path } = this.props.match;
     return (
       <Switch>
@@ -79,9 +82,13 @@ class BlogsPage extends Component {
               </button>
             </Link>
             <h1>BLOGS</h1>
-            <ul>
-              {list}
-            </ul>
+            {spinner ? (<div className={classes.spinner}><MDSpinner /></div>)
+              : (
+                <ul>
+                  {list}
+                </ul>
+              )
+            }
           </>
         </Route>
       </Switch>

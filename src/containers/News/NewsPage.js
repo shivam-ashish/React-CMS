@@ -7,16 +7,19 @@ import Fire from '../../config/fire';
 import classes from './News.module.css';
 import AddNewNews from './AddNew/AddNewNews';
 import EditNews from './EditNews/EditNews';
+import MDSpinner from 'react-md-spinner';
 
 class NewsPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
       list: [],
+      spinner: false,
     };
   }
 
   componentDidMount() {
+    this.setState({ spinner: true });
     const database = firebase.database();
     const ref = database.ref('news');
     ref.on('value', this.gotData, this.errData);
@@ -51,6 +54,7 @@ class NewsPage extends Component {
             </li>
           )),
         });
+        this.setState({ spinner: false });
       }
 
       errData = (err) => {
@@ -66,7 +70,7 @@ class NewsPage extends Component {
       }
 
       render() {
-        const { list } = this.state;
+        const { list, spinner } = this.state;
         const { path } = this.props.match;
         return (
           <Switch>
@@ -81,9 +85,13 @@ class NewsPage extends Component {
 
                   </Link>
                   <h1>News</h1>
-                  <ul>
-                    {list}
-                  </ul>
+                  {spinner ? (<div className={classes.spinner}><MDSpinner /></div>)
+              : (
+                <ul>
+                  {list}
+                </ul>
+              )
+            }
                 </>
               )}
             />

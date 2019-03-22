@@ -17,13 +17,14 @@ class Login extends Component {
 
   login = (e) => {
     const { email, password } = this.state;
-    this.setState({ spinner : true });
+    this.setState({ spinner: true });
     e.preventDefault();
     Fire.auth().signInWithEmailAndPassword(email, password)
       .then(() => {
       })
       .catch((error) => {
         alert(error.message);
+        this.setState({ spinner: false });
       });
   }
 
