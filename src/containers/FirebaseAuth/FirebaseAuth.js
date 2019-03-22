@@ -34,6 +34,6 @@ class FirebaseAuth extends Component {
   }
 }
 
-// export withRouter(FirebaseAuth);
+export default withContext(withRouter(FirebaseAuth));
 
-export default withContext(FirebaseAuth);
+// export default withContext(FirebaseAuth);
