@@ -1,16 +1,22 @@
 import React, { Component } from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, withRouter } from 'react-router-dom';
 import Navbar from '../Navbar/Navbar';
 import Fire from '../../config/fire';
 import classes from './Home.module.css';
 import Blogs from '../Blogs/Blogs';
 import News from '../News/News';
 import BlogsAndNewsPage from './BlogsAndNewsPage/BlogsAndNewsPage';
+import withContext  from '../Hoc/withContext';
 
 class Home extends Component {
   constructor(props) {
     super(props);
     this.logout = this.logout.bind(this);
+  }
+
+  componentDidMount (){
+    console.log(this.props);
+    
   }
 
   logout = () => {
@@ -36,4 +42,4 @@ class Home extends Component {
   }
 }
 
-export default Home;
+export default withContext(withRouter(Home));

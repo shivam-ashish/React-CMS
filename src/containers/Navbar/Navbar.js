@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
-import Btn from '../../commonComponents/Btn/Btn';
+import Button from '../../commonComponents/Button/Button';
 import Fire from '../../config/fire';
 import classes from './Navbar.module.css';
 
@@ -33,7 +33,7 @@ class Navbar extends Component {
             </li>
           </Link>
         </ul>
-        <Btn type="logout" />
+        <Button type="LogOut" />
 
       </div>
     );

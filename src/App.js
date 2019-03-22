@@ -19,12 +19,14 @@ class App extends Component {
 
   updateUser = (updatedUser) => {
     this.setState({ user: updatedUser });
+    
   }
 
   render() {
-    const { isLoggedIn } = this.state;
+    const { isLoggedIn, user } = this.state;
     const { changeLoginState, updateUser } = this;
     const store = {
+      user,
       isLoggedIn,
       changeLoginState,
       updateUser,
