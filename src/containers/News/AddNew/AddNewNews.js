@@ -41,7 +41,7 @@ class AddNewPost extends Component {
         <br />
         <input value={this.state.body} onChange={this.handleChange} type="text" placeholder="Enter your Post" name="body" className={classes.body}/>
         <br />
-        <Link to="/news"><button onClick={this.putData}>ADD News</button></Link>
+        <Link to="/home/news"><button onClick={this.putData}>ADD News</button></Link>
         </div>
       </div>
     );

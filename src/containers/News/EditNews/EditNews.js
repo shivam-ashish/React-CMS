@@ -39,7 +39,7 @@ class EditNews extends Component {
         <br />
         <input value={this.state.body} onChange={this.handleChange} type="text" placeholder="Enter your News" name="body" className={classes.body}/>
         <br />
-        <Link to="/blogs"><button onClick={this.editData}>EDIT NEWS</button></Link>
+        <Link to="/home/blogs"><button onClick={this.editData}>EDIT NEWS</button></Link>
         </div>
       </div>
     )

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const MyContext = React.createContext(null);
+const MyContext = React.createContext();
 
 const { Provider, Consumer } = MyContext;
 

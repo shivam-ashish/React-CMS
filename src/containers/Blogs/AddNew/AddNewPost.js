@@ -13,7 +13,7 @@ class AddNewPost extends Component {
     };
   }
 
-  putData=() => {
+  putData = () => {
     const { title, body } = this.state;
     const database = firebase.database();
     const ref = database.ref('blogs');
@@ -41,7 +41,7 @@ class AddNewPost extends Component {
         <br />
         <input value={this.state.body} onChange={this.handleChange} type="text" placeholder="Enter your Post" name="body" className={classes.body}/>
         <br />
-        <Link to="/blogs"><button onClick={this.putData}>ADD POST</button></Link>
+        <Link to="/home/blogs"><button onClick={this.putData}>ADD POST</button></Link>
         </div>
       </div>
     );

@@ -24,14 +24,9 @@ class LoginForm extends Component {
     const { display } = this.state;
     return (
       <div className={classes.box}>
-        <Consumer>
-          {value => (
-            display
-              ? <Signup val={value} toggle={this.toggle} />
-              : <Login val={value} toggle={this.toggle} />
-          )
-          }
-        </Consumer>
+        {display
+          ? <Signup toggle={this.toggle} />
+          : <Login toggle={this.toggle} />}
       </div>
     );
   }

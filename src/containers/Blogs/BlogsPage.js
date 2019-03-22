@@ -60,7 +60,7 @@ class BlogsPage extends Component {
     return (
       <Switch>
         <Route path={`${path}/EditPost`} component={EditPost} />
-        <Route path={`${path}`} >
+        <Route path={`${path}`}>
           <>
             <Link to={`${path}/AddNewPost`}>
               <button

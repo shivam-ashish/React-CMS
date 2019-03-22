@@ -38,7 +38,7 @@ class EditPost extends Component {
         <br />
         <input value={this.state.body} onChange={this.handleChange} type="text" placeholder="Enter your Post" name="body" className={classes.body}/>
         <br />
-        <Link to="/blogs"><button onClick={this.editData}>EDIT POST</button></Link>
+        <Link to="/home/blogs"><button onClick={this.editData}>EDIT POST</button></Link>
         </div>
       </div>
     )
