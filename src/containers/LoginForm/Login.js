@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import classes from './LoginForm.module.css';
 import Fire from '../../config/fire';
+import MDSpinner from 'react-md-spinner';
 
 class Login extends Component {
   constructor(props) {
@@ -10,11 +11,13 @@ class Login extends Component {
     this.state = {
       email: '',
       password: '',
+      spinner: false,
     };
   } 
 
   login = (e) => {
     const { email, password } = this.state;
+    this.setState({ spinner : true });
     e.preventDefault();
     Fire.auth().signInWithEmailAndPassword(email, password)
       .then(() => {
@@ -29,7 +32,7 @@ class Login extends Component {
   }
 
   render() {
-    const { email, password } = this.state;
+    const { email, password, spinner } = this.state;
     return (
       <div>
         <div className={classes.loginForm}>
@@ -43,7 +46,7 @@ class Login extends Component {
             className={classes.loginBtn}
             onClick={(evt) => {
               this.login(evt);
-            }}>Login</button>
+            }}>{spinner?<MDSpinner/>:'Login'}</button>
           <button
             type="submit"
             className={classes.loginBtn}

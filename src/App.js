@@ -9,18 +9,12 @@ class App extends Component {
   state = {
     isLoggedIn: false,
     user: null,
-    pr: null,
   }
 
   changeLoginState = (bool) => {
     this.setState({
       isLoggedIn: bool,
-      // pr: props,
     });
-    // const { isLoggedIn, pr } = this.state;
-    // if (isLoggedIn === true) {
-    //   pr.history.push('/home');
-    // }
   }
 
   updateUser = (updatedUser) => {
