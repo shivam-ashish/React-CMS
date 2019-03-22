@@ -9,12 +9,13 @@ class FirebaseAuth extends Component {
   }
 
   authListener() {
-    // console.log('value of props in firebase sent by consumer', this.props.value);
+    const { history } = this.props;
     const { changeLoginState, updateUser } = this.props.value;
     fire.auth().onAuthStateChanged((user) => {
       if (user) {
-        changeLoginState(true, this.props);
+        changeLoginState(true);
         updateUser(user);
+        history.push('/home');
       } else {
         changeLoginState(false);
         updateUser(null);

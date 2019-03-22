@@ -14,7 +14,7 @@ class EditNews extends Component {
       }
 
       editData = () => {
-        const { key } = this.props.location.state;
+        const { key } = this.props.match.params;
         console.log(key);
         firebase.database().ref(`news/${key}`).update({
             title: this.state.title,
@@ -39,7 +39,7 @@ class EditNews extends Component {
         <br />
         <input value={this.state.body} onChange={this.handleChange} type="text" placeholder="Enter your News" name="body" className={classes.body}/>
         <br />
-        <Link to="/home/blogs"><button onClick={this.editData}>EDIT NEWS</button></Link>
+        <Link to="/home/news"><button onClick={this.editData}>EDIT NEWS</button></Link>
         </div>
       </div>
     )

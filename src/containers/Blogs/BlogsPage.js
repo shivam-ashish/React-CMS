@@ -1,14 +1,17 @@
 import React, { Component } from 'react';
-import { Link, withRouter, Route, Switch } from 'react-router-dom';
+import {
+  Link, withRouter, Route, Switch,
+} from 'react-router-dom';
 import firebase from 'firebase';
 import classes from './Blogs.module.css';
 import EditPost from './EditPost/EditPost';
+import AddNewPost from './AddNew/AddNewPost';
 
 class BlogsPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      map2: [],
+      list: [],
     };
   }
 
@@ -21,25 +24,33 @@ class BlogsPage extends Component {
   gotData = (data) => {
     const blogs = data.val();
     const keys = Object.keys(blogs);
-    const map1 = keys.map(key => (
-      <li key={key}>
-        <div style={{ fontSize: '20px', fontWeight: 'bold' }}>
-          <button className={classes.delete} onClick={() => this.deleteData(key)}>X</button>
-          <Link
-            to={{pathname:`${this.props.match.path}/EditPost`, state:{key}}}>
+    this.setState({
+      list: keys.map(key => (
+        <li key={key}>
+          <div style={{ fontSize: '20px', fontWeight: 'bold' }}>
             <button
-              className={classes.update}
+              className={classes.delete}
+              onClick={() => this.deleteData(key)}
             >
-              Edit
+            X
             </button>
-          </Link>
-          {blogs[key].title}
-        </div>
-        {<br />}
-        {blogs[key].body}
-      </li>
-    ));
-    this.setState({ map2: map1 });
+            <Link
+              to={`${this.props.match.path}/editpost/${key}`}
+            >
+              <button
+                className={classes.update}
+              >
+              Edit
+</button>
+            </Link>
+            {blogs[key].title}
+          </div>
+          {<br />}
+          {blogs[key].body}
+        </li>
+      )),
+    });
+    // this.setState({ map2: map1 });
   }
 
   errData = (err) => {
@@ -50,19 +61,16 @@ class BlogsPage extends Component {
     firebase.database().ref(`blogs/${key}`).remove();
   }
 
-  editData = (key) => {
-
-  }
-
   render() {
-    const { map2 } = this.state;
+    const { list } = this.state;
     const { path } = this.props.match;
     return (
       <Switch>
-        <Route path={`${path}/EditPost`} component={EditPost} />
+        <Route path={`${path}/addnewpost`} component={AddNewPost} />
+        <Route path={`${path}/editpost/:key`} component={EditPost} />
         <Route path={`${path}`}>
           <>
-            <Link to={`${path}/AddNewPost`}>
+            <Link to={`${path}/addnewpost`}>
               <button
                 className={classes.add}
                 type="button"
@@ -72,7 +80,7 @@ class BlogsPage extends Component {
             </Link>
             <h1>BLOGS</h1>
             <ul>
-              {map2}
+              {list}
             </ul>
           </>
         </Route>

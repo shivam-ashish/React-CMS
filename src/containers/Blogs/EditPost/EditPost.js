@@ -14,7 +14,7 @@ class EditPost extends Component {
       }
 
       editData = () => {
-        const { key } = this.props.location.state;
+        const { key } = this.props.match.params;
         console.log(key);
         firebase.database().ref(`blogs/${key}`).update({
             title: this.state.title,

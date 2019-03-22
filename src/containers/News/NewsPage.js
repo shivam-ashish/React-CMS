@@ -12,7 +12,7 @@ class NewsPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      map2: [],
+      list: [],
     };
   }
 
@@ -25,25 +25,32 @@ class NewsPage extends Component {
       gotData = (data) => {
         const news = data.val();
         const keys = Object.keys(news);
-        const map1 = keys.map(key => (
-          <li key={key}>
-            <div style={{ fontSize: '20px', fontWeight: 'bold' }}>
-            <button className={classes.delete} onClick={()=>this.deleteData(key)}>X</button>
-            <Link
-            to={{pathname:`${this.props.match.path}/EditNews`, state:{key}}}>
-            <button
-              className={classes.update}
-            >
-              Edit
-            </button>
-          </Link>
-              {news[key].title}
-            </div>
-            {<br />}
-            {news[key].body}
-          </li>
-        ));
-        this.setState({ map2: map1 });
+        this.setState({
+          list: keys.map(key => (
+            <li key={key}>
+              <div style={{ fontSize: '20px', fontWeight: 'bold' }}>
+                <button
+                  className={classes.delete}
+                  onClick={() => this.deleteData(key)}
+                >
+                 X
+                </button>
+                <Link
+                  to={`${this.props.match.path}/editnews/${key}`}
+                >
+                <button
+                  className={classes.update}
+                >
+                Edit
+                </button>
+                </Link>
+                {news[key].title}
+              </div>
+              {<br />}
+              {news[key].body}
+            </li>
+          )),
+        });
       }
 
       errData = (err) => {
@@ -59,23 +66,23 @@ class NewsPage extends Component {
       }
 
       render() {
-        const { map2 } = this.state;
+        const { list } = this.state;
         const { path } = this.props.match;
         return (
           <Switch>
-            <Route path={`${path}/AddNewNews`} component={AddNewNews} />
-            <Route path={`${path}/EditNews`} component={EditNews} />
+            <Route path={`${path}/addnewnews`} component={AddNewNews} />
+            <Route path={`${path}/editnews/:key`} component={EditNews} />
             <Route
               path={`${path}`}
               render={() => (
                 <>
-                  <Link to={`${path}/AddNewNews`}>
+                  <Link to={`${path}/addnewnews`}>
                     <button className={classes.add}>Add News</button>
 
                   </Link>
                   <h1>News</h1>
                   <ul>
-                    {map2}
+                    {list}
                   </ul>
                 </>
               )}
