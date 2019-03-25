@@ -10,7 +10,7 @@ class AddNewPost extends Component {
     this.state = {
        title: '',
        body: '',
-       id: '',
+       submittedBy: '',
     };
   }
 
@@ -25,7 +25,7 @@ class AddNewPost extends Component {
     const data = {
       title: title,
       body: body,
-      id: this.props.val.user.uid,
+      submittedBy: this.props.val.user.uid,
     };
     ref.push(data);
   }

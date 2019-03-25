@@ -54,7 +54,7 @@ class Login extends Component {
               this.login(evt);
             }}
           >
-            {spinner ? <MDSpinner />:'Login'}
+            {spinner ? <MDSpinner /> : 'Login'}
 
           </button>
           <button

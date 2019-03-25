@@ -12,12 +12,6 @@ class App extends Component {
     userId: null,
   }
 
-  componentDidUpdate(prevProps) {
-    if (this.props !== prevProps) {
-      this.updateUserId();
-    }
-  }
-
   changeLoginState = (bool) => {
     this.setState({
       isLoggedIn: bool,
@@ -32,21 +26,13 @@ class App extends Component {
     console.log('updated User in App.js', this.state.user, this.state.userId);
   }
 
-  // updateUserId = () => {
-  //   this.setState({
-  //     uid: this.state.user.uid,
-  //   });
-  //   console.log(this.state.uid);
-  // }
-
   render() {
-    const { isLoggedIn, user, uid } = this.state;
+    const { isLoggedIn, user, userId } = this.state;
     const { changeLoginState, updateUser } = this;
-    
     const store = {
       user,
       isLoggedIn,
-      uid,
+      userId,
       changeLoginState,
       updateUser,
     };
