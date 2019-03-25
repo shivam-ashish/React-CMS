@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import Fire from '../../config/fire';
 import classes from './Button.module.css';
 
@@ -11,17 +11,17 @@ const Button = (props) => {
   const { type } = props;
   let button;
   if( type === 'LogOut' ){
-    button = <button onClick={logout} className={classes.logOut}>{ type }</button>
+    button = <Link to="/"><button onClick={logout} className={classes.logOut}>{ type }</button></Link>
   }
-  if( type === 'Add'){
-    
+  if( type === 'Add Post'){
+    button = <button className={classes.addPost}>{ type }</button>
   }
-  console.log(type);
+  if( type === 'Add News'){
+    button = <button className={classes.addNews}>{ type }</button>
+  }
   return (
     <div>
-      <Link to="/">
-        {button}
-      </Link>
+      {button}
     </div>
   );
 };

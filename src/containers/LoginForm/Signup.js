@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import firebase from 'firebase';
+import MDSpinner from 'react-md-spinner';
 import classes from './LoginForm.module.css';
 import Fire from '../../config/fire';
-import MDSpinner from 'react-md-spinner';
+import withContext from '../Hoc/withContext';
+import fire from '../../config/fire';
 
 class Signup extends Component {
   constructor(props) {
@@ -19,22 +21,32 @@ class Signup extends Component {
 
   signup = (e) => {
     const { email, password } = this.state;
+    const { name } = this.state;
+    const { changeLoginState, updateUser, user } = this.props.val;
     this.setState({ spinner: true });
     e.preventDefault();
     Fire.auth().createUserWithEmailAndPassword(email, password)
       .then((u) => {
-        const { name } = this.state;
+        // const { uid } = this.props.val.user;
         const database = firebase.database();
         const ref = database.ref('users');
-        const data = {
-          userName: name,
-        };
-        ref.push(data);
+        // fire.auth().onAuthStateChanged((user) => {
+          // changeLoginState(true);
+          // updateUser(user);
+          // console.log(uid);
+          const data = {
+            userName: name,
+            // uid: this.props.val.user.uid,
+          };
+          ref.push(data);
+          // });
       })
       .catch((error) => {
         alert(error.message);
         this.setState({ spinner: false });
       });
+      console.log(this.props);
+      
   }
 
   handleChange = (e) => {
@@ -59,4 +71,4 @@ class Signup extends Component {
   }
 }
 
-export default Signup;
+export default withContext(Signup);

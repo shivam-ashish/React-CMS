@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import firebase from 'firebase';
 import { Link } from 'react-router-dom';
 import classes from './AddNewNews.module.css';
+import withContext from '../../Hoc/withContext';
 
 class AddNewPost extends Component {
   constructor(props) {
@@ -10,6 +11,7 @@ class AddNewPost extends Component {
     this.state = {
        title: '',
        body: '',
+       id: '',
     };
   }
 
@@ -20,6 +22,7 @@ class AddNewPost extends Component {
     const data = {
       title: title,
       body: body,
+      id: this.props.val.user.uid,
     };
     ref.push(data);
   }
@@ -48,4 +51,4 @@ class AddNewPost extends Component {
   }
 }
 
-export default AddNewPost;
+export default withContext(AddNewPost);

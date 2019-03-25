@@ -15,3 +15,37 @@
 .logOut:hover{
     background: #ff0000;
 }
+.addPost{
+    border: none;
+    outline: none;
+    color: #fff;
+    background: #e50000;
+    height: 50px;
+    width: 90px;
+    font-size: 18px;
+    position: absolute;
+    right: 90%;
+    cursor: pointer;
+    box-shadow: 10px 6px 9px 1px #696969;
+    top: 1%;
+  }
+  .addPost:hover{
+    background: #ff0000;
+  }
+  .addNews{
+    border: none;
+    outline: none;
+    color: #fff;
+    background: #CCCC00;
+    height: 50px;
+    width: 90px;
+    font-size: 18px;
+    position: absolute;
+    right: 90%;
+    top: 1%;
+    cursor: pointer;
+    box-shadow: 10px 6px 9px 1px #696969;
+}
+.addNews:hover{
+  background: #FFFF66;
+}

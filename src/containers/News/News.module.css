@@ -14,23 +14,6 @@
     color: #FFA500;
     font-weight: 600;
 }
-.add{
-    border: none;
-    outline: none;
-    color: #fff;
-    background: #CCCC00;
-    height: 50px;
-    width: 90px;
-    font-size: 18px;
-    position: absolute;
-    right: 90%;
-    top: 1%;
-    cursor: pointer;
-    box-shadow: 10px 6px 9px 1px #696969;
-}
-.add:hover{
-  background: #FFFF66;
-}
 .logOut{
   border: none;
   outline: none;
