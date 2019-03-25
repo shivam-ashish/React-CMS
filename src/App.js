@@ -9,6 +9,7 @@ class App extends Component {
   state = {
     isLoggedIn: false,
     user: null,
+    userId: null,
   }
 
   changeLoginState = (bool) => {
@@ -17,17 +18,21 @@ class App extends Component {
     });
   }
 
-  updateUser = (updatedUser) => {
-    this.setState({ user: updatedUser });
+  updateUser = (updatedUser, uid) => {
+    this.setState({
+      user: updatedUser,
+      userId: uid,
+    });
+    console.log('updated User in App.js', this.state.user, this.state.userId);
   }
 
   render() {
-    const { isLoggedIn, user } = this.state;
+    const { isLoggedIn, user, userId } = this.state;
     const { changeLoginState, updateUser } = this;
-    
     const store = {
       user,
       isLoggedIn,
+      userId,
       changeLoginState,
       updateUser,
     };
