@@ -11,7 +11,7 @@ class Blogs extends Component {
     return (
       <div className={classes.box}>
         <Switch>
-          <Route path={`${path}/AddNewPost`} component={AddNewPost} />
+          {/* <Route path={`${path}/AddNewPost`} component={AddNewPost} /> */}
           <Route
             path={`${path}`}
             render={() => (

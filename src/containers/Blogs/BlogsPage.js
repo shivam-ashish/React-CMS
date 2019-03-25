@@ -15,14 +15,12 @@ class BlogsPage extends Component {
     super(props);
     this.state = {
       list: [],
-      id: null,
       spinner: false,
     };
   }
 
   componentDidMount() {
-    const { uid } = this.props.val.user; 
-    this.setState({ spinner: true, id: uid });
+    this.setState({ spinner: true });
     const database = firebase.database();
     const ref = database.ref('blogs');
     ref.on('value', this.gotData, this.errData);
@@ -33,7 +31,7 @@ class BlogsPage extends Component {
     const keys = Object.keys(blogs);
     this.setState({
       list: keys.map(key => (
-        (blogs[key].id===this.state.id)?(
+        (blogs[key].submittedBy === this.props.val.user.uid)?(
         <li key={key}>
           <div style={{ fontSize: '20px', fontWeight: 'bold' }}>
             <button
@@ -55,12 +53,10 @@ class BlogsPage extends Component {
           </div>
           {<br />}
           {blogs[key].body}
-        </li>):(this.state.list)
+        </li>):(null)
       )),
     });
     this.setState({ spinner: false });
-    console.log(this.state.list);
-    
   }
 
   errData = (err) => {
@@ -76,7 +72,7 @@ class BlogsPage extends Component {
     const { path } = this.props.match;
     return (
       <Switch>
-        <Route path={`${path}/addnewpost`} component={AddNewPost} />
+        <Route path={`${path}/addnewpost`} component={()=><AddNewPost type="ADD"/>} />
         <Route path={`${path}/editpost/:key`} component={EditPost} />
         <Route path={`${path}`}>
           <>

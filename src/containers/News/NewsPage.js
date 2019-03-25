@@ -16,14 +16,12 @@ class NewsPage extends Component {
     super(props);
     this.state = {
       list: [],
-      id: null,
       spinner: false,
     };
   }
 
   componentDidMount() {
-    const { uid } = this.props.val.user;
-    this.setState({ spinner: true, id: uid });
+    this.setState({ spinner: true });
     const database = firebase.database();
     const ref = database.ref('news');
     ref.on('value', this.gotData, this.errData);
@@ -34,7 +32,7 @@ class NewsPage extends Component {
         const keys = Object.keys(news);
         this.setState({
           list: keys.map(key => (
-            (news[key].id===this.state.id)?(
+            (news[key].id===this.props.val.user.uid)?(
             <li key={key}>
               <div style={{ fontSize: '20px', fontWeight: 'bold' }}>
                 <button
@@ -56,7 +54,7 @@ class NewsPage extends Component {
               </div>
               {<br />}
               {news[key].body}
-            </li>):(true)
+            </li>):(null)
           )),
         });
         this.setState({ spinner: false });

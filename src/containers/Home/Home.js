@@ -15,7 +15,13 @@ class Home extends Component {
   }
 
   componentDidMount (){
-    // console.log(this.props.val); 
+    console.log('Date',new Date().getDate());
+    console.log('Month',new Date().getMonth()+1);
+    console.log('Year',new Date().getFullYear());
+    console.log('Hours',new Date().getHours());
+    console.log('Minutes',new Date().getMinutes());
+    console.log('Seconds',new Date().getSeconds());
+    console.log('MilliSec',new Date().getMilliseconds());
   }
 
   logout = () => {
@@ -24,7 +30,6 @@ class Home extends Component {
 
   render() {
     const { path } = this.props.match;
-
     return (
       <div className={classes.box}>
         <Navbar />

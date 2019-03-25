@@ -31,7 +31,9 @@ class AddNewPost extends Component {
     this.setState({ [e.target.name]: e.target.value });
   }
 
-  render() {   
+  render() {
+    console.log(this.props);
+      
     return (
       <div className={classes.post}>
         <h1>ADD YOUR POST</h1>
