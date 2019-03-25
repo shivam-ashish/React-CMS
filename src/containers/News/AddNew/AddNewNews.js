@@ -3,7 +3,6 @@ import firebase from 'firebase';
 import withContext from '../../Hoc/withContext';
 import { Link } from 'react-router-dom';
 import classes from './AddNewNews.module.css';
-import withContext from '../../Hoc/withContext';
 
 class AddNewPost extends Component {
   constructor(props) {

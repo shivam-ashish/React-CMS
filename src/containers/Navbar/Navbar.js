@@ -3,7 +3,6 @@ import { Link, withRouter } from 'react-router-dom';
 import Button from '../../commonComponents/Button/Button';
 import Fire from '../../config/fire';
 import classes from './Navbar.module.css';
-import withContext from '../Hoc/withContext';
 
 class Navbar extends Component {
   constructor() {
