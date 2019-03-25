@@ -42,6 +42,7 @@ class App extends Component {
   render() {
     const { isLoggedIn, user, uid } = this.state;
     const { changeLoginState, updateUser } = this;
+    
     const store = {
       user,
       isLoggedIn,

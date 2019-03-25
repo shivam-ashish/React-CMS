@@ -51,23 +51,6 @@
 .box ul li:hover{
   background: #CD5C5C;
 }
-.add{
-  border: none;
-  outline: none;
-  color: #fff;
-  background: #e50000;
-  height: 50px;
-  width: 90px;
-  font-size: 18px;
-  position: absolute;
-  right: 90%;
-  cursor: pointer;
-  box-shadow: 10px 6px 9px 1px #696969;
-  top: 1%;
-}
-.add:hover{
-  background: #ff0000;
-}
 .delete{
   margin: 0;
   padding: 2px;

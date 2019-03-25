@@ -3,13 +3,15 @@ import firebase from 'firebase';
 import withContext from '../../Hoc/withContext';
 import { Link } from 'react-router-dom';
 import classes from './AddNewNews.module.css';
+import withContext from '../../Hoc/withContext';
 
 class AddNewPost extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      title: '',
-      body: '',
+       title: '',
+       body: '',
+       id: '',
     };
   }
 
@@ -24,6 +26,7 @@ class AddNewPost extends Component {
     const data = {
       title: title,
       body: body,
+      id: this.props.val.user.uid,
     };
     ref.push(data);
   }

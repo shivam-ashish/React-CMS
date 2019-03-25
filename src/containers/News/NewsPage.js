@@ -3,23 +3,27 @@ import firebase from 'firebase';
 import {
   Link, withRouter, Switch, Route,
 } from 'react-router-dom';
+import MDSpinner from 'react-md-spinner';
 import Fire from '../../config/fire';
 import classes from './News.module.css';
 import AddNewNews from './AddNew/AddNewNews';
 import EditNews from './EditNews/EditNews';
-import MDSpinner from 'react-md-spinner';
+import Button from '../../commonComponents/Button/Button';
+import withContext from '../Hoc/withContext';
 
 class NewsPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
       list: [],
+      id: null,
       spinner: false,
     };
   }
 
   componentDidMount() {
-    this.setState({ spinner: true });
+    const { uid } = this.props.val.user;
+    this.setState({ spinner: true, id: uid });
     const database = firebase.database();
     const ref = database.ref('news');
     ref.on('value', this.gotData, this.errData);
@@ -30,6 +34,7 @@ class NewsPage extends Component {
         const keys = Object.keys(news);
         this.setState({
           list: keys.map(key => (
+            (news[key].id===this.state.id)?(
             <li key={key}>
               <div style={{ fontSize: '20px', fontWeight: 'bold' }}>
                 <button
@@ -51,7 +56,7 @@ class NewsPage extends Component {
               </div>
               {<br />}
               {news[key].body}
-            </li>
+            </li>):(true)
           )),
         });
         this.setState({ spinner: false });
@@ -81,8 +86,7 @@ class NewsPage extends Component {
               render={() => (
                 <>
                   <Link to={`${path}/addnewnews`}>
-                    <button className={classes.add}>Add News</button>
-
+                    <Button type="Add News" />
                   </Link>
                   <h1>News</h1>
                   {spinner ? (<div className={classes.spinner}><MDSpinner /></div>)
@@ -100,4 +104,4 @@ class NewsPage extends Component {
       }
 }
 
-export default withRouter(NewsPage);
+export default withContext(withRouter(NewsPage));

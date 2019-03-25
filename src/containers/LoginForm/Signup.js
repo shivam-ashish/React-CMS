@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import firebase from 'firebase';
+import MDSpinner from 'react-md-spinner';
 import classes from './LoginForm.module.css';
 import Fire from '../../config/fire';
+import withContext from '../Hoc/withContext';
+import fire from '../../config/fire';
 
 class Signup extends Component {
   constructor(props) {
@@ -12,29 +15,38 @@ class Signup extends Component {
       email: '',
       password: '',
       name: '',
+      spinner: '',
     };
   }
 
   signup = (e) => {
     const { email, password } = this.state;
+    const { name } = this.state;
+    const { changeLoginState, updateUser, user } = this.props.val;
+    this.setState({ spinner: true });
     e.preventDefault();
     Fire.auth().createUserWithEmailAndPassword(email, password)
       .then((u) => {
-        const { name } = this.state;
+        // const { uid } = this.props.val.user;
         const database = firebase.database();
         const ref = database.ref('users');
-        const data = {
-          user_name: name,
-        };
-        ref.push(data);
+        // fire.auth().onAuthStateChanged((user) => {
+          // changeLoginState(true);
+          // updateUser(user);
+          // console.log(uid);
+          const data = {
+            userName: name,
+            // uid: this.props.val.user.uid,
+          };
+          ref.push(data);
+          // });
       })
       .catch((error) => {
-        console.log(error);
+        alert(error.message);
+        this.setState({ spinner: false });
       });
-  }
-
-  handleChange = (e) => {
-    this.setState({ [e.target.name]: e.target.value });
+      console.log(this.props);
+      
   }
 
   handleChange = (e) => {
@@ -42,20 +54,21 @@ class Signup extends Component {
   }
 
   render() {
+    const { email, password, name, spinner } = this.state;
     return (
       <div className={classes.loginForm}>
         <h1>Sign UP Here</h1>
         <label htmlFor="email">Name : </label>
-        <input value={this.state.name} onChange={this.handleChange} type="text" name="name" />
+        <input value={name} onChange={this.handleChange} type="text" name="name" />
         <label htmlFor="email">Email Address : </label>
-        <input value={this.state.email} onChange={this.handleChange} type="email" name="email" />
+        <input value={email} onChange={this.handleChange} type="email" name="email" />
         <label htmlFor="email">Password : </label>
-        <input value={this.state.password} onChange={this.handleChange} type="password" name="password" />
+        <input value={password} onChange={this.handleChange} type="password" name="password" />
         <button type="submit" className={classes.loginBtn} onClick={this.props.toggle}>Back to Login</button>
-        <button type="submit" className={classes.loginBtn} onClick={(e) => this.signup(e)}>Sign Up</button>
+        <button type="submit" className={classes.loginBtn} onClick={(e) => this.signup(e)}>{spinner?<MDSpinner/>:'Sign Up'}</button>
       </div>
     );
   }
 }
 
-export default Signup;
+export default withContext(Signup);

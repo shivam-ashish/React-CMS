@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
-import Btn from '../../commonComponents/Btn/Btn';
+import Button from '../../commonComponents/Button/Button';
 import Fire from '../../config/fire';
 import classes from './Navbar.module.css';
+import withContext from '../Hoc/withContext';
 
 class Navbar extends Component {
   constructor() {
@@ -13,7 +14,6 @@ class Navbar extends Component {
   }
 
   logoutHandler = () => {
-    console.log('clicked');
     Fire.auth().signOut();
   }
 
@@ -38,7 +38,7 @@ class Navbar extends Component {
             </li>
           </Link>
         </ul>
-        <Btn type="logout" />
+        <Button type="LogOut" />
 
       </div>
     );
