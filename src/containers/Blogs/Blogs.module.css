@@ -65,7 +65,7 @@
 .delete:hover{
   background: #ff0000;
 }
-.update{
+.edit{
   margin: 0;
   padding: 2px;
   float: left;
@@ -76,7 +76,7 @@
   border-radius: 100%;
 
 }
-.update:hover{
+.edit:hover{
   background: #ff0000;
 }
 .spinner{

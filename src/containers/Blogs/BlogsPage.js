@@ -5,9 +5,9 @@ import {
 import firebase from 'firebase';
 import MDSpinner from 'react-md-spinner';
 import classes from './Blogs.module.css';
-import AddNewPost from './AddNew/AddNewPost';
 import Button from '../../commonComponents/Button/Button';
 import withContext from '../Hoc/withContext';
+import AddEdit from './AddEdit/AddEdit';
 
 class BlogsPage extends Component {
   constructor(props) {
@@ -19,7 +19,6 @@ class BlogsPage extends Component {
   }
 
   componentDidMount() {
-    console.log(this.props.val.user);
     const { uid } = this.props.val.user;
     this.setState({ spinner: true, id: uid });
     const database = firebase.database();
@@ -32,7 +31,6 @@ class BlogsPage extends Component {
     const keys = Object.keys(blogs);
     this.setState({
       list: keys.map(key => (
-<<<<<<< HEAD
         (blogs[key].submittedBy === this.props.val.user.uid)?(
         <li key={key}>
           <div style={{ fontSize: '20px', fontWeight: 'bold' }}>
@@ -43,21 +41,14 @@ class BlogsPage extends Component {
             X
             </button>
             <Link
-              to={`${this.props.match.path}/editpost/${key}`}
+              to={`${this.props.match.path}/editpost/${key}/edit`}
             >
-=======
-        (blogs[key].submittedBy === this.props.val.user.uid) ? (
-          <li key={key}>
-            <div style={{ fontSize: '20px', fontWeight: 'bold' }}>
->>>>>>> 7a0ac163573e7a5eb2fa321d72e2d6a6f8a21230
               <button
                 type="button"
-                className={classes.delete}
-                onClick={() => this.deleteData(key)}
+                className={classes.edit}
               >
-                X
+                Edit
               </button>
-<<<<<<< HEAD
             </Link>
             {blogs[key].title}
           </div>
@@ -67,30 +58,6 @@ class BlogsPage extends Component {
       )),
     });
     this.setState({ spinner: false });
-=======
-              <Link
-                to={`${this.props.match.path}/editpost/${key}`}
-              >
-                <button
-                  type="button"
-                  className={classes.update}
-                >
-                  Edit
-                </button>
-              </Link>
-              {blogs[key].title}
-            </div>
-            {<br />}
-            {blogs[key].body}
-          </li>
-        ) 
-          :
-        (this.state.list)
-      )),
-    });
-    this.setState({ spinner: false });
-    console.log(this.state.list);
->>>>>>> 7a0ac163573e7a5eb2fa321d72e2d6a6f8a21230
   }
 
   errData = (err) => {
@@ -104,19 +71,13 @@ class BlogsPage extends Component {
   render() {
     const { list, spinner } = this.state;
     const { path } = this.props.match;
-    console.log(list);
     return (
       <Switch>
-<<<<<<< HEAD
-        <Route path={`${path}/addnewpost`} component={()=><AddNewPost type="ADD"/>} />
-        <Route path={`${path}/editpost/:key`} component={EditPost} />
-=======
-        <Route path={`${path}/addnewpost`} component={AddNewPost} />
-        <Route path={`${path}/editpost/:key`} component={AddNewPost} />
->>>>>>> 7a0ac163573e7a5eb2fa321d72e2d6a6f8a21230
+        <Route path={`${path}/addnewpost/:type`} component={AddEdit} />
+        <Route path={`${path}/editpost/:key/:type`} component={AddEdit} />
         <Route path={`${path}`}>
           <>
-            <Link to={`${path}/addnewpost`}>
+            <Link to={`${path}/addnewpost/add`}>
               <Button type="Add Post" />
             </Link>
             <h1>BLOGS</h1>

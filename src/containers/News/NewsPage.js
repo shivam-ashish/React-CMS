@@ -6,8 +6,7 @@ import {
 import MDSpinner from 'react-md-spinner';
 import Fire from '../../config/fire';
 import classes from './News.module.css';
-import AddNewNews from './AddNew/AddNewNews';
-import EditNews from './EditNews/EditNews';
+import AddEdit from './AddEdit/AddEdit';
 import Button from '../../commonComponents/Button/Button';
 import withContext from '../Hoc/withContext';
 
@@ -42,10 +41,10 @@ class NewsPage extends Component {
                 X
                 </button>
               <Link
-                to={`${this.props.match.path}/editnews/${key}`}
+                to={`${this.props.match.path}/editnews/${key}/edit`}
               >
                 <button
-                  className={classes.update}
+                  className={classes.edit}
                 >
                   Edit
                 </button>
@@ -54,7 +53,7 @@ class NewsPage extends Component {
             </div>
             {<br />}
             {news[key].body}
-          </li>) : (true)
+          </li>) : (null)
       )),
     });
     this.setState({ spinner: false });
@@ -77,13 +76,13 @@ class NewsPage extends Component {
     const { path } = this.props.match;
     return (
       <Switch>
-        <Route path={`${path}/addnewnews`} component={AddNewNews} />
-        <Route path={`${path}/editnews/:key`} component={EditNews} />
+        <Route path={`${path}/addnewnews/:type`} component={AddEdit} />
+        <Route path={`${path}/editnews/:key/:type`} component={AddEdit} />
         <Route
           path={`${path}`}
           render={() => (
             <>
-              <Link to={`${path}/addnewnews`}>
+              <Link to={`${path}/addnewnews/add`}>
                 <Button type="Add News" />
               </Link>
               <h1>News</h1>

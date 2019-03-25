@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import firebase from 'firebase';
-import { Link } from 'react-router-dom';
-import classes from './AddNewPost.module.css';
+import { Link, withRouter } from 'react-router-dom';
+import classes from './AddEdit.module.css';
 import withContext from '../../Hoc/withContext';
 
 class AddNewPost extends Component {
@@ -10,45 +10,40 @@ class AddNewPost extends Component {
     this.state = {
       title: '',
       body: '',
+      time: '',
       submittedBy: '',
       submittedOn: '',
       updatedBy: '',
       updatedOn: '',
-      innerText: '',
     };
+  }
+
+  componentDidMount() {
+    // const setTime = `${new Date().getDate()}/${new Date().getMonth()+1}/${new Date().getFullYear()} ${new Date().getHours()}:${new Date().getMinutes()}`;
+    this.setState({ time: `${new Date().getDate()}/${new Date().getMonth()+1}/${new Date().getFullYear()} ${new Date().getHours()}:${new Date().getMinutes()}` });
   }
 
   putData = () => {
     const { title, body } = this.state;
     const database = firebase.database();
-    const ref = database.ref('blogs');
+    const ref = database.ref('news');
     const data = {
       title,
       body,
       submittedBy: this.props.val.user.uid,
       updatedBy: this.props.val.user.uid,
-      updatedOn: this.props.val.user.metadata,
+      updatedOn: this.state.time,
     };
     ref.push(data);
-    this.setState({
-      innerText: 'Add',
-    });
   }
 
-  handleChange = (e) => {
-    this.setState({ [e.target.name]: e.target.value });
-  }
-
-  render() {
-    console.log(this.props);
-      
   editData = () => {
-    console.log('called editadata');
     const { key } = this.props.match.params;
-    console.log(key);
-    firebase.database().ref(`blogs/${key}`).update({
+    firebase.database().ref(`news/${key}`).update({
       title: this.state.title,
       body: this.state.body,
+      updatedBy: this.props.val.user.uid,
+      updatedOn: this.state.time,
     });
   }
 
@@ -57,9 +52,13 @@ class AddNewPost extends Component {
   }
 
   render() {
+    const { type } = this.props.match.params;
     return (
       <div className={classes.post}>
-        <h1>{this.state.innerText} YOUR POST</h1>
+        <h1>
+          { type }
+        YOUR NEWS
+        </h1>
         <div className={classes.container}>
           <label htmlFor="title">Title</label>
           <br />
@@ -84,14 +83,32 @@ class AddNewPost extends Component {
             className={classes.body}
           />
           <br />
-          <Link to="/home/blogs">
-            <button
-              type="button"
-              purpose="add"
-              onClick={this.putData}
-            >
-              ADD POST
-            </button>
+          <Link to="/home/news">
+
+
+            {(() => {
+              switch (type) {
+                case 'add': return (
+                  <button
+                    type="button"
+                    onClick={this.putData}
+                  >
+                    { type }
+                     NEWS
+                  </button>
+                );
+                case 'edit': return (
+                  <button
+                    type="button"
+                    onClick={this.editData}
+                  >
+                    { type }
+                     NEWS
+                  </button>
+                );
+                default: return null;
+              }
+            })()}
           </Link>
         </div>
       </div>
@@ -99,4 +116,5 @@ class AddNewPost extends Component {
   }
 }
 
-export default withContext(AddNewPost);
+export default withContext(withRouter(AddNewPost));
+
