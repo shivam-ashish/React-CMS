@@ -39,9 +39,6 @@ class AddNewPost extends Component {
     this.setState({ [e.target.name]: e.target.value });
   }
 
-  render() {
-    console.log(this.props);
-      
   editData = () => {
     console.log('called editadata');
     const { key } = this.props.match.params;

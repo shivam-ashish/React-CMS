@@ -32,65 +32,34 @@ class BlogsPage extends Component {
     const keys = Object.keys(blogs);
     this.setState({
       list: keys.map(key => (
-<<<<<<< HEAD
-        (blogs[key].submittedBy === this.props.val.user.uid)?(
-        <li key={key}>
-          <div style={{ fontSize: '20px', fontWeight: 'bold' }}>
-            <button
-              className={classes.delete}
-              onClick={() => this.deleteData(key)}
-            >
-            X
-            </button>
-            <Link
-              to={`${this.props.match.path}/editpost/${key}`}
-            >
-=======
         (blogs[key].submittedBy === this.props.val.user.uid) ? (
           <li key={key}>
             <div style={{ fontSize: '20px', fontWeight: 'bold' }}>
->>>>>>> 7a0ac163573e7a5eb2fa321d72e2d6a6f8a21230
               <button
-                type="button"
                 className={classes.delete}
                 onClick={() => this.deleteData(key)}
               >
                 X
               </button>
-<<<<<<< HEAD
-            </Link>
-            {blogs[key].title}
-          </div>
-          {<br />}
-          {blogs[key].body}
-        </li>):(null)
-      )),
-    });
-    this.setState({ spinner: false });
-=======
               <Link
                 to={`${this.props.match.path}/editpost/${key}`}
               >
                 <button
                   type="button"
-                  className={classes.update}
+                  className={classes.delete}
+                  onClick={() => this.deleteData(key)}
                 >
-                  Edit
+                  X
                 </button>
               </Link>
               {blogs[key].title}
             </div>
             {<br />}
             {blogs[key].body}
-          </li>
-        ) 
-          :
-        (this.state.list)
+          </li>) : (null)
       )),
     });
     this.setState({ spinner: false });
-    console.log(this.state.list);
->>>>>>> 7a0ac163573e7a5eb2fa321d72e2d6a6f8a21230
   }
 
   errData = (err) => {
@@ -107,13 +76,8 @@ class BlogsPage extends Component {
     console.log(list);
     return (
       <Switch>
-<<<<<<< HEAD
-        <Route path={`${path}/addnewpost`} component={()=><AddNewPost type="ADD"/>} />
-        <Route path={`${path}/editpost/:key`} component={EditPost} />
-=======
+        <Route path={`${path}/addnewpost`} component={() => <AddNewPost type="ADD" />} />
         <Route path={`${path}/addnewpost`} component={AddNewPost} />
-        <Route path={`${path}/editpost/:key`} component={AddNewPost} />
->>>>>>> 7a0ac163573e7a5eb2fa321d72e2d6a6f8a21230
         <Route path={`${path}`}>
           <>
             <Link to={`${path}/addnewpost`}>
