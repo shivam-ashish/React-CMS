@@ -9,7 +9,7 @@ const withContext = (WrappedComponent) => {
           <Consumer>
             {(value) => {
               return (
-                <WrappedComponent val={value} props={props} />
+                <WrappedComponent val={value} />
               );
             }}
           </Consumer>

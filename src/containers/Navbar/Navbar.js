@@ -22,14 +22,19 @@ class Navbar extends Component {
     return (
       <div className={classes.navbar}>
         <ul>
+          <Link to={`${path}`}>
+            <li>
+              Home
+            </li>
+          </Link>
           <Link to={`${path}/blogs`}>
             <li>
-          Blogs
+              Blogs
             </li>
           </Link>
           <Link to={`${path}/news`}>
             <li>
-          News
+              News
             </li>
           </Link>
         </ul>

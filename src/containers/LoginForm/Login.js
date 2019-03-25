@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+import MDSpinner from 'react-md-spinner';
+import withContext from '../Hoc/withContext';
 import classes from './LoginForm.module.css';
 import Fire from '../../config/fire';
-import MDSpinner from 'react-md-spinner';
 
 class Login extends Component {
   constructor(props) {
@@ -13,7 +14,11 @@ class Login extends Component {
       password: '',
       spinner: false,
     };
-  } 
+  }
+
+  componentDidMount() {
+    console.log('Component Did Mount Called in Login.js', this.props);
+  }
 
   login = (e) => {
     const { email, password } = this.state;
@@ -47,17 +52,22 @@ class Login extends Component {
             className={classes.loginBtn}
             onClick={(evt) => {
               this.login(evt);
-            }}>{spinner?<MDSpinner/>:'Login'}</button>
+            }}
+          >
+            {spinner ? <MDSpinner />:'Login'}
+
+          </button>
           <button
             type="submit"
             className={classes.loginBtn}
-            onClick={this.props.toggle}>
+            onClick={this.props.toggle}
+          >
             Sign Up
-              </button>
+          </button>
         </div>
       </div>
     );
   }
 }
 
-export default Login;
+export default withContext(Login);

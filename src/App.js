@@ -9,6 +9,13 @@ class App extends Component {
   state = {
     isLoggedIn: false,
     user: null,
+    userId: null,
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props !== prevProps) {
+      this.updateUserId();
+    }
   }
 
   changeLoginState = (bool) => {
@@ -17,15 +24,28 @@ class App extends Component {
     });
   }
 
-  updateUser = (updatedUser) => {
-    this.setState({ user: updatedUser });
+  updateUser = (updatedUser, uid) => {
+    this.setState({
+      user: updatedUser,
+      userId: uid,
+    });
+    console.log('updated User in App.js', this.state.user, this.state.userId);
   }
 
+  // updateUserId = () => {
+  //   this.setState({
+  //     uid: this.state.user.uid,
+  //   });
+  //   console.log(this.state.uid);
+  // }
+
   render() {
-    const { isLoggedIn } = this.state;
+    const { isLoggedIn, user, uid } = this.state;
     const { changeLoginState, updateUser } = this;
     const store = {
+      user,
       isLoggedIn,
+      uid,
       changeLoginState,
       updateUser,
     };
