@@ -22,6 +22,7 @@ class Home extends Component {
     console.log('Minutes',new Date().getMinutes());
     console.log('Seconds',new Date().getSeconds());
     console.log('MilliSec',new Date().getMilliseconds());
+    console.log('TimeStamp',new Date().getTime());
   }
 
   logout = () => {
