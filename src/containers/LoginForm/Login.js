@@ -16,10 +16,6 @@ class Login extends Component {
     };
   }
 
-  componentDidMount() {
-    console.log('Component Did Mount Called in Login.js', this.props);
-  }
-
   login = (e) => {
     const { email, password } = this.state;
     this.setState({ spinner: true });

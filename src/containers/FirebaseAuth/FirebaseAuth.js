@@ -6,12 +6,10 @@ import withContext from '../Hoc/withContext';
 
 class FirebaseAuth extends Component {
   componentDidMount() {
-    console.log('Called inside componentDidMount');
     this.authListener();
   }
 
   authListener() {
-    console.log('value of Props in FirebaseAuth ', this.props);
     const { history } = this.props;
     const { changeLoginState, updateUser } = this.props.val;
     fire.auth().onAuthStateChanged((user) => {

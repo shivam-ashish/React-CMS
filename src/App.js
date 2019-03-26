@@ -4,6 +4,7 @@ import Route from 'react-router-dom/Route';
 import FirebaseAuth from './containers/FirebaseAuth/FirebaseAuth';
 import Home from './containers/Home/Home';
 import { Provider } from './containers/DataStore/MyContext';
+import { connect } from 'react-redux';
 
 class App extends Component {
   state = {
@@ -23,10 +24,13 @@ class App extends Component {
       user: updatedUser,
       userId: uid,
     });
-    console.log('updated User in App.js', this.state.user, this.state.userId);
   }
 
   render() {
+    console.log(this.props);
+    // const stateProps = this.props.store.getState();
+    console.log(store);
+    
     const { isLoggedIn, user, userId } = this.state;
     const { changeLoginState, updateUser } = this;
     const store = {
@@ -62,4 +66,18 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    // isLoggedIn: state.isLoggedIn,
+    // user: state.user,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    changeLoginState: (bool) => dispatch({type: 'LOGIN_STATE', isLoggedIn: bool}),
+    updateUser: () => dispatch({ type: 'UPDATE_USER' }),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

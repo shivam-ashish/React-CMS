@@ -14,17 +14,6 @@ class Home extends Component {
     this.logout = this.logout.bind(this);
   }
 
-  componentDidMount (){
-    console.log('Date',new Date().getDate());
-    console.log('Month',new Date().getMonth()+1);
-    console.log('Year',new Date().getFullYear());
-    console.log('Hours',new Date().getHours());
-    console.log('Minutes',new Date().getMinutes());
-    console.log('Seconds',new Date().getSeconds());
-    console.log('MilliSec',new Date().getMilliseconds());
-    console.log('TimeStamp',new Date().getTime());
-  }
-
   logout = () => {
     Fire.auth().signOut();
   }
