@@ -37,6 +37,10 @@ class AddNewPost extends Component {
     ref.push(data);
   }
 
+  handleChange = (e) => {
+    this.setState({ [e.target.name]: e.target.value });
+  }
+
   editData = () => {
     const { key } = this.props.match.params;
     firebase.database().ref(`blogs/${key}`).update({

@@ -48,13 +48,23 @@ class BlogsPage extends Component {
                 className={classes.edit}
               >
                 Edit
-              </button>
-            </Link>
-            {blogs[key].title}
-          </div>
-          {<br />}
-          {blogs[key].body}
-        </li>):(null)
+              </button></Link>
+              <Link
+                to={`${this.props.match.path}/editpost/${key}`}
+              >
+                {/* <button
+                  type="button"
+                  className={classes.delete}
+                  onClick={() => this.deleteData(key)}
+                >
+                  X
+                </button> */}
+              </Link>
+              {blogs[key].title}
+            </div>
+            {<br />}
+            {blogs[key].body}
+          </li>) : (null)
       )),
     });
     this.setState({ spinner: false });
