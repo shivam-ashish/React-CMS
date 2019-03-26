@@ -22,6 +22,7 @@ class BlogsPage extends Component {
     const { uid } = this.props.val.user;
     this.setState({ spinner: true, id: uid });
     const database = firebase.database();
+    // console.log(database);
     const ref = database.ref('blogs');
     ref.orderByChild('submittedBy').equalTo(this.props.val.user.uid).on('value', this.gotData, this.errData);
   }

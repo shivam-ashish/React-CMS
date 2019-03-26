@@ -10,7 +10,7 @@ class AddNewPost extends Component {
     this.state = {
       title: '',
       body: '',
-      time: '',
+      timeStamp: '',
       submittedBy: '',
       submittedOn: '',
       updatedBy: '',
@@ -20,7 +20,9 @@ class AddNewPost extends Component {
 
   componentDidMount() {
     // const setTime = `${new Date().getDate()}/${new Date().getMonth()+1}/${new Date().getFullYear()} ${new Date().getHours()}:${new Date().getMinutes()}`;
-    this.setState({ time: `${new Date().getDate()}/${new Date().getMonth()+1}/${new Date().getFullYear()} ${new Date().getHours()}:${new Date().getMinutes()}` });
+    this.setState({ 
+      timeStamp: `${new Date().getTime()}`,
+    });
   }
 
   putData = () => {
@@ -31,8 +33,9 @@ class AddNewPost extends Component {
       title,
       body,
       submittedBy: this.props.val.user.uid,
+      submittedOn: this.state.timeStamp,
       updatedBy: this.props.val.user.uid,
-      updatedOn: this.state.time,
+      updatedOn: this.state.timeStamp,
     };
     ref.push(data);
   }
@@ -43,7 +46,7 @@ class AddNewPost extends Component {
       title: this.state.title,
       body: this.state.body,
       updatedBy: this.props.val.user.uid,
-      updatedOn: this.state.time,
+      updatedOn: this.state.timeStamp,
     });
   }
 
