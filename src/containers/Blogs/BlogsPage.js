@@ -22,7 +22,9 @@ class BlogsPage extends Component {
     const { uid } = this.props.val.user;
     this.setState({ spinner: true, id: uid });
     const database = firebase.database();
+    // console.log(database);
     const ref = database.ref('blogs');
+    console.log(ref.isEqual);
     ref.on('value', this.gotData, this.errData);
   }
 

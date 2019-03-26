@@ -10,17 +10,18 @@ class AddNewPost extends Component {
     this.state = {
       title: '',
       body: '',
-      time: '',
       submittedBy: '',
       submittedOn: '',
       updatedBy: '',
       updatedOn: '',
+      timeStamp: '',
     };
   }
 
   componentDidMount() {
-    // const setTime = `${new Date().getDate()}/${new Date().getMonth()+1}/${new Date().getFullYear()} ${new Date().getHours()}:${new Date().getMinutes()}`;
-    this.setState({ time: `${new Date().getDate()}/${new Date().getMonth()+1}/${new Date().getFullYear()} ${new Date().getHours()}:${new Date().getMinutes()}` });
+    this.setState({
+      timeStamp: `${new Date().getTime()}`,
+    });
   }
 
   putData = () => {
@@ -31,8 +32,9 @@ class AddNewPost extends Component {
       title,
       body,
       submittedBy: this.props.val.user.uid,
+      submittedOn: this.state.timeStamp,
       updatedBy: this.props.val.user.uid,
-      updatedOn: this.state.time,
+      updatedOn: this.state.timeStamp,
     };
     ref.push(data);
   }
@@ -56,12 +58,14 @@ class AddNewPost extends Component {
   }
 
   render() {
+    console.log(this.state.time);
+    console.log(this.state.timeStamp);
     const { type } = this.props.match.params;
     return (
       <div className={classes.post}>
         <h1>
-          { type }
-        YOUR POST
+          {type}
+          YOUR POST
         </h1>
         <div className={classes.container}>
           <label htmlFor="title">Title</label>
@@ -97,8 +101,8 @@ class AddNewPost extends Component {
                     type="button"
                     onClick={this.putData}
                   >
-                    { type }
-                     POST
+                    {type}
+                    POST
                   </button>
                 );
                 case 'edit': return (
@@ -106,8 +110,8 @@ class AddNewPost extends Component {
                     type="button"
                     onClick={this.editData}
                   >
-                    { type }
-                     POST
+                    {type}
+                    POST
                   </button>
                 );
                 default: return null;
