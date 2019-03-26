@@ -23,15 +23,19 @@ class NewsPage extends Component {
     this.setState({ spinner: true });
     const database = firebase.database();
     const ref = database.ref('news');
-    ref.on('value', this.gotData, this.errData);
+    ref.orderByChild('submittedBy').equalTo(this.props.val.user.uid).on('value', this.gotData, this.errData);
   }
 
   gotData = (data) => {
+    if(data.val()==null){
+      this.setState({spinner: false})
+    }
+    else{
     const news = data.val();
     const keys = Object.keys(news);
     this.setState({
       list: keys.map(key => (
-        (news[key].submittedBy === this.props.val.user.uid) ? (
+        // (news[key].submittedBy === this.props.val.user.uid) ? (
           <li key={key}>
             <div style={{ fontSize: '20px', fontWeight: 'bold' }}>
               <button
@@ -53,12 +57,13 @@ class NewsPage extends Component {
             </div>
             {<br />}
             {news[key].body}
-          </li>) : (null)
+          </li>
+          // ) : (null)
       )),
     });
     this.setState({ spinner: false });
   }
-
+  }
   errData = (err) => {
     console.log(err);
   }

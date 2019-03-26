@@ -28,6 +28,10 @@ class BlogsPage extends Component {
   }
 
   gotData = (data) => {
+    if(data.val()==null){
+      this.setState({spinner: false})
+    }
+    else{
     const blogs = data.val();
     const keys = Object.keys(blogs);
     this.setState({
@@ -71,7 +75,7 @@ class BlogsPage extends Component {
     });
     this.setState({ spinner: false });
   }
-
+  }
   errData = (err) => {
     console.log(err);
   }
