@@ -23,7 +23,7 @@ class BlogsPage extends Component {
     this.setState({ spinner: true, id: uid });
     const database = firebase.database();
     const ref = database.ref('blogs');
-    ref.on('value', this.gotData, this.errData);
+    ref.orderByChild('submittedBy').equalTo(this.props.val.user.uid).on('value', this.gotData, this.errData);
   }
 
   gotData = (data) => {
@@ -31,7 +31,7 @@ class BlogsPage extends Component {
     const keys = Object.keys(blogs);
     this.setState({
       list: keys.map(key => (
-        (blogs[key].submittedBy === this.props.val.user.uid)?(
+        // (blogs[key].submittedBy === this.props.val.user.uid)?(
         <li key={key}>
           <div style={{ fontSize: '20px', fontWeight: 'bold' }}>
             <button
@@ -64,7 +64,8 @@ class BlogsPage extends Component {
             </div>
             {<br />}
             {blogs[key].body}
-          </li>) : (null)
+          </li>
+          // ) : (null)
       )),
     });
     this.setState({ spinner: false });
