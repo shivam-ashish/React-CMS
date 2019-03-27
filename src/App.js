@@ -27,9 +27,10 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.props);
-    // const stateProps = this.props.store.getState();
-    console.log(store);
+    console.log('Render', this.props);
+    // this.props.changeLoginState(true);
+    // this.props.updateUser('Ashish');
+    // console.log(this.props.user);
     
     const { isLoggedIn, user, userId } = this.state;
     const { changeLoginState, updateUser } = this;
@@ -67,16 +68,17 @@ class App extends Component {
 }
 
 const mapStateToProps = (state) => {
+  console.log('mapStateToProps',state);
   return {
-    // isLoggedIn: state.isLoggedIn,
-    // user: state.user,
+    isLoggedIn: state.isLoggedIn,
+    user: state.user,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     changeLoginState: (bool) => dispatch({type: 'LOGIN_STATE', isLoggedIn: bool}),
-    updateUser: () => dispatch({ type: 'UPDATE_USER' }),
+    updateUser: (updatedUser) => dispatch({ type: 'UPDATE_USER', user: updatedUser }),
   };
 };
 

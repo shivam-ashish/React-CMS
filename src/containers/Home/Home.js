@@ -20,6 +20,8 @@ class Home extends Component {
 
   render() {
     const { path } = this.props.match;
+    console.log(this.props);
+    
     return (
       <div className={classes.box}>
         <Navbar />
