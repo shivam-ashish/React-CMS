@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import MDSpinner from 'react-md-spinner';
-import withContext from '../Hoc/withContext';
 import classes from './LoginForm.module.css';
 import Fire from '../../config/fire';
 
@@ -66,4 +65,4 @@ class Login extends Component {
   }
 }
 
-export default withContext(Login);
+export default Login;

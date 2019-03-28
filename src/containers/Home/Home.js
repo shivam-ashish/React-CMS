@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Switch, Route, withRouter } from 'react-router-dom';
+import { Switch, Route, withRouter, Link } from 'react-router-dom';
 import Navbar from '../Navbar/Navbar';
 import Fire from '../../config/fire';
 import classes from './Home.module.css';
@@ -20,8 +20,6 @@ class Home extends Component {
 
   render() {
     const { path } = this.props.match;
-    console.log(this.props);
-    
     return (
       <div className={classes.box}>
         <Navbar />
@@ -38,4 +36,4 @@ class Home extends Component {
   }
 }
 
-export default withContext(withRouter(Home));
+export default withRouter(Home);

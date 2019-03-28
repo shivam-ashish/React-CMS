@@ -8,6 +8,7 @@ import classes from './Blogs.module.css';
 import Button from '../../commonComponents/Button/Button';
 import withContext from '../Hoc/withContext';
 import AddEdit from './AddEdit/AddEdit';
+import { connect } from 'react-redux';
 
 class BlogsPage extends Component {
   constructor(props) {
@@ -19,12 +20,11 @@ class BlogsPage extends Component {
   }
 
   componentDidMount() {
-    const { uid } = this.props.val.user;
+    const { uid } = this.props.user;
     this.setState({ spinner: true, id: uid });
     const database = firebase.database();
-    // console.log(database);
     const ref = database.ref('blogs');
-    ref.orderByChild('submittedBy').equalTo(this.props.val.user.uid).on('value', this.gotData, this.errData);
+    ref.orderByChild('submittedBy').equalTo(uid).on('value', this.gotData, this.errData);
   }
 
   gotData = (data) => {
@@ -110,5 +110,10 @@ class BlogsPage extends Component {
     );
   }
 }
-
-export default withContext(withRouter(BlogsPage));
+const mapStateToProps = (state) => {
+  console.log('mapStateToProps',state);
+  return {
+    user: state.user,
+  };
+};
+export default withRouter(connect(mapStateToProps)(BlogsPage));

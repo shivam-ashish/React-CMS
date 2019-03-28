@@ -3,6 +3,7 @@ import firebase from 'firebase';
 import { Link, withRouter } from 'react-router-dom';
 import classes from './AddEdit.module.css';
 import withContext from '../../Hoc/withContext';
+import { connect } from 'react-redux';
 
 class AddNewPost extends Component {
   constructor(props) {
@@ -26,27 +27,35 @@ class AddNewPost extends Component {
   }
 
   putData = () => {
-    const { title, body } = this.state;
+    const { title, body, timeStamp } = this.state;
+    const { uid } = this.props.user;
     const database = firebase.database();
     const ref = database.ref('news');
     const data = {
       title,
       body,
-      submittedBy: this.props.val.user.uid,
-      submittedOn: this.state.timeStamp,
-      updatedBy: this.props.val.user.uid,
-      updatedOn: this.state.timeStamp,
+      submittedBy: uid,
+      submittedOn: timeStamp,
+      updatedBy: uid,
+      updatedOn: timeStamp,
     };
+    if(uid === data.submittedBy ){
     ref.push(data);
+    }
+    else{
+      alert('Cant Access');
+    }
   }
 
   editData = () => {
     const { key } = this.props.match.params;
+    const { uid } = this.props.user;
+    const { title, body, timeStamp } = this.state;
     firebase.database().ref(`news/${key}`).update({
-      title: this.state.title,
-      body: this.state.body,
-      updatedBy: this.props.val.user.uid,
-      updatedOn: this.state.timeStamp,
+      title: title,
+      body: body,
+      updatedBy: uid,
+      updatedOn: timeStamp,
     });
   }
 
@@ -119,5 +128,12 @@ class AddNewPost extends Component {
   }
 }
 
-export default withContext(withRouter(AddNewPost));
+const mapStateToProps = (state) => {
+  console.log('mapStateToProps',state);
+  return {
+    user: state.user,
+  };
+};
+
+export default withRouter(connect(mapStateToProps)(AddNewPost));
 

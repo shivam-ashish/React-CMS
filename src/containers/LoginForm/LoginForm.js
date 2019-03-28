@@ -1,7 +1,6 @@
 /* eslint-disable jsx-a11y/label-has-for */
 import React, { Component } from 'react';
 import classes from './LoginForm.module.css';
-// import { Consumer } from '../DataStore/MyContext';
 import Login from './Login';
 import Signup from './Signup';
 

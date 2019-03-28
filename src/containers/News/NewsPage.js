@@ -9,6 +9,7 @@ import classes from './News.module.css';
 import AddEdit from './AddEdit/AddEdit';
 import Button from '../../commonComponents/Button/Button';
 import withContext from '../Hoc/withContext';
+import { connect } from 'react-redux';
 
 class NewsPage extends Component {
   constructor(props) {
@@ -23,7 +24,7 @@ class NewsPage extends Component {
     this.setState({ spinner: true });
     const database = firebase.database();
     const ref = database.ref('news');
-    ref.orderByChild('submittedBy').equalTo(this.props.val.user.uid).on('value', this.gotData, this.errData);
+    ref.orderByChild('submittedBy').equalTo(this.props.user.uid).on('value', this.gotData, this.errData);
   }
 
   gotData = (data) => {
@@ -106,4 +107,12 @@ class NewsPage extends Component {
   }
 }
 
-export default withContext(withRouter(NewsPage));
+const mapStateToProps = (state) => {
+  console.log('mapStateToProps', state);
+  return {
+    isLoggedIn: state.isLoggedIn,
+    user: state.user,
+  };
+};
+
+export default withRouter(connect(mapStateToProps)(NewsPage));

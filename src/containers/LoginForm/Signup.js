@@ -69,4 +69,4 @@ class Signup extends Component {
   }
 }
 
-export default withContext(Signup);
+export default Signup;

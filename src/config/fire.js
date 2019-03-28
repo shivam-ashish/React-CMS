@@ -9,14 +9,6 @@ const config = {
   messagingSenderId: '916097412424',
 };
 
-// var config = {
-//   apiKey: "AIzaSyATNgalgLToEwmRh01gDNJhcqIpO88Cb-U",
-//   authDomain: "react-cms-5d62b.firebaseapp.com",
-//   databaseURL: "https://react-cms-5d62b.firebaseio.com",
-//   projectId: "react-cms-5d62b",
-//   storageBucket: "",
-//   messagingSenderId: "609905714877"};
-
 const fire = firebase.initializeApp(config);
 
 export default fire;
