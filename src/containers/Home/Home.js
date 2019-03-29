@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-import { Switch, Route, withRouter, Link } from 'react-router-dom';
+import { Switch, Route, withRouter } from 'react-router-dom';
 import Navbar from '../Navbar/Navbar';
 import Fire from '../../config/fire';
 import classes from './Home.module.css';
 import Blogs from '../Blogs/Blogs';
 import News from '../News/News';
 import BlogsAndNewsPage from './BlogsAndNewsPage/BlogsAndNewsPage';
-import withContext from '../Hoc/withContext';
 
 class Home extends Component {
   constructor(props) {

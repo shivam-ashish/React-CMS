@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import firebase from 'firebase';
 import MDSpinner from 'react-md-spinner';
 import classes from './LoginForm.module.css';
 import Fire from '../../config/fire';
-import withContext from '../Hoc/withContext';
 
 class Signup extends Component {
   constructor(props) {
@@ -19,32 +19,24 @@ class Signup extends Component {
   }
 
   signup = (e) => {
-    const { email, password } = this.state;
-    const { name } = this.state;
+    const { email, password, name } = this.state;
     this.setState({ spinner: true });
     e.preventDefault();
     Fire.auth().createUserWithEmailAndPassword(email, password)
       .then((u) => {
-        // const { uid } = this.props.val.user;
         const database = firebase.database();
         const ref = database.ref('users');
-        // fire.auth().onAuthStateChanged((user) => {
-        // changeLoginState(true);
-        // updateUser(user);
-        // console.log(uid);
         const data = {
           userName: name,
-          // uid: this.props.val.user.uid,
+          uid: u.user.uid,
         };
+        u.user.updateProfile({ displayName: data.userName });
         ref.push(data);
-        // });
       })
       .catch((error) => {
         alert(error.message);
         this.setState({ spinner: false });
       });
-    console.log(this.props);
-
   }
 
   handleChange = (e) => {
@@ -52,7 +44,11 @@ class Signup extends Component {
   }
 
   render() {
-    const { email, password, name, spinner } = this.state;
+    const {
+      email, password, name, spinner,
+    } = this.state;
+    console.log('Signupp', this.props);
+    
     return (
       <div className={classes.loginForm}>
         <h1>Sign UP Here</h1>
@@ -63,7 +59,7 @@ class Signup extends Component {
         <label htmlFor="email">Password : </label>
         <input value={password} onChange={this.handleChange} type="password" name="password" />
         <button type="submit" className={classes.loginBtn} onClick={this.props.toggle}>Back to Login</button>
-        <button type="submit" className={classes.loginBtn} onClick={(e) => this.signup(e)}>{spinner ? <MDSpinner /> : 'Sign Up'}</button>
+        <button type="submit" className={classes.loginBtn} onClick={e => this.signup(e)}>{spinner ? <MDSpinner /> : 'Sign Up'}</button>
       </div>
     );
   }

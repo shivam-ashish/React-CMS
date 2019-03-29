@@ -7,7 +7,6 @@ import BlogsPage from './BlogsPage';
 class Blogs extends Component {
   render() {
     const { path } = this.props.match;
-    console.log('Blogs');
     return (
       <div className={classes.box}>
         <Switch>

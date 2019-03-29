@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import firebase from 'firebase';
 import { Link, withRouter } from 'react-router-dom';
-import classes from './AddEdit.module.css';
-import withContext from '../../Hoc/withContext';
 import { connect } from 'react-redux';
+import classes from './AddEdit.module.css';
 
 class AddNewPost extends Component {
   constructor(props) {
@@ -11,17 +10,11 @@ class AddNewPost extends Component {
     this.state = {
       title: '',
       body: '',
-      timeStamp: '',
-      submittedBy: '',
-      submittedOn: '',
-      updatedBy: '',
-      updatedOn: '',
     };
   }
 
   componentDidMount() {
-    // const setTime = `${new Date().getDate()}/${new Date().getMonth()+1}/${new Date().getFullYear()} ${new Date().getHours()}:${new Date().getMinutes()}`;
-    this.setState({ 
+    this.setState({
       timeStamp: `${new Date().getTime()}`,
     });
   }
@@ -39,11 +32,10 @@ class AddNewPost extends Component {
       updatedBy: uid,
       updatedOn: timeStamp,
     };
-    if(uid === data.submittedBy ){
-    ref.push(data);
-    }
-    else{
-      alert('Cant Access');
+    if (uid === data.submittedBy) {
+      ref.push(data);
+    } else {
+      alert('Cant Access!!!!');
     }
   }
 
@@ -51,12 +43,18 @@ class AddNewPost extends Component {
     const { key } = this.props.match.params;
     const { uid } = this.props.user;
     const { title, body, timeStamp } = this.state;
-    firebase.database().ref(`news/${key}`).update({
-      title: title,
-      body: body,
-      updatedBy: uid,
-      updatedOn: timeStamp,
-    });
+    const database = firebase.database();
+    const ref = database.ref(`blogs/${key}`);
+    if (ref.orderByChild('submittedBy').equalTo(uid)) {
+      firebase.database().ref(`news/${key}`).update({
+        title,
+        body,
+        updatedBy: uid,
+        updatedOn: timeStamp,
+      });
+    } else {
+      alert('Cant Access!!!');
+    }
   }
 
   handleChange = (e) => {
@@ -65,6 +63,7 @@ class AddNewPost extends Component {
 
   render() {
     const { type } = this.props.match.params;
+    const { title, body } = this.state;
     return (
       <div className={classes.post}>
         <h1>
@@ -75,7 +74,7 @@ class AddNewPost extends Component {
           <label htmlFor="title">Title</label>
           <br />
           <input
-            value={this.state.title}
+            value={title}
             onChange={this.handleChange}
             type="text"
             placeholder="Enter Title"
@@ -87,7 +86,7 @@ class AddNewPost extends Component {
           </label>
           <br />
           <input
-            value={this.state.body}
+            value={body}
             onChange={this.handleChange}
             type="text"
             placeholder="Enter your Post"
@@ -128,12 +127,8 @@ class AddNewPost extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  console.log('mapStateToProps',state);
-  return {
-    user: state.user,
-  };
-};
+const mapStateToProps = state => ({
+  user: state.user,
+});
 
 export default withRouter(connect(mapStateToProps)(AddNewPost));
-

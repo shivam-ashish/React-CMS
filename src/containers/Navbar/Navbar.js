@@ -1,27 +1,27 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
 import Button from '../../commonComponents/Button/Button';
 import Fire from '../../config/fire';
 import classes from './Navbar.module.css';
 
 class Navbar extends Component {
-  constructor() {
-    super();
-    this.state = {
-      dumy: true,
-    };
-  }
-
   logoutHandler = () => {
     Fire.auth().signOut();
   }
 
   render() {
     const { path } = this.props.match;
+    const { displayName } = this.props.user
     return (
       <div className={classes.navbar}>
         <ul>
           <Link to={`${path}`}>
+            <li className={classes.displayName}>
+              Hey
+              {' '}
+              { displayName }
+            </li>
             <li>
               Home
             </li>
@@ -44,4 +44,9 @@ class Navbar extends Component {
   }
 }
 
-export default withRouter(Navbar);
+const mapStateToProps = state => ({
+  user: state.user,
+  userName: state.userName,
+});
+
+export default withRouter(connect(mapStateToProps)(Navbar));

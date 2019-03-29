@@ -4,11 +4,10 @@ import {
 } from 'react-router-dom';
 import firebase from 'firebase';
 import MDSpinner from 'react-md-spinner';
+import { connect } from 'react-redux';
 import classes from './Blogs.module.css';
 import Button from '../../commonComponents/Button/Button';
-import withContext from '../Hoc/withContext';
 import AddEdit from './AddEdit/AddEdit';
-import { connect } from 'react-redux';
 
 class BlogsPage extends Component {
   constructor(props) {
@@ -28,56 +27,44 @@ class BlogsPage extends Component {
   }
 
   gotData = (data) => {
-    if(data.val()==null){
-      this.setState({spinner: false})
-    }
-    else{
-    const blogs = data.val();
-    const keys = Object.keys(blogs);
-    this.setState({
-      list: keys.map(key => (
-        // (blogs[key].submittedBy === this.props.val.user.uid)?(
-        <li key={key}>
-          <div style={{ fontSize: '20px', fontWeight: 'bold' }}>
-            <button
-              className={classes.delete}
-              onClick={() => this.deleteData(key)}
-            >
-            X
-            </button>
-            <Link
-              to={`${this.props.match.path}/editpost/${key}/edit`}
-            >
+    if (data.val() == null) {
+      this.setState({ spinner: false });
+    } else {
+      const blogs = data.val();
+      const keys = Object.keys(blogs);
+      this.setState({
+        list: keys.map(key => (
+          <li key={key}>
+            <div style={{ fontSize: '20px', fontWeight: 'bold' }}>
               <button
+                className={classes.delete}
+                onClick={() => this.deleteData(key)}
+              >
+            X
+              </button>
+              <Link
+                to={`${this.props.match.path}/editpost/${key}/edit`}
+              >
+                <button
                 type="button"
                 className={classes.edit}
               >
                 Edit
-              </button></Link>
-              <Link
-                to={`${this.props.match.path}/editpost/${key}`}
-              >
-                {/* <button
-                  type="button"
-                  className={classes.delete}
-                  onClick={() => this.deleteData(key)}
-                >
-                  X
-                </button> */}
+              </button>
               </Link>
               {blogs[key].title}
             </div>
             {<br />}
             {blogs[key].body}
           </li>
-          // ) : (null)
-      )),
-    });
-    this.setState({ spinner: false });
+        )),
+      });
+      this.setState({ spinner: false });
+    }
   }
-  }
+
   errData = (err) => {
-    console.log(err);
+    alert(err);
   }
 
   deleteData = (key) => {
@@ -111,7 +98,6 @@ class BlogsPage extends Component {
   }
 }
 const mapStateToProps = (state) => {
-  console.log('mapStateToProps',state);
   return {
     user: state.user,
   };

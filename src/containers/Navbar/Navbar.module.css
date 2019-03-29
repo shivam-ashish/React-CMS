@@ -11,3 +11,11 @@
     display: inline-block;
     margin: 10px;
 }
+.displayName{
+    list-style-type: none;
+    color: green;
+    font-size: 20px;
+    cursor: not-allowed;
+    position: absolute;
+    left: 20%;
+}

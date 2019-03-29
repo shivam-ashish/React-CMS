@@ -4,12 +4,11 @@ import {
   Link, withRouter, Switch, Route,
 } from 'react-router-dom';
 import MDSpinner from 'react-md-spinner';
+import { connect } from 'react-redux';
 import Fire from '../../config/fire';
 import classes from './News.module.css';
 import AddEdit from './AddEdit/AddEdit';
 import Button from '../../commonComponents/Button/Button';
-import withContext from '../Hoc/withContext';
-import { connect } from 'react-redux';
 
 class NewsPage extends Component {
   constructor(props) {
@@ -21,22 +20,22 @@ class NewsPage extends Component {
   }
 
   componentDidMount() {
+    const { uid } = this.props.user;
     this.setState({ spinner: true });
     const database = firebase.database();
     const ref = database.ref('news');
-    ref.orderByChild('submittedBy').equalTo(this.props.user.uid).on('value', this.gotData, this.errData);
+    ref.orderByChild('submittedBy').equalTo(uid).on('value', this.gotData, this.errData);
   }
 
   gotData = (data) => {
-    if(data.val()==null){
-      this.setState({spinner: false})
-    }
-    else{
-    const news = data.val();
-    const keys = Object.keys(news);
-    this.setState({
-      list: keys.map(key => (
-        // (news[key].submittedBy === this.props.val.user.uid) ? (
+    const { path } = this.props.match;
+    if (data.val() == null) {
+      this.setState({ spinner: false });
+    } else {
+      const news = data.val();
+      const keys = Object.keys(news);
+      this.setState({
+        list: keys.map(key => (
           <li key={key}>
             <div style={{ fontSize: '20px', fontWeight: 'bold' }}>
               <button
@@ -44,9 +43,9 @@ class NewsPage extends Component {
                 onClick={() => this.deleteData(key)}
               >
                 X
-                </button>
+              </button>
               <Link
-                to={`${this.props.match.path}/editnews/${key}/edit`}
+                to={`${path}/editnews/${key}/edit`}
               >
                 <button
                   className={classes.edit}
@@ -59,12 +58,12 @@ class NewsPage extends Component {
             {<br />}
             {news[key].body}
           </li>
-          // ) : (null)
-      )),
-    });
-    this.setState({ spinner: false });
+        )),
+      });
+      this.setState({ spinner: false });
+    }
   }
-  }
+
   errData = (err) => {
     console.log(err);
   }
@@ -107,12 +106,9 @@ class NewsPage extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  console.log('mapStateToProps', state);
-  return {
-    isLoggedIn: state.isLoggedIn,
-    user: state.user,
-  };
-};
+const mapStateToProps = state => ({
+  isLoggedIn: state.isLoggedIn,
+  user: state.user,
+});
 
 export default withRouter(connect(mapStateToProps)(NewsPage));
