@@ -14,16 +14,29 @@ class BlogsPage extends Component {
     super(props);
     this.state = {
       list: [],
+      title: '',
+      body: '',
+      edit: false,
       spinner: false,
     };
   }
 
   componentDidMount() {
     const { uid } = this.props.user;
-    this.setState({ spinner: true, id: uid });
+    this.setState({
+      spinner: true,
+    });
     const database = Fire.database();
     const ref = database.ref('blogs');
     ref.orderByChild('submittedBy').equalTo(uid).on('value', this.gotData, this.errData);
+  }
+
+  editHandler = (titleVal, bodyVal) => {
+    this.setState({
+      title: titleVal,
+      body: bodyVal,
+      edit: true,
+    });
   }
 
   gotData = (data) => {
@@ -37,20 +50,22 @@ class BlogsPage extends Component {
           <li key={key}>
             <div style={{ fontSize: '20px', fontWeight: 'bold' }}>
               <button
+                type="button"
                 className={classes.delete}
                 onClick={() => this.deleteData(key)}
               >
-            X
+                X
               </button>
               <Link
                 to={`${this.props.match.path}/editpost/${key}/edit`}
               >
                 <button
-                type="button"
-                className={classes.edit}
-              >
-                Edit
-              </button>
+                  type="button"
+                  className={classes.edit}
+                  onClick={() => this.editHandler(blogs[key].title, blogs[key].body)}
+                >
+                  Edit
+                </button>
               </Link>
               {blogs[key].title}
             </div>
@@ -74,10 +89,15 @@ class BlogsPage extends Component {
   render() {
     const { list, spinner } = this.state;
     const { path } = this.props.match;
+
     return (
       <Switch>
         <Route path={`${path}/addnewpost/:type`} component={AddEdit} />
-        <Route path={`${path}/editpost/:key/:type`} component={AddEdit} />
+        <Route
+          path={`${path}/editpost/:key/:type`}
+          render={() => <AddEdit editObject={this.state} />
+          }
+        />
         <Route path={`${path}`}>
           <>
             <Link to={`${path}/addnewpost/add`}>

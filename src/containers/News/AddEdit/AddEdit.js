@@ -10,11 +10,21 @@ class AddNewPost extends Component {
     this.state = {
       title: '',
       body: '',
+      timeStamp: '',
     };
   }
 
   componentDidMount() {
+    const { editObject } = this.props;
+
+    let updateState = {};
+
+    if (editObject) {
+      updateState = { ...editObject };
+    }
+
     this.setState({
+      ...updateState,
       timeStamp: `${new Date().getTime()}`,
     });
   }
@@ -47,8 +57,8 @@ class AddNewPost extends Component {
     });
   }
 
-  handleChange = (e) => {
-    this.setState({ [e.target.name]: e.target.value });
+  handleChange = ({ target: { value, name } }) => {
+    this.setState({ [name]: value });
   }
 
   render() {

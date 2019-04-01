@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
+// import Edit from './Edit';
 import firebase from '../../../config/fire';
 import classes from './AddEdit.module.css';
 
@@ -16,7 +17,16 @@ class AddNewPost extends Component {
   }
 
   componentDidMount() {
+    const { editObject } = this.props;
+
+    let updateState = {};
+
+    if (editObject) {
+      updateState = { ...editObject };
+    }
+
     this.setState({
+      ...updateState,
       timeStamp: `${new Date().getTime()}`,
     });
   }
@@ -38,11 +48,7 @@ class AddNewPost extends Component {
     ref.push(data);
   }
 
-  handleChange = (e) => {
-    this.setState({ [e.target.name]: e.target.value });
-  }
-
-  editData = () => {   
+  editData = () => {
     const { props } = this;
     const { key } = props.match.params;
     const { uid } = props.user;
@@ -55,16 +61,16 @@ class AddNewPost extends Component {
     });
   }
 
-  handleChange = (e) => {
-    this.setState({ [e.target.name]: e.target.value });
+
+  handleChange = ({ target: { value, name } }) => {
+    this.setState({ [name]: value });
   }
 
   render() {
-    console.log(this.props);
-    
     const { props } = this;
     const { type } = props.match.params;
     const { title, body } = this.state;
+
     return (
       <div className={classes.post}>
         <h1>
@@ -75,10 +81,9 @@ class AddNewPost extends Component {
           <label htmlFor="title">Title</label>
           <br />
           <input
-            value={title}
             onChange={this.handleChange}
             type="text"
-            placeholder="Enter Title"
+            value={title}
             name="title"
           />
           <br />
@@ -87,10 +92,9 @@ class AddNewPost extends Component {
           </label>
           <br />
           <input
-            value={body}
             onChange={this.handleChange}
             type="text"
-            placeholder="Enter your Post"
+            value={body}
             name="body"
             className={classes.body}
           />
@@ -98,25 +102,28 @@ class AddNewPost extends Component {
           <Link to="/home/blogs">
             {(() => {
               switch (type) {
-                case 'add': return (
-                  <button
-                    type="button"
-                    onClick={this.putData}
-                  >
-                    {type}
-                    POST
-                  </button>
-                );
-                case 'edit': return (
-                  <button
-                    type="button"
-                    onClick={this.editData}
-                  >
-                    {type}
-                    POST
-                  </button>
-                );
-                default: return null;
+                case 'add':
+                  return (
+                    <button
+                      type="button"
+                      onClick={this.putData}
+                    >
+                      {type}
+                      POST
+                    </button>
+                  );
+                case 'edit':
+                  return (
+                    <button
+                      type="button"
+                      onClick={this.editData}
+                    >
+                      {type}
+                      POST
+                    </button>
+                  );
+                default:
+                  return null;
               }
             })()}
           </Link>

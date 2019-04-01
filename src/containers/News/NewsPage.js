@@ -15,15 +15,27 @@ class NewsPage extends Component {
     this.state = {
       list: [],
       spinner: false,
+      title: '',
+      body: '',
+      edit: false,
     };
   }
 
   componentDidMount() {
+    console.log(this.props);
     const { uid } = this.props.user;
     this.setState({ spinner: true });
     const database = Fire.database();
     const ref = database.ref('news');
     ref.orderByChild('submittedBy').equalTo(uid).on('value', this.gotData, this.errData);
+  }
+
+  editHandler = (titleVal, bodyVal) => {
+    this.setState({
+      title: titleVal,
+      body: bodyVal,
+      edit: true,
+    });
   }
 
   gotData = (data) => {
@@ -38,6 +50,7 @@ class NewsPage extends Component {
           <li key={key}>
             <div style={{ fontSize: '20px', fontWeight: 'bold' }}>
               <button
+                type="button"
                 className={classes.delete}
                 onClick={() => this.deleteData(key)}
               >
@@ -47,7 +60,9 @@ class NewsPage extends Component {
                 to={`${path}/editnews/${key}/edit`}
               >
                 <button
+                  type="button"
                   className={classes.edit}
+                  onClick={() => this.editHandler(news[key].title, news[key].body)}
                 >
                   Edit
                 </button>
@@ -81,7 +96,11 @@ class NewsPage extends Component {
     return (
       <Switch>
         <Route path={`${path}/addnewnews/:type`} component={AddEdit} />
-        <Route path={`${path}/editnews/:key/:type`} component={AddEdit} />
+        <Route
+          path={`${path}/editnews/:key/:type`}
+          render={() => <AddEdit editObject={this.state} />
+          }
+        />
         <Route
           path={`${path}`}
           render={() => (
