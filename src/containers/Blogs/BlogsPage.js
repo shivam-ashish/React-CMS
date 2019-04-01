@@ -40,6 +40,7 @@ class BlogsPage extends Component {
   }
 
   gotData = (data) => {
+    const { path } = this.props.match;
     if (data.val() == null) {
       this.setState({ spinner: false });
     } else {
@@ -49,24 +50,20 @@ class BlogsPage extends Component {
         list: keys.map(key => (
           <li key={key}>
             <div style={{ fontSize: '20px', fontWeight: 'bold' }}>
-              <button
-                type="button"
-                className={classes.delete}
-                onClick={() => this.deleteData(key)}
-              >
-                X
-              </button>
+              <Button
+                type="X"
+                delete={() => this.deleteData(key)}
+              />
               <Link
-                to={`${this.props.match.path}/editpost/${key}/edit`}
+                to={`${path}/editpost/${key}/edit`}
               >
-                <button
-                  type="button"
-                  className={classes.edit}
+                <Button
+                  type="Edit"
                   onClick={() => this.editHandler(blogs[key].title, blogs[key].body)}
-                >
-                  Edit
-                </button>
+                />
               </Link>
+
+
               {blogs[key].title}
             </div>
             {<br />}
@@ -79,7 +76,7 @@ class BlogsPage extends Component {
   }
 
   errData = (err) => {
-    alert(err);
+    console.log(err);
   }
 
   deleteData = (key) => {

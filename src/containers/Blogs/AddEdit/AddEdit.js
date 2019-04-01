@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 // import Edit from './Edit';
 import firebase from '../../../config/fire';
 import classes from './AddEdit.module.css';
+import Button from '../../../commonComponents/Button/Button';
 
 class AddNewPost extends Component {
   constructor(props) {
@@ -74,7 +75,8 @@ class AddNewPost extends Component {
     return (
       <div className={classes.post}>
         <h1>
-          {type}
+          {type.toUpperCase()}
+          {' '}
           YOUR POST
         </h1>
         <div className={classes.container}>
@@ -102,28 +104,19 @@ class AddNewPost extends Component {
           <Link to="/home/blogs">
             {(() => {
               switch (type) {
-                case 'add':
-                  return (
-                    <button
-                      type="button"
-                      onClick={this.putData}
-                    >
-                      {type}
-                      POST
-                    </button>
-                  );
-                case 'edit':
-                  return (
-                    <button
-                      type="button"
-                      onClick={this.editData}
-                    >
-                      {type}
-                      POST
-                    </button>
-                  );
-                default:
-                  return null;
+                case 'add': return (
+                  <Button
+                    type="Add Your Post"
+                    add={this.putData}
+                  />
+                );
+                case 'edit': return (
+                  <Button
+                    type="Edit Your Post"
+                    edit={this.editData}
+                  />
+                );
+                default: return null;
               }
             })()}
           </Link>

@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import Fire from '../../../config/fire';
 import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
+import Fire from '../../../config/fire';
 import classes from './AddEdit.module.css';
+import Button from '../../../commonComponents/Button/Button';
 
 class AddNewPost extends Component {
   constructor(props) {
@@ -67,7 +68,8 @@ class AddNewPost extends Component {
     return (
       <div className={classes.post}>
         <h1>
-          { type }
+          { type.toUpperCase() }
+          {' '}
         YOUR NEWS
         </h1>
         <div className={classes.container}>
@@ -100,22 +102,16 @@ class AddNewPost extends Component {
             {(() => {
               switch (type) {
                 case 'add': return (
-                  <button
-                    type="button"
-                    onClick={this.putData}
-                  >
-                    { type }
-                     NEWS
-                  </button>
+                  <Button
+                    type="Add Your News"
+                    add={this.putData}
+                  />
                 );
                 case 'edit': return (
-                  <button
-                    type="button"
-                    onClick={this.editData}
-                  >
-                    { type }
-                     NEWS
-                  </button>
+                  <Button
+                    type="Edit Your News"
+                    edit={this.editData}
+                  />
                 );
                 default: return null;
               }

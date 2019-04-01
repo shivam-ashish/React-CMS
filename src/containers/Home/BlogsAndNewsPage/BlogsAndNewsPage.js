@@ -1,14 +1,14 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
-import classes from '../Home.module.css';
+import Button from '../../../commonComponents/Button/Button';
 
 const BlogsAndNewsPage = (props) => {
   const { path } = props.match;
   return (
     <>
-      <Link to={`${path}/blogs`}><button type="button" className={classes.blogs}>BLOGS</button></Link>
+      <Link to={`${path}/blogs`}><Button type="BLOGS" /></Link>
 
-      <Link to={`${path}/news`}><button type="button" className={classes.news}>NEWS</button></Link>
+      <Link to={`${path}/news`}><Button type="NEWS" /></Link>
     </>
   );
 };
