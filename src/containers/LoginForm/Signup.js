@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import firebase from 'firebase';
 import MDSpinner from 'react-md-spinner';
 import classes from './LoginForm.module.css';
@@ -47,8 +46,9 @@ class Signup extends Component {
     const {
       email, password, name, spinner,
     } = this.state;
-    console.log('Signupp', this.props);
-    
+
+    const { toggle } = this.props;
+
     return (
       <div className={classes.loginForm}>
         <h1>Sign UP Here</h1>
@@ -58,7 +58,7 @@ class Signup extends Component {
         <input value={email} onChange={this.handleChange} type="email" name="email" />
         <label htmlFor="email">Password : </label>
         <input value={password} onChange={this.handleChange} type="password" name="password" />
-        <button type="submit" className={classes.loginBtn} onClick={this.props.toggle}>Back to Login</button>
+        <button type="submit" className={classes.loginBtn} onClick={toggle}>Back to Login</button>
         <button type="submit" className={classes.loginBtn} onClick={e => this.signup(e)}>{spinner ? <MDSpinner /> : 'Sign Up'}</button>
       </div>
     );
