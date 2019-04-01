@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import {
   Link, withRouter, Route, Switch,
 } from 'react-router-dom';
-import firebase from 'firebase';
 import MDSpinner from 'react-md-spinner';
 import { connect } from 'react-redux';
+import Fire from '../../config/fire';
 import classes from './Blogs.module.css';
 import Button from '../../commonComponents/Button/Button';
 import AddEdit from './AddEdit/AddEdit';
@@ -21,7 +21,7 @@ class BlogsPage extends Component {
   componentDidMount() {
     const { uid } = this.props.user;
     this.setState({ spinner: true, id: uid });
-    const database = firebase.database();
+    const database = Fire.database();
     const ref = database.ref('blogs');
     ref.orderByChild('submittedBy').equalTo(uid).on('value', this.gotData, this.errData);
   }
@@ -68,7 +68,7 @@ class BlogsPage extends Component {
   }
 
   deleteData = (key) => {
-    firebase.database().ref(`blogs/${key}`).remove();
+    Fire.database().ref(`blogs/${key}`).remove();
   }
 
   render() {

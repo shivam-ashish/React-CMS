@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import firebase from 'firebase';
+import Fire from '../../../config/fire';
 import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import classes from './AddEdit.module.css';
@@ -22,7 +22,7 @@ class AddNewPost extends Component {
   putData = () => {
     const { title, body, timeStamp } = this.state;
     const { uid } = this.props.user;
-    const database = firebase.database();
+    const database = Fire.database();
     const ref = database.ref('news');
     const data = {
       title,
@@ -32,29 +32,19 @@ class AddNewPost extends Component {
       updatedBy: uid,
       updatedOn: timeStamp,
     };
-    if (uid === data.submittedBy) {
-      ref.push(data);
-    } else {
-      alert('Cant Access!!!!');
-    }
+    ref.push(data);
   }
 
   editData = () => {
     const { key } = this.props.match.params;
     const { uid } = this.props.user;
     const { title, body, timeStamp } = this.state;
-    const database = firebase.database();
-    const ref = database.ref(`blogs/${key}`);
-    if (ref.orderByChild('submittedBy').equalTo(uid)) {
-      firebase.database().ref(`news/${key}`).update({
-        title,
-        body,
-        updatedBy: uid,
-        updatedOn: timeStamp,
-      });
-    } else {
-      alert('Cant Access!!!');
-    }
+    Fire.database().ref(`news/${key}`).update({
+      title,
+      body,
+      updatedBy: uid,
+      updatedOn: timeStamp,
+    });
   }
 
   handleChange = (e) => {

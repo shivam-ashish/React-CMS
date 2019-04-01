@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import firebase from 'firebase';
 import {
   Link, withRouter, Switch, Route,
 } from 'react-router-dom';
@@ -22,7 +21,7 @@ class NewsPage extends Component {
   componentDidMount() {
     const { uid } = this.props.user;
     this.setState({ spinner: true });
-    const database = firebase.database();
+    const database = Fire.database();
     const ref = database.ref('news');
     ref.orderByChild('submittedBy').equalTo(uid).on('value', this.gotData, this.errData);
   }
@@ -69,7 +68,7 @@ class NewsPage extends Component {
   }
 
   deleteData = (key) => {
-    firebase.database().ref(`news/${key}`).remove();
+    Fire.database().ref(`news/${key}`).remove();
   }
 
   logout = () => {

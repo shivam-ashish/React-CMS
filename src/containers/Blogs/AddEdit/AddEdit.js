@@ -1,8 +1,8 @@
 /* eslint-disable no-alert */
 import React, { Component } from 'react';
-import firebase from 'firebase';
 import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
+import firebase from '../../../config/fire';
 import classes from './AddEdit.module.css';
 
 class AddNewPost extends Component {
@@ -35,34 +35,24 @@ class AddNewPost extends Component {
       updatedBy: uid,
       updatedOn: timeStamp,
     };
-    if (uid === data.submittedBy) {
-      ref.push(data);
-    } else {
-      alert('Cant Access!!!');
-    }
+    ref.push(data);
   }
 
   handleChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   }
 
-  editData = () => {
+  editData = () => {   
     const { props } = this;
     const { key } = props.match.params;
     const { uid } = props.user;
     const { title, body, timeStamp } = this.state;
-    const database = firebase.database();
-    const ref = database.ref(`blogs/${key}`);
-    if (ref.orderByChild('submittedBy').equalTo(uid)) {
-      firebase.database().ref(`blogs/${key}`).update({
-        title,
-        body,
-        updatedBy: uid,
-        updatedOn: timeStamp,
-      });
-    } else {
-      alert('Cant Access!!!');
-    }
+    firebase.database().ref(`blogs/${key}`).update({
+      title,
+      body,
+      updatedBy: uid,
+      updatedOn: timeStamp,
+    });
   }
 
   handleChange = (e) => {
@@ -70,6 +60,8 @@ class AddNewPost extends Component {
   }
 
   render() {
+    console.log(this.props);
+    
     const { props } = this;
     const { type } = props.match.params;
     const { title, body } = this.state;
