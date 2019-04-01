@@ -3,6 +3,7 @@ import firebase from 'firebase';
 import MDSpinner from 'react-md-spinner';
 import classes from './LoginForm.module.css';
 import Fire from '../../config/fire';
+import Button from '../../commonComponents/Button/Button';
 
 class Signup extends Component {
   constructor(props) {
@@ -58,8 +59,8 @@ class Signup extends Component {
         <input value={email} onChange={this.handleChange} type="email" name="email" />
         <label htmlFor="email">Password : </label>
         <input value={password} onChange={this.handleChange} type="password" name="password" />
-        <button type="submit" className={classes.loginBtn} onClick={toggle}>Back to Login</button>
-        <button type="submit" className={classes.loginBtn} onClick={e => this.signup(e)}>{spinner ? <MDSpinner /> : 'Sign Up'}</button>
+        <Button type="Back to Login" toggle={toggle}>Back to Login</Button>
+        <Button type="SignUp" signup={e => this.signup(e)}>{spinner ? <MDSpinner /> : 'Sign Up'}</Button>
       </div>
     );
   }

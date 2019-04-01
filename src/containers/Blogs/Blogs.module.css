@@ -51,34 +51,6 @@
 .box ul li:hover{
   background: #CD5C5C;
 }
-.delete{
-  margin: 0;
-  padding: 2px;
-  float: right;
-  background: #fff;
-  outline: none;
-  border: none;
-  color: #DC143C;
-  border-radius: 100%;
-
-}
-.delete:hover{
-  background: #ff0000;
-}
-.edit{
-  margin: 0;
-  padding: 2px;
-  float: left;
-  background: #fff;
-  outline: none;
-  border: none;
-  color: #DC143C;
-  border-radius: 100%;
-
-}
-.edit:hover{
-  background: #ff0000;
-}
 .spinner{
   position: absolute;
   top: 50%;

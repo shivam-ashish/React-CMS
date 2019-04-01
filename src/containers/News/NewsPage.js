@@ -37,20 +37,16 @@ class NewsPage extends Component {
         list: keys.map(key => (
           <li key={key}>
             <div style={{ fontSize: '20px', fontWeight: 'bold' }}>
-              <button
-                className={classes.delete}
-                onClick={() => this.deleteData(key)}
-              >
-                X
-              </button>
+              <Button
+                type="X"
+                delete={() => this.deleteData(key)}
+              />
               <Link
                 to={`${path}/editnews/${key}/edit`}
               >
-                <button
-                  className={classes.edit}
-                >
-                  Edit
-                </button>
+                <Button
+                  type="Edit"
+                />
               </Link>
               {news[key].title}
             </div>

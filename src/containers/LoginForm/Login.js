@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import MDSpinner from 'react-md-spinner';
 import classes from './LoginForm.module.css';
 import Fire from '../../config/fire';
+import Button from '../../commonComponents/Button/Button';
 
 class Login extends Component {
   constructor(props) {
@@ -34,33 +35,27 @@ class Login extends Component {
 
   render() {
     const { email, password, spinner } = this.state;
+    const { toggle } = this.props;
     return (
-      <div>
         <div className={classes.loginForm}>
           <h1>Login Here</h1>
           <label htmlFor="email">Email Address : </label>
           <input value={email} onChange={this.handleChange} type="email" name="email" />
           <label htmlFor="email">Password : </label>
           <input value={password} onChange={this.handleChange} type="password" name="password" />
-          <button
-            type="submit"
-            className={classes.loginBtn}
-            onClick={(evt) => {
+          <Button
+            type="Login"
+            login={(evt) => {
               this.login(evt);
             }}
           >
             {spinner ? <MDSpinner /> : 'Login'}
-
-          </button>
-          <button
-            type="submit"
-            className={classes.loginBtn}
-            onClick={this.props.toggle}
-          >
-            Sign Up
-          </button>
+          </Button>
+          <Button
+            type="New SignUp"
+            toggle={toggle}
+          />
         </div>
-      </div>
     );
   }
 }

@@ -4,6 +4,7 @@ import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import firebase from '../../../config/fire';
 import classes from './AddEdit.module.css';
+import Button from '../../../commonComponents/Button/Button';
 
 class AddNewPost extends Component {
   constructor(props) {
@@ -60,15 +61,14 @@ class AddNewPost extends Component {
   }
 
   render() {
-    console.log(this.props);
-    
     const { props } = this;
     const { type } = props.match.params;
     const { title, body } = this.state;
     return (
       <div className={classes.post}>
         <h1>
-          {type}
+          {type.toUpperCase()}
+          {' '}
           YOUR POST
         </h1>
         <div className={classes.container}>
@@ -99,22 +99,16 @@ class AddNewPost extends Component {
             {(() => {
               switch (type) {
                 case 'add': return (
-                  <button
-                    type="button"
-                    onClick={this.putData}
-                  >
-                    {type}
-                    POST
-                  </button>
+                  <Button
+                    type="Add Your Post"
+                    add={this.putData}
+                  />
                 );
                 case 'edit': return (
-                  <button
-                    type="button"
-                    onClick={this.editData}
-                  >
-                    {type}
-                    POST
-                  </button>
+                  <Button
+                    type="Edit Your Post"
+                    edit={this.editData}
+                  />
                 );
                 default: return null;
               }
