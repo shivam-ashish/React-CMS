@@ -23,7 +23,6 @@ class NewsPage extends Component {
   }
 
   componentDidMount() {
-    console.log(this.props);
     const { uid } = this.props.user;
     this.setState({ spinner: true });
     const database = Fire.database();
@@ -111,7 +110,7 @@ class NewsPage extends Component {
                   type="Add News"
                   className={BtnClass.addNews}
                 >
-                  {'Add New News'}
+                  {'Add News'}
                 </Button>
               </Link>
               <h1>News</h1>

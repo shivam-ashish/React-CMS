@@ -1,23 +1,23 @@
-@import "../../Sass/variables.scss";
+@import "../../Sass/main.scss";
 
 .post{
     h1{
     margin: 0px;
     padding: 0px;
     text-align: center;
-    font-size: 50px;
+    font-size: $blogs-news-heading-font;
     color: $blogs;
     font-weight: 600;
     }
     input[type="text"]{
     display: inline-block;
     border: none;
-    border-bottom: 1px solid #8b8989;
+    border-bottom: 1px solid $grey;
     background: transparent;
     outline: none;
     height: 30px;
-    color: $label;
-    font-size: 14px;
+    color: $black;
+    font-size: $input-type-font;
     margin-bottom: 20px;
     }
     input {
@@ -26,18 +26,18 @@
     width: 90%;
     }
     label{
-    font-size: 16px;
+    font-size: $label-font;
     margin: 0;
     padding: 0;
     font-weight: 500;
-    color: $label;
+    color: $black;
     }
     button{
     border: none;
     outline: none;
     height: 40px;
     color: $buttonText;
-    font-size: 18px;
+    font-size: $button-font;
     background: $addEdit;
     cursor: pointer;
     width: 100%;
@@ -58,7 +58,7 @@
     width: 350px;
     height: auto;
     box-sizing: border-box;
-    background: #fff;
+    background: $white;
     padding: 20px 40px;
-    box-shadow: 10px 6px 9px 1px #696969;
+    box-shadow: 10px 6px 9px 1px $grey;
 }

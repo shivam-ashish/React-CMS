@@ -1,10 +1,8 @@
-@import "../Sass/variables.scss";
+@import "../Sass/main.scss";
 
 .box{
-    font-family: sans-serif;
   .loginForm{
     width: 60%;
-    margin: 0;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -12,14 +10,14 @@
     width: 350px;
     height: auto;
     box-sizing: border-box;
-    background: #fff;
+    background: $white;
     padding: 20px 40px;
-    box-shadow: 10px 6px 9px 1px #696969;
+    box-shadow: 10px 6px 9px 1px $grey;
     border-radius: 20px;
   h1{
     text-align: center;
     margin-bottom: 50px;
-    color: $h1;
+    color: $black;
   }
   
   input{
@@ -30,11 +28,11 @@
   }
   
   label{
-    font-size: 16px;
+    font-size: $label-font;
     margin: 0;
     padding: 0;
     font-weight: 500;
-    color: $label;
+    color: $black;
   }
   
   input[type="text"],input[type="email"], input[type="password"]{
@@ -43,13 +41,13 @@
     background: none;
     outline: none;
     height: 30px;
-    color: #8b8989;
-    font-size: 14px;
+    color: $black;
+    font-size: $input-type-font;
   }
   
   p{
     text-align: center;
-    color: #2f4f4f;
+    color: $slate-grey;
     margin-top: 30px;
   }
 }
