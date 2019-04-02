@@ -8,6 +8,7 @@ import Home from './containers/Home/Home';
 // eslint-disable-next-line react/prefer-stateless-function
 class App extends Component {
   render() {
+    console.log(this.props);
     const { isLoggedIn } = this.props;
 
     return (
@@ -34,8 +35,8 @@ class App extends Component {
 }
 
 const mapStateToProps = state => ({
-  isLoggedIn: state.isLoggedIn,
-  user: state.user,
+  isLoggedIn: state.reducer.isLoggedIn,
+  user: state.reducer.user,
 });
 
 export default connect(mapStateToProps)(App);

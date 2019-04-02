@@ -2,12 +2,20 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+import { createStore, combineReducers } from 'redux';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import reducer from './store/reducer';
+import newsReducer from './store/newsReducer';
+import blogReducer from './store/blogReducer';
 
-const store = createStore(reducer);
+const rootReducer = combineReducers({
+  reducer,
+  newsReducer,
+  blogReducer,
+});
+
+const store = createStore(rootReducer);
 
 ReactDOM.render(<Provider store={store}><App /></Provider>, document.getElementById('root'));
 

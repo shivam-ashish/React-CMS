@@ -12,6 +12,7 @@ class Navbar extends Component {
   }
 
   render() {
+    console.log(this.props);
     const { path } = this.props.match;
     const { displayName } = this.props.user;
     return (
@@ -53,8 +54,8 @@ class Navbar extends Component {
 }
 
 const mapStateToProps = state => ({
-  user: state.user,
-  userName: state.userName,
+  user: state.reducer.user,
+  userName: state.reducer.userName,
 });
 
 export default withRouter(connect(mapStateToProps)(Navbar));

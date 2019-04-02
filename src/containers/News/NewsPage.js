@@ -131,8 +131,8 @@ class NewsPage extends Component {
 }
 
 const mapStateToProps = state => ({
-  isLoggedIn: state.isLoggedIn,
-  user: state.user,
+  isLoggedIn: state.reducer.isLoggedIn,
+  user: state.reducer.user,
 });
 
 export default withRouter(connect(mapStateToProps)(NewsPage));

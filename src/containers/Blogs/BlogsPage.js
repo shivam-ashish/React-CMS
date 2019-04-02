@@ -23,6 +23,7 @@ class BlogsPage extends Component {
   }
 
   componentDidMount() {
+    console.log(this.props);
     const { uid } = this.props.user;
     this.setState({
       spinner: true,
@@ -41,12 +42,14 @@ class BlogsPage extends Component {
   }
 
   gotData = (data) => {
+    console.log(this.props);
     const { path } = this.props.match;
     if (data.val() == null) {
       this.setState({ spinner: false });
     } else {
       const blogs = data.val();
       const keys = Object.keys(blogs);
+      this.props.updateBlogs(blogs);
       this.setState({
         list: keys.map(key => (
           <li key={key}>
@@ -75,8 +78,9 @@ class BlogsPage extends Component {
             {blogs[key].body}
           </li>
         )),
+        spinner: false,
       });
-      this.setState({ spinner: false });
+      // this.setState({ spinner: false });
     }
   }
 
@@ -124,9 +128,16 @@ class BlogsPage extends Component {
     );
   }
 }
+
 const mapStateToProps = (state) => {
   return {
-    user: state.user,
+    user: state.reducer.user,
+    blogs: state.blogReducer.blogs,
   };
 };
-export default withRouter(connect(mapStateToProps)(BlogsPage));
+
+const mapDispatchToProps = dispatch => ({
+  updateBlogs: blogs => dispatch({ type: 'updateBlogs', payload: blogs }),
+});
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(BlogsPage));
