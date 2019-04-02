@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Switch, Route, withRouter } from 'react-router-dom';
 import Navbar from '../Navbar/Navbar';
 import Fire from '../../config/fire';
-import classes from './Home.module.css';
+import classes from './Home.module.scss';
 import Blogs from '../Blogs/Blogs';
 import News from '../News/News';
 import BlogsAndNewsPage from './BlogsAndNewsPage/BlogsAndNewsPage';

@@ -1,0 +1,177 @@
+@import "../../containers/Sass/variables.scss";
+
+.logOut{
+    border: none;
+    outline: none;
+    color: $logoutText;
+    background: $logoutBackground;
+    height: 45px;
+    max-width: 80px;
+    font-size: 18px;
+    position: absolute;
+    left: 91%;
+    cursor: pointer;
+    top: 7px;
+    border-radius: 10px;
+    &:hover{
+    background: $logoutBackgroundHover;
+    color: $logoutTextHover;
+    }
+}
+.addPost{
+    border: none;
+    outline: none;
+    color: $addBlogsText;
+    background: $addBlogsBackground;
+    height: 45px;
+    width: 80px;
+    font-size: 18px;
+    position: absolute;
+    right: 90%;
+    cursor: pointer;
+    top: 1%;
+    border-radius: 10px;
+    &:hover{
+    background: $addBlogsBackgroundHover;
+    color: $addBlogsTextHover;
+  }
+}
+  .addNews{
+    border: none;
+    outline: none;
+    color: $addNewsText;
+    background: $addNewsBackground;
+    height: 45px;
+    width: 80px;
+    font-size: 18px;
+    position: absolute;
+    right: 90%;
+    top: 1%;
+    cursor: pointer;
+    border-radius: 10px;
+    &:hover{
+    background: $addNewsBackgroundHover;
+    color: $addNewsTextHover;
+  }
+}
+.edit{
+  margin: 0;
+  padding: 2px;
+  float: left;
+  background: $editBackground;
+  outline: none;
+  border: none;
+  color: $editText;
+  border-radius: 100%;
+  &:hover{
+  background: $editBackgroundHover;
+  color: $editTextHover;
+}
+}
+.delete{
+  margin: 0;
+  padding: 2px;
+  float: right;
+  background: $deleteBackground;
+  outline: none;
+  border: none;
+  color: $deleteText;
+  border-radius: 100%;
+  &:hover{
+  background: $deleteBackgroundHover;
+  color: $deleteTextHover;
+}
+}
+.editYourPost{
+  margin: 0;
+  padding: 2px;
+  float: left;
+  background: #fff;
+  outline: none;
+  border: none;
+  color: #DC143C;
+  :hover{
+  background: #ff0000;
+}
+}
+.addYourPost{
+  margin: 0;
+  padding: 2px;
+  float: left;
+  background: #fff;
+  outline: none;
+  border: none;
+  color: #DC143C;
+  :hover{
+  background: #ff0000;
+}
+}
+.login{
+  border: none;
+  outline: none;
+  height: 45px;
+  color: $buttonText;
+  font-size: 18px;
+  background: $loginSignup;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 20px;
+  border-radius: 10px;
+  &:hover{
+  background: $loginSignupHover;
+}
+}
+.signup{
+  border: none;
+  outline: none;
+  height: 65px;
+  color: #eee9e9;
+  font-size: 30px;
+  background: $loginSignup;
+  cursor: pointer;
+  width: 70px;
+  position: absolute;
+  top: 7%;
+  right: -10%;
+  border-radius: 50%;
+  &:hover{
+  background: $loginSignupHover;
+  }
+}
+.blogs{
+  width: 40%;
+  height: 300px;
+  display: inline;
+  position: absolute;
+  top: 12%;
+  left: 15%;
+  border: none;
+  outline: none;
+  color: $blogs;
+  background: $blogsBackground;
+  border: 1px solid $blogsBorder;
+  font-size: 40px;
+  cursor: pointer;
+  border-radius: 20px;
+  &:hover{
+  background: $blogsHover;
+}
+}
+.news{
+  width: 40%;
+  height: 300px;
+  display: inline;
+  position: absolute;
+  top: 48%;
+  left: 45%;
+  border: 1px solid $newsBorder;
+  outline: none;
+  color: $news;
+  background: $newsBackground;
+  font-size: 40px;
+  cursor: pointer;
+  border-radius: 20px;
+  &:hover{
+  background: $newsHover;
+}
+}

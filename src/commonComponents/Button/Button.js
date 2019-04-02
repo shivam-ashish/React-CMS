@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Fire from '../../config/fire';
-import classes from './Button.module.css';
+import classes from './Button.module.scss';
 
 const logout = () => {
   Fire.auth().signOut();
@@ -13,7 +13,7 @@ const Button = (props) => {
   if (type === 'Login') {
     button = <button type="submit" onClick={props.login} className={classes.login}>{props.children}</button>;
   }
-  if (type === 'New SignUp') {
+  if (type === '+') {
     button = <button type="submit" onClick={props.toggle} className={classes.signup}>{type}</button>;
   }
   if (type === 'Back to Login') {

@@ -3,7 +3,7 @@ import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Button from '../../commonComponents/Button/Button';
 import Fire from '../../config/fire';
-import classes from './Navbar.module.css';
+import classes from './Navbar.module.scss';
 
 class Navbar extends Component {
   logoutHandler = () => {
@@ -15,7 +15,7 @@ class Navbar extends Component {
     const { displayName } = this.props.user
     return (
       <div className={classes.navbar}>
-        <ul>
+        <ul className={classes.navlist}>
           <Link to={`${path}`}>
             <li className={classes.displayName}>
               Hey

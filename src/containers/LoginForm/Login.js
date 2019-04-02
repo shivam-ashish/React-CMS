@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import MDSpinner from 'react-md-spinner';
-import classes from './LoginForm.module.css';
+import classes from './LoginForm.module.scss';
 import Fire from '../../config/fire';
 import Button from '../../commonComponents/Button/Button';
 
@@ -37,25 +37,25 @@ class Login extends Component {
     const { email, password, spinner } = this.state;
     const { toggle } = this.props;
     return (
-        <div className={classes.loginForm}>
-          <h1>Login Here</h1>
-          <label htmlFor="email">Email Address : </label>
-          <input value={email} onChange={this.handleChange} type="email" name="email" />
-          <label htmlFor="email">Password : </label>
-          <input value={password} onChange={this.handleChange} type="password" name="password" />
-          <Button
-            type="Login"
-            login={(evt) => {
-              this.login(evt);
-            }}
-          >
-            {spinner ? <MDSpinner /> : 'Login'}
-          </Button>
-          <Button
-            type="New SignUp"
-            toggle={toggle}
-          />
-        </div>
+      <div className={classes.loginForm}>
+        <h1>Login Page</h1>
+        <label htmlFor="email">Email Address : </label>
+        <input value={email} onChange={this.handleChange} type="email" name="email" />
+        <label htmlFor="email">Password : </label>
+        <input value={password} onChange={this.handleChange} type="password" name="password" />
+        <Button
+          type="Login"
+          login={(evt) => {
+            this.login(evt);
+          }}
+        >
+          {spinner ? <MDSpinner /> : 'Login'}
+        </Button>
+        <Button
+          type="+"
+          toggle={toggle}
+        />
+      </div>
     );
   }
 }

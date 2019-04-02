@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import firebase from '../../../config/fire';
-import classes from './AddEdit.module.css';
+import classes from './AddEdit.module.scss';
 import Button from '../../../commonComponents/Button/Button';
 
 class AddNewPost extends Component {
@@ -64,6 +64,7 @@ class AddNewPost extends Component {
     const { props } = this;
     const { type } = props.match.params;
     const { title, body } = this.state;
+
     return (
       <div className={classes.post}>
         <h1>

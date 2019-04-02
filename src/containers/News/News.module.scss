@@ -1,0 +1,38 @@
+@import "../Sass/variables.scss";
+
+.box{ 
+  h1{
+    margin: 0px;
+    padding: 0px;
+    text-align: center;
+    font-size: 50px;
+    color: $news;
+    font-weight: 600;
+  }
+  ul li{
+  list-style: none;
+  display: inline-block;
+  border: 1px solid $newsBorder;
+  width: 180px;
+  height: 180px;
+  margin: 20px;
+  text-align: center;
+  padding: 10px;
+  overflow: hidden;
+  width: 20%;
+  outline: none;
+  color: $news;
+  background: $newsBackground;
+  border-radius: 10px;
+  cursor: pointer;
+  &:hover{
+  background: $newsHover;
+  }
+  }
+}
+.spinner{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

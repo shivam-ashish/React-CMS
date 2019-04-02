@@ -5,7 +5,7 @@ import {
 import MDSpinner from 'react-md-spinner';
 import { connect } from 'react-redux';
 import Fire from '../../config/fire';
-import classes from './News.module.css';
+import classes from './News.module.scss';
 import AddEdit from './AddEdit/AddEdit';
 import Button from '../../commonComponents/Button/Button';
 

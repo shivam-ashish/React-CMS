@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Fire from '../../../config/fire';
-import classes from './AddEdit.module.css';
+import classes from './AddEdit.module.scss';
 import Button from '../../../commonComponents/Button/Button';
 
 class AddNewPost extends Component {

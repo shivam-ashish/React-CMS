@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import firebase from 'firebase';
 import MDSpinner from 'react-md-spinner';
-import classes from './LoginForm.module.css';
+import classes from './LoginForm.module.scss';
 import Fire from '../../config/fire';
 import Button from '../../commonComponents/Button/Button';
 
@@ -52,7 +52,7 @@ class Signup extends Component {
 
     return (
       <div className={classes.loginForm}>
-        <h1>Sign UP Here</h1>
+        <h1>SignUp Page</h1>
         <label htmlFor="email">Name : </label>
         <input value={name} onChange={this.handleChange} type="text" name="name" />
         <label htmlFor="email">Email Address : </label>
@@ -60,7 +60,7 @@ class Signup extends Component {
         <label htmlFor="email">Password : </label>
         <input value={password} onChange={this.handleChange} type="password" name="password" />
         <Button type="Back to Login" toggle={toggle}>Back to Login</Button>
-        <Button type="SignUp" signup={e => this.signup(e)}>{spinner ? <MDSpinner /> : 'Sign Up'}</Button>
+        <Button type="SignUp" signup={e => this.signup(e)}>{spinner ? <MDSpinner /> : <div>&#10004;</div>}</Button>
       </div>
     );
   }
