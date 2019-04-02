@@ -8,6 +8,7 @@ import Fire from '../../config/fire';
 import classes from './News.module.scss';
 import AddEdit from './AddEdit/AddEdit';
 import Button from '../../commonComponents/Button/Button';
+import BtnClass from '../../commonComponents/Button/Button.module.css';
 
 class NewsPage extends Component {
   constructor(props) {
@@ -15,15 +16,27 @@ class NewsPage extends Component {
     this.state = {
       list: [],
       spinner: false,
+      title: '',
+      body: '',
+      edit: false,
     };
   }
 
   componentDidMount() {
+    console.log(this.props);
     const { uid } = this.props.user;
     this.setState({ spinner: true });
     const database = Fire.database();
     const ref = database.ref('news');
     ref.orderByChild('submittedBy').equalTo(uid).on('value', this.gotData, this.errData);
+  }
+
+  editHandler = (titleVal, bodyVal) => {
+    this.setState({
+      title: titleVal,
+      body: bodyVal,
+      edit: true,
+    });
   }
 
   gotData = (data) => {
@@ -39,14 +52,21 @@ class NewsPage extends Component {
             <div style={{ fontSize: '20px', fontWeight: 'bold' }}>
               <Button
                 type="X"
-                delete={() => this.deleteData(key)}
-              />
+                click={() => this.deleteData(key)}
+                className={BtnClass.delete}
+              >
+                {'X'}
+              </Button>
               <Link
                 to={`${path}/editnews/${key}/edit`}
               >
                 <Button
                   type="Edit"
-                />
+                  className={BtnClass.edit}
+                  click={() => this.editHandler(news[key].title, news[key].body)}
+                >
+                  {'Edit'}
+                </Button>
               </Link>
               {news[key].title}
             </div>
@@ -77,13 +97,22 @@ class NewsPage extends Component {
     return (
       <Switch>
         <Route path={`${path}/addnewnews/:type`} component={AddEdit} />
-        <Route path={`${path}/editnews/:key/:type`} component={AddEdit} />
+        <Route
+          path={`${path}/editnews/:key/:type`}
+          render={() => <AddEdit editObject={this.state} />
+          }
+        />
         <Route
           path={`${path}`}
           render={() => (
             <>
               <Link to={`${path}/addnewnews/add`}>
-                <Button type="Add News" />
+                <Button
+                  type="Add News"
+                  className={BtnClass.addNews}
+                >
+                  {'Add New News'}
+                </Button>
               </Link>
               <h1>News</h1>
               {spinner ? (<div className={classes.spinner}><MDSpinner /></div>)

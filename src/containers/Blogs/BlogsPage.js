@@ -8,22 +8,36 @@ import Fire from '../../config/fire';
 import classes from './Blogs.module.scss';
 import Button from '../../commonComponents/Button/Button';
 import AddEdit from './AddEdit/AddEdit';
+import BtnClass from '../../commonComponents/Button/Button.module.css';
 
 class BlogsPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
       list: [],
+      title: '',
+      body: '',
+      edit: false,
       spinner: false,
     };
   }
 
   componentDidMount() {
     const { uid } = this.props.user;
-    this.setState({ spinner: true, id: uid });
+    this.setState({
+      spinner: true,
+    });
     const database = Fire.database();
     const ref = database.ref('blogs');
     ref.orderByChild('submittedBy').equalTo(uid).on('value', this.gotData, this.errData);
+  }
+
+  editHandler = (titleVal, bodyVal) => {
+    this.setState({
+      title: titleVal,
+      body: bodyVal,
+      edit: true,
+    });
   }
 
   gotData = (data) => {
@@ -39,14 +53,21 @@ class BlogsPage extends Component {
             <div style={{ fontSize: '20px', fontWeight: 'bold' }}>
               <Button
                 type="X"
-                delete={() => this.deleteData(key)}
-              />
+                className={BtnClass.delete}
+                click={() => this.deleteData(key)}
+              >
+                {'X'}
+              </Button>
               <Link
                 to={`${path}/editpost/${key}/edit`}
               >
                 <Button
                   type="Edit"
-                />
+                  className={BtnClass.edit}
+                  click={() => this.editHandler(blogs[key].title, blogs[key].body)}
+                >
+                  {'Edit'}
+                </Button>
               </Link>
               {blogs[key].title}
             </div>
@@ -70,14 +91,24 @@ class BlogsPage extends Component {
   render() {
     const { list, spinner } = this.state;
     const { path } = this.props.match;
+
     return (
       <Switch>
         <Route path={`${path}/addnewpost/:type`} component={AddEdit} />
-        <Route path={`${path}/editpost/:key/:type`} component={AddEdit} />
+        <Route
+          path={`${path}/editpost/:key/:type`}
+          render={() => <AddEdit editObject={this.state} />
+          }
+        />
         <Route path={`${path}`}>
           <>
             <Link to={`${path}/addnewpost/add`}>
-              <Button type="Add Post" />
+              <Button
+                type="Add Post"
+                className={BtnClass.addPost}
+              >
+                {'Add New Post'}
+              </Button>
             </Link>
             <h1>BLOGS</h1>
             {spinner ? (<div className={classes.spinner}><MDSpinner /></div>)

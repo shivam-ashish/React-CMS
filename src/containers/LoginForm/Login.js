@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import MDSpinner from 'react-md-spinner';
-import classes from './LoginForm.module.scss';
+import classes from './LoginForm.module.css';
+import BtnClass from '../../commonComponents/Button/Button.module.css';
 import Fire from '../../config/fire';
 import Button from '../../commonComponents/Button/Button';
 
@@ -38,23 +39,27 @@ class Login extends Component {
     const { toggle } = this.props;
     return (
       <div className={classes.loginForm}>
-        <h1>Login Page</h1>
+        <h1>Login Here</h1>
         <label htmlFor="email">Email Address : </label>
         <input value={email} onChange={this.handleChange} type="email" name="email" />
         <label htmlFor="email">Password : </label>
         <input value={password} onChange={this.handleChange} type="password" name="password" />
         <Button
           type="Login"
-          login={(evt) => {
+          className={BtnClass.login}
+          click={(evt) => {
             this.login(evt);
           }}
         >
           {spinner ? <MDSpinner /> : 'Login'}
         </Button>
         <Button
-          type="+"
-          toggle={toggle}
-        />
+          type="New SignUp"
+          className={BtnClass.signup}
+          click={toggle}
+        >
+          {'SignUp'}
+        </Button>
       </div>
     );
   }

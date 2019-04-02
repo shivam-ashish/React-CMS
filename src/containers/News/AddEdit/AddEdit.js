@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import Fire from '../../../config/fire';
 import classes from './AddEdit.module.scss';
 import Button from '../../../commonComponents/Button/Button';
+import BtnClass from '../../../commonComponents/Button/Button.module.css';
 
 class AddNewPost extends Component {
   constructor(props) {
@@ -11,11 +12,21 @@ class AddNewPost extends Component {
     this.state = {
       title: '',
       body: '',
+      timeStamp: '',
     };
   }
 
   componentDidMount() {
+    const { editObject } = this.props;
+
+    let updateState = {};
+
+    if (editObject) {
+      updateState = { ...editObject };
+    }
+
     this.setState({
+      ...updateState,
       timeStamp: `${new Date().getTime()}`,
     });
   }
@@ -48,8 +59,8 @@ class AddNewPost extends Component {
     });
   }
 
-  handleChange = (e) => {
-    this.setState({ [e.target.name]: e.target.value });
+  handleChange = ({ target: { value, name } }) => {
+    this.setState({ [name]: value });
   }
 
   render() {
@@ -94,14 +105,20 @@ class AddNewPost extends Component {
                 case 'add': return (
                   <Button
                     type="Add Your News"
-                    add={this.putData}
-                  />
+                    className={BtnClass.addYourPost}
+                    click={this.putData}
+                  >
+                    {'Add Your News'}
+                  </Button>
                 );
                 case 'edit': return (
                   <Button
                     type="Edit Your News"
-                    edit={this.editData}
-                  />
+                    className={BtnClass.editYourPost}
+                    click={this.editData}
+                  >
+                    {'Edit Your News'}
+                  </Button>
                 );
                 default: return null;
               }
