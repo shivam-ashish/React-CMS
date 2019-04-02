@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import firebase from '../../../config/fire';
 import classes from './AddEdit.module.css';
 import Button from '../../../commonComponents/Button/Button';
+import BtnClass from '../../../commonComponents/Button/Button.module.css';
 
 class AddNewPost extends Component {
   constructor(props) {
@@ -18,6 +19,7 @@ class AddNewPost extends Component {
   }
 
   componentDidMount() {
+    console.log(this.props);
     const { editObject } = this.props;
 
     let updateState = {};
@@ -107,14 +109,20 @@ class AddNewPost extends Component {
                 case 'add': return (
                   <Button
                     type="Add Your Post"
-                    add={this.putData}
-                  />
+                    className={BtnClass.addYourPost}
+                    click={this.putData}
+                  >
+                    {'Add Your Post'}
+                  </Button>
                 );
                 case 'edit': return (
                   <Button
                     type="Edit Your Post"
-                    edit={this.editData}
-                  />
+                    className={BtnClass.editYourPost}
+                    click={this.editData}
+                  >
+                    {'Edit Your Post'}
+                  </Button>
                 );
                 default: return null;
               }

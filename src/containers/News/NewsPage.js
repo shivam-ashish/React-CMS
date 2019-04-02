@@ -8,6 +8,7 @@ import Fire from '../../config/fire';
 import classes from './News.module.css';
 import AddEdit from './AddEdit/AddEdit';
 import Button from '../../commonComponents/Button/Button';
+import BtnClass from '../../commonComponents/Button/Button.module.css';
 
 class NewsPage extends Component {
   constructor(props) {
@@ -51,15 +52,21 @@ class NewsPage extends Component {
             <div style={{ fontSize: '20px', fontWeight: 'bold' }}>
               <Button
                 type="X"
-                delete={() => this.deleteData(key)}
-              />
+                click={() => this.deleteData(key)}
+                className={BtnClass.delete}
+              >
+                {'X'}
+              </Button>
               <Link
                 to={`${path}/editnews/${key}/edit`}
               >
                 <Button
                   type="Edit"
-                  onClick={() => this.editHandler(news[key].title, news[key].body)}
-                />
+                  className={BtnClass.edit}
+                  click={() => this.editHandler(news[key].title, news[key].body)}
+                >
+                  {'Edit'}
+                </Button>
               </Link>
               {news[key].title}
             </div>
@@ -100,7 +107,12 @@ class NewsPage extends Component {
           render={() => (
             <>
               <Link to={`${path}/addnewnews/add`}>
-                <Button type="Add News" />
+                <Button
+                  type="Add News"
+                  className={BtnClass.addNews}
+                >
+                  {'Add New News'}
+                </Button>
               </Link>
               <h1>News</h1>
               {spinner ? (<div className={classes.spinner}><MDSpinner /></div>)

@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import Button from '../../commonComponents/Button/Button';
 import Fire from '../../config/fire';
 import classes from './Navbar.module.css';
+import BtnClass from '../../commonComponents/Button/Button.module.css';
 
 class Navbar extends Component {
   logoutHandler = () => {
@@ -12,7 +13,7 @@ class Navbar extends Component {
 
   render() {
     const { path } = this.props.match;
-    const { displayName } = this.props.user
+    const { displayName } = this.props.user;
     return (
       <div className={classes.navbar}>
         <ul>
@@ -37,8 +38,15 @@ class Navbar extends Component {
             </li>
           </Link>
         </ul>
-        <Button type="LogOut" />
-
+        <Link to="/">
+          <Button
+            type="LogOut"
+            className={BtnClass.logOut}
+            click={this.logoutHandler}
+          >
+            {'LogOut'}
+          </Button>
+        </Link>
       </div>
     );
   }

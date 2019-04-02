@@ -8,6 +8,7 @@ import Fire from '../../config/fire';
 import classes from './Blogs.module.css';
 import Button from '../../commonComponents/Button/Button';
 import AddEdit from './AddEdit/AddEdit';
+import BtnClass from '../../commonComponents/Button/Button.module.css';
 
 class BlogsPage extends Component {
   constructor(props) {
@@ -52,18 +53,22 @@ class BlogsPage extends Component {
             <div style={{ fontSize: '20px', fontWeight: 'bold' }}>
               <Button
                 type="X"
-                delete={() => this.deleteData(key)}
-              />
+                className={BtnClass.delete}
+                click={() => this.deleteData(key)}
+              >
+                {'X'}
+              </Button>
               <Link
                 to={`${path}/editpost/${key}/edit`}
               >
                 <Button
                   type="Edit"
-                  onClick={() => this.editHandler(blogs[key].title, blogs[key].body)}
-                />
+                  className={BtnClass.edit}
+                  click={() => this.editHandler(blogs[key].title, blogs[key].body)}
+                >
+                  {'Edit'}
+                </Button>
               </Link>
-
-
               {blogs[key].title}
             </div>
             {<br />}
@@ -98,7 +103,12 @@ class BlogsPage extends Component {
         <Route path={`${path}`}>
           <>
             <Link to={`${path}/addnewpost/add`}>
-              <Button type="Add Post" />
+              <Button
+                type="Add Post"
+                className={BtnClass.addPost}
+              >
+                {'Add New Post'}
+              </Button>
             </Link>
             <h1>BLOGS</h1>
             {spinner ? (<div className={classes.spinner}><MDSpinner /></div>)
