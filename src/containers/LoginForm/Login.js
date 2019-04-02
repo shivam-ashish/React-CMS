@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import MDSpinner from 'react-md-spinner';
-import classes from './LoginForm.module.css';
-import BtnClass from '../../commonComponents/Button/Button.module.css';
+import classes from './LoginForm.module.scss';
+import BtnClass from '../../commonComponents/Button/Button.module.scss';
 import Fire from '../../config/fire';
 import Button from '../../commonComponents/Button/Button';
 

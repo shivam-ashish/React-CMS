@@ -8,7 +8,7 @@ import Fire from '../../config/fire';
 import classes from './News.module.scss';
 import AddEdit from './AddEdit/AddEdit';
 import Button from '../../commonComponents/Button/Button';
-import BtnClass from '../../commonComponents/Button/Button.module.css';
+import BtnClass from '../../commonComponents/Button/Button.module.scss';
 
 class NewsPage extends Component {
   constructor(props) {

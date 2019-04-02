@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import Button from '../../../commonComponents/Button/Button';
-import BtnClass from '../../../commonComponents/Button/Button.module.css';
+import BtnClass from '../../../commonComponents/Button/Button.module.scss';
 
 const BlogsAndNewsPage = (props) => {
   const { path } = props.match;

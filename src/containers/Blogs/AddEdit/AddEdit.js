@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import firebase from '../../../config/fire';
 import classes from './AddEdit.module.scss';
 import Button from '../../../commonComponents/Button/Button';
-import BtnClass from '../../../commonComponents/Button/Button.module.css';
+import BtnClass from '../../../commonComponents/Button/Button.module.scss';
 
 class AddNewPost extends Component {
   constructor(props) {

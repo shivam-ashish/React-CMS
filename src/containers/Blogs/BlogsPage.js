@@ -8,7 +8,7 @@ import Fire from '../../config/fire';
 import classes from './Blogs.module.scss';
 import Button from '../../commonComponents/Button/Button';
 import AddEdit from './AddEdit/AddEdit';
-import BtnClass from '../../commonComponents/Button/Button.module.css';
+import BtnClass from '../../commonComponents/Button/Button.module.scss';
 
 class BlogsPage extends Component {
   constructor(props) {

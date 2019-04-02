@@ -3,8 +3,8 @@ import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Button from '../../commonComponents/Button/Button';
 import Fire from '../../config/fire';
-import classes from './Navbar.module.css';
-import BtnClass from '../../commonComponents/Button/Button.module.css';
+import classes from './Navbar.module.scss';
+import BtnClass from '../../commonComponents/Button/Button.module.scss';
 
 class Navbar extends Component {
   logoutHandler = () => {

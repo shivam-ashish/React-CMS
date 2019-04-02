@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
-import classes from './News.module.css';
+import classes from './News.module.scss';
 import NewsPage from './NewsPage';
 
 // eslint-disable-next-line react/prefer-stateless-function
