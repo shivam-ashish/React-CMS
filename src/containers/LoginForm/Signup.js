@@ -72,7 +72,7 @@ class Signup extends Component {
           click={e => this.signup(e)}
           className={BtnClass.signup}
         >
-          {spinner ? <MDSpinner /> : 'Sign Up'}
+          {spinner ? <MDSpinner /> : <div>&#10004;</div>}
         </Button>
       </div>
     );

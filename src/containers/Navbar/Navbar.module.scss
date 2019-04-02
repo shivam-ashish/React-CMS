@@ -1,4 +1,4 @@
-@import '../Sass/variables.scss';
+@import '../Sass/main.scss';
 
 .navbar{
     margin: 0;
@@ -20,8 +20,8 @@
 }
 .displayName{
     list-style-type: none;
-    color: $label;
-    font-size: 22px;
+    color: $black;
+    font-size: $displayname-font;
     cursor: not-allowed;
     position: absolute;
     left: 20%;

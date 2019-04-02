@@ -1,4 +1,4 @@
-@import "../../containers/Sass/variables.scss";
+@import "../../containers/Sass/main.scss";
 
 .logOut{
     border: none;
@@ -7,7 +7,7 @@
     background: $logoutBackground;
     height: 45px;
     max-width: 80px;
-    font-size: 18px;
+    font-size: $button-font;
     position: absolute;
     left: 91%;
     cursor: pointer;
@@ -25,7 +25,7 @@
     background: $addBlogsBackground;
     height: 45px;
     width: 80px;
-    font-size: 18px;
+    font-size: $button-font;
     position: absolute;
     right: 90%;
     cursor: pointer;
@@ -43,7 +43,7 @@
     background: $addNewsBackground;
     height: 45px;
     width: 80px;
-    font-size: 18px;
+    font-size: $button-font;
     position: absolute;
     right: 90%;
     top: 1%;
@@ -86,24 +86,24 @@
   margin: 0;
   padding: 2px;
   float: left;
-  background: #fff;
+  background: $white;
   outline: none;
   border: none;
-  color: #DC143C;
+  color: $crimson;
   :hover{
-  background: #ff0000;
+  background: $red;
 }
 }
 .addYourPost{
   margin: 0;
   padding: 2px;
   float: left;
-  background: #fff;
+  background: $white;
   outline: none;
   border: none;
-  color: #DC143C;
+  color: $crimson;
   :hover{
-  background: #ff0000;
+  background: $red;
 }
 }
 .login{
@@ -111,7 +111,7 @@
   outline: none;
   height: 45px;
   color: $buttonText;
-  font-size: 18px;
+  font-size: $button-font;
   background: $loginSignup;
   cursor: pointer;
   width: 100%;
@@ -125,8 +125,8 @@
   border: none;
   outline: none;
   height: 65px;
-  color: #eee9e9;
-  font-size: 30px;
+  color: $buttonText;
+  font-size: $button-medium-font;
   background: $loginSignup;
   cursor: pointer;
   width: 70px;
@@ -150,7 +150,7 @@
   color: $blogs;
   background: $blogsBackground;
   border: 1px solid $blogsBorder;
-  font-size: 40px;
+  font-size: $button-large-font;
   cursor: pointer;
   border-radius: 20px;
   &:hover{
@@ -168,7 +168,7 @@
   outline: none;
   color: $news;
   background: $newsBackground;
-  font-size: 40px;
+  font-size: $button-large-font;
   cursor: pointer;
   border-radius: 20px;
   &:hover{

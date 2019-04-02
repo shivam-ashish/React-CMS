@@ -58,7 +58,7 @@ class Login extends Component {
           className={BtnClass.signup}
           click={toggle}
         >
-          {'SignUp'}
+          {'+'}
         </Button>
       </div>
     );

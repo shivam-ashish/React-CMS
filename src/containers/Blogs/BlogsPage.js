@@ -107,7 +107,7 @@ class BlogsPage extends Component {
                 type="Add Post"
                 className={BtnClass.addPost}
               >
-                {'Add New Post'}
+                {'Add Post'}
               </Button>
             </Link>
             <h1>BLOGS</h1>

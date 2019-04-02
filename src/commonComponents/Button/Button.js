@@ -2,9 +2,9 @@ import React from 'react';
 
 const Button = props => (
   <button
-    type={props.type}
-    className={props.className}
+    type="button"
     onClick={props.click}
+    {...props}
   >
     {props.children}
   </button>

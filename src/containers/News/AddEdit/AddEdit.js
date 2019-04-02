@@ -44,7 +44,11 @@ class AddNewPost extends Component {
       updatedBy: uid,
       updatedOn: timeStamp,
     };
-    ref.push(data);
+    if (title && body != null) {
+      ref.push(data);
+    } else {
+      alert('Plzzz Enter Some Value!!!');
+    }
   }
 
   editData = () => {
@@ -61,6 +65,30 @@ class AddNewPost extends Component {
 
   handleChange = ({ target: { value, name } }) => {
     this.setState({ [name]: value });
+  }
+
+  addOrEdit = (type) => {
+    switch (type) {
+      case 'add': return (
+        <Button
+          type="Add Your News"
+          className={BtnClass.addYourPost}
+          click={this.putData}
+        >
+          {'Add Your News'}
+        </Button>
+      );
+      case 'edit': return (
+        <Button
+          type="Edit Your News"
+          className={BtnClass.editYourPost}
+          click={this.editData}
+        >
+          {'Edit Your News'}
+        </Button>
+      );
+      default: return null;
+    }
   }
 
   render() {
@@ -98,31 +126,7 @@ class AddNewPost extends Component {
           />
           <br />
           <Link to="/home/news">
-
-
-            {(() => {
-              switch (type) {
-                case 'add': return (
-                  <Button
-                    type="Add Your News"
-                    className={BtnClass.addYourPost}
-                    click={this.putData}
-                  >
-                    {'Add Your News'}
-                  </Button>
-                );
-                case 'edit': return (
-                  <Button
-                    type="Edit Your News"
-                    className={BtnClass.editYourPost}
-                    click={this.editData}
-                  >
-                    {'Edit Your News'}
-                  </Button>
-                );
-                default: return null;
-              }
-            })()}
+            { this.addOrEdit(type) }
           </Link>
         </div>
       </div>
