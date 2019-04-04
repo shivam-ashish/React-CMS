@@ -8,13 +8,13 @@ import Fire from '../../config/fire';
 import classes from './Blogs.module.scss';
 import Button from '../../commonComponents/Button/Button';
 import AddEdit from './AddEdit/AddEdit';
+import BlogItem from './DisplayBlogs';
 import BtnClass from '../../commonComponents/Button/Button.module.scss';
 
 class BlogsPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      list: [],
       title: '',
       body: '',
       edit: false,
@@ -23,8 +23,8 @@ class BlogsPage extends Component {
   }
 
   componentDidMount() {
-    console.log(this.props);
-    const { uid } = this.props.user;
+    console.log('inside compoDidMount props ->', this.props, 'state ->', this.state);
+    const { user: { uid } } = this.props;
     this.setState({
       spinner: true,
     });
@@ -42,45 +42,14 @@ class BlogsPage extends Component {
   }
 
   gotData = (data) => {
-    console.log(this.props);
-    const { path } = this.props.match;
     if (data.val() == null) {
-      this.setState({ spinner: false });
+      this.setState({ spinner: true });
     } else {
       const blogs = data.val();
-      const keys = Object.keys(blogs);
       this.props.updateBlogs(blogs);
       this.setState({
-        list: keys.map(key => (
-          <li key={key}>
-            <div style={{ fontSize: '20px', fontWeight: 'bold' }}>
-              <Button
-                type="X"
-                className={BtnClass.delete}
-                click={() => this.deleteData(key)}
-              >
-                {'X'}
-              </Button>
-              <Link
-                to={`${path}/editpost/${key}/edit`}
-              >
-                <Button
-                  type="Edit"
-                  className={BtnClass.edit}
-                  click={() => this.editHandler(blogs[key].title, blogs[key].body)}
-                >
-                  {'Edit'}
-                </Button>
-              </Link>
-              {blogs[key].title}
-            </div>
-            {<br />}
-            {blogs[key].body}
-          </li>
-        )),
         spinner: false,
       });
-      // this.setState({ spinner: false });
     }
   }
 
@@ -92,9 +61,43 @@ class BlogsPage extends Component {
     Fire.database().ref(`blogs/${key}`).remove();
   }
 
+  showData = () => {
+    const { blogs } = this.props;
+    const { match: { path } } = this.props;
+    let keys = [];
+
+    let values = [];
+
+    if (blogs) {
+      keys = Object.keys(blogs);
+      values = Object.values(blogs);
+    }
+
+    console.log(keys, values);
+
+    return (
+      <div>
+        {
+          keys.map((key, index) => (
+            <li key={key}>
+              <BlogItem
+                path={path}
+                id={key}
+                val={values[index]}
+                deleteData={this.deleteData}
+                editHandler={this.editHandler}
+              />
+            </li>
+          ))
+        }
+      </div>
+    );
+  }
+
   render() {
-    const { list, spinner } = this.state;
-    const { path } = this.props.match;
+    console.log('inside render props ->', this.props, 'state ->', this.state);
+    const { spinner } = this.state;
+    const { match: { path } } = this.props;
 
     return (
       <Switch>
@@ -118,7 +121,7 @@ class BlogsPage extends Component {
             {spinner ? (<div className={classes.spinner}><MDSpinner /></div>)
               : (
                 <ul>
-                  {list}
+                  {this.showData()}
                 </ul>
               )
             }

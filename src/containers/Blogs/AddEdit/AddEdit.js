@@ -19,7 +19,7 @@ class AddNewPost extends Component {
   }
 
   componentDidMount() {
-    console.log(this.props);
+    console.log('inside addEdit compoDidMount', this.props);
     const { editObject } = this.props;
 
     let updateState = {};
@@ -140,7 +140,7 @@ class AddNewPost extends Component {
   }
 }
 const mapStateToProps = state => ({
-  user: state.user,
+  user: state.reducer.user,
 });
 
 export default withRouter(connect(mapStateToProps)(AddNewPost));

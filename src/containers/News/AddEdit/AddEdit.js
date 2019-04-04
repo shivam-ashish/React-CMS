@@ -135,7 +135,7 @@ class AddNewPost extends Component {
 }
 
 const mapStateToProps = state => ({
-  user: state.user,
+  user: state.reducer.user,
 });
 
 export default withRouter(connect(mapStateToProps)(AddNewPost));

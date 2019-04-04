@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import Fire from '../../config/fire';
 import classes from './News.module.scss';
 import AddEdit from './AddEdit/AddEdit';
+import NewsItem from './DisplayNews';
 import Button from '../../commonComponents/Button/Button';
 import BtnClass from '../../commonComponents/Button/Button.module.scss';
 
@@ -14,16 +15,16 @@ class NewsPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      list: [],
-      spinner: false,
       title: '',
       body: '',
       edit: false,
+      spinner: false,
     };
   }
 
   componentDidMount() {
-    const { uid } = this.props.user;
+    console.log('inside compodidmount', this.props, 'state ->', this.state);
+    const { user: { uid } } = this.props;
     this.setState({ spinner: true });
     const database = Fire.database();
     const ref = database.ref('news');
@@ -31,6 +32,7 @@ class NewsPage extends Component {
   }
 
   editHandler = (titleVal, bodyVal) => {
+    console.log('inside editHandler');
     this.setState({
       title: titleVal,
       body: bodyVal,
@@ -39,41 +41,11 @@ class NewsPage extends Component {
   }
 
   gotData = (data) => {
-    const { path } = this.props.match;
     if (data.val() == null) {
-      this.setState({ spinner: false });
+      this.setState({ spinner: true });
     } else {
       const news = data.val();
-      const keys = Object.keys(news);
-      this.setState({
-        list: keys.map(key => (
-          <li key={key}>
-            <div style={{ fontSize: '20px', fontWeight: 'bold' }}>
-              <Button
-                type="X"
-                click={() => this.deleteData(key)}
-                className={BtnClass.delete}
-              >
-                {'X'}
-              </Button>
-              <Link
-                to={`${path}/editnews/${key}/edit`}
-              >
-                <Button
-                  type="Edit"
-                  className={BtnClass.edit}
-                  click={() => this.editHandler(news[key].title, news[key].body)}
-                >
-                  {'Edit'}
-                </Button>
-              </Link>
-              {news[key].title}
-            </div>
-            {<br />}
-            {news[key].body}
-          </li>
-        )),
-      });
+      this.props.updateNews(news);
       this.setState({ spinner: false });
     }
   }
@@ -86,13 +58,48 @@ class NewsPage extends Component {
     Fire.database().ref(`news/${key}`).remove();
   }
 
-  logout = () => {
-    Fire.auth().signOut();
+  showData = () => {
+    console.log('clicked show data props ->', this.props, 'state ->', this.state);
+    const { news } = this.props;
+    console.log(news);
+
+    const { match: { path } } = this.props;
+
+    let keys = [];
+
+    let values = [];
+
+    if (news) {
+      keys = Object.keys(news);
+      values = Object.values(news);
+    }
+
+    console.log(keys);
+    console.log(values);
+
+    return (
+      <div>
+        {
+          keys.map((key, index) => (
+            <li key={key}>
+              <NewsItem
+                id={key}
+                val={values[index]}
+                editHandler={this.editHandler}
+                deleteData={this.deleteData}
+                path={path}
+              />
+            </li>
+          ))
+        }
+      </div>
+    );
   }
 
   render() {
-    const { list, spinner } = this.state;
-    const { path } = this.props.match;
+    console.log('inside render props ->', this.props, 'state ->', this.state);
+    const { spinner } = this.state;
+    const { match: { path } } = this.props;
     return (
       <Switch>
         <Route path={`${path}/addnewnews/:type`} component={AddEdit} />
@@ -117,7 +124,7 @@ class NewsPage extends Component {
               {spinner ? (<div className={classes.spinner}><MDSpinner /></div>)
                 : (
                   <ul>
-                    {list}
+                    {this.showData()}
                   </ul>
                 )
               }
@@ -130,8 +137,12 @@ class NewsPage extends Component {
 }
 
 const mapStateToProps = state => ({
-  isLoggedIn: state.reducer.isLoggedIn,
   user: state.reducer.user,
+  news: state.newsReducer.news,
 });
 
-export default withRouter(connect(mapStateToProps)(NewsPage));
+const mapDispatchToProps = dispatch => ({
+  updateNews: news => dispatch({ type: 'updateNews', payload: news }),
+});
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(NewsPage));
