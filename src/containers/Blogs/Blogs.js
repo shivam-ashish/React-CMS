@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import classes from './Blogs.module.scss';
-import AddNewPost from './AddEdit/AddEdit';
+// import AddNewPost from './AddEdit/AddEdit';
 import BlogsPage from './BlogsPage';
 // eslint-disable-next-line react/prefer-stateless-function
 class Blogs extends Component {
@@ -10,7 +10,7 @@ class Blogs extends Component {
     return (
       <div className={classes.box}>
         <Switch>
-          <Route path={`${path}/AddNewPost/:type`} component={AddNewPost} />
+          {/* <Route path={`${path}/AddNewPost/:type`} component={AddNewPost} /> */}
           <Route
             path={`${path}`}
             render={() => (
