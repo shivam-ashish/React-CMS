@@ -5,31 +5,53 @@ $slate-grey: #2f4f4f;
 $crimson: #DC143C;
 $red: #ff0000;
 
-$loginSignup: #26A69A;
-$loginSignupHover: #17756c;
+$background-color: #ECECF4;
+
+$loginSignup: #414663;
+$loginSignupHover: #414663;
+
+$heading: #414663;
 
 $buttonText: #eee9e9;
-$h1: black;
-$label: black;
 
-$navbar: #26A69A;
+$add-button: #DC143C;
+$add-button-text: #fff;
+$add-button-hover: #D45B64;
+$add-button-text-hover: #fff;
+
+$edit-button: #DC143C;
+$edit-button-text: #fff;
+$edit-button-hover:#D45B64;
+$edit-button-text-hover: #fff;
+
+$delete-button: #DC143C;
+$delete-button-text: #fff;
+$delete-button-hover:#D45B64;
+$delete-button-text-hover: #fff;
+
+$logout-button: #e8e4c9;
+$logout-button-text: #DC143C;
+$logout-button-hover:#DC143C;
+$logout-button-text-hover: #fff;
+
+$addedit-button: #414663;
+$addedit-button-text: #fff;
+$addedit-button-hover:#835AD4;
+$addedit-button-text-hover: #fff;
+
+$navbar: #414663;
 $navbarText: #fff;
 $navbarTextHover: #DC143C;
 
-$logoutText: #DC143C;
-$logoutTextHover: #fff;
-$logoutBackground: #e8e4c9;
-$logoutBackgroundHover: #DC143C;
-
-$blogs: #DC143C;
+$blogs: black;
 $blogsBackground: transparent;
 $blogsBorder: #26A69A;
-$blogsHover: #CD5C5C;
+$blogsHover: #835AD4;
 
-$news: #FFA500;
+$news: black;
 $newsBackground: transparent;
 $newsBorder: #26A69A;
-$newsHover: #FFFF66;
+$newsHover: #835AD4;
 
 $addBlogsText: #DC143C;
 $addBlogsTextHover: #fff;

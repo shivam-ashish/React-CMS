@@ -52,8 +52,8 @@ class BlogsPage extends Component {
       this.props.updateBlogs(blogs);
       this.setState({
         list: keys.map(key => (
-          <li key={key}>
-            <div style={{ fontSize: '20px', fontWeight: 'bold' }}>
+          <div className={classes.subContainers} key={key}>
+            <div className={classes.upperSection}>
               <Button
                 type="X"
                 className={BtnClass.delete}
@@ -72,11 +72,13 @@ class BlogsPage extends Component {
                   {'Edit'}
                 </Button>
               </Link>
-              {blogs[key].title}
+              <h1>{blogs[key].title}</h1>
             </div>
             {<br />}
-            {blogs[key].body}
-          </li>
+            <div className={classes.lowerSection}>
+              {blogs[key].body}
+            </div>
+          </div>
         )),
         spinner: false,
       });
@@ -109,17 +111,19 @@ class BlogsPage extends Component {
             <Link to={`${path}/addnewpost/add`}>
               <Button
                 type="Add Post"
-                className={BtnClass.addPost}
+                className={BtnClass.add}
               >
-                {'Add Post'}
+                {'+'}
               </Button>
             </Link>
             <h1>BLOGS</h1>
             {spinner ? (<div className={classes.spinner}><MDSpinner /></div>)
               : (
-                <ul>
+
+                <div className={classes.container}>
                   {list}
-                </ul>
+                </div>
+
               )
             }
           </>
@@ -129,12 +133,10 @@ class BlogsPage extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    user: state.reducer.user,
-    blogs: state.blogReducer.blogs,
-  };
-};
+const mapStateToProps = state => ({
+  user: state.reducer.user,
+  blogs: state.blogReducer.blogs,
+});
 
 const mapDispatchToProps = dispatch => ({
   updateBlogs: blogs => dispatch({ type: 'updateBlogs', payload: blogs }),

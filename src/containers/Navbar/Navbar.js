@@ -20,8 +20,6 @@ class Navbar extends Component {
         <ul className={classes.navlist}>
           <Link to={`${path}`}>
             <li className={classes.displayName}>
-              Hey
-              {' '}
               { displayName }
             </li>
             <li>

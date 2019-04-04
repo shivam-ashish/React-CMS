@@ -47,8 +47,8 @@ class NewsPage extends Component {
       const keys = Object.keys(news);
       this.setState({
         list: keys.map(key => (
-          <li key={key}>
-            <div style={{ fontSize: '20px', fontWeight: 'bold' }}>
+          <div className={classes.subContainers} key={key}>
+            <div className={classes.upperSection}>
               <Button
                 type="X"
                 click={() => this.deleteData(key)}
@@ -67,11 +67,11 @@ class NewsPage extends Component {
                   {'Edit'}
                 </Button>
               </Link>
-              {news[key].title}
+              <h1>{news[key].title}</h1>
             </div>
             {<br />}
             {news[key].body}
-          </li>
+          </div>
         )),
       });
       this.setState({ spinner: false });
@@ -108,17 +108,17 @@ class NewsPage extends Component {
               <Link to={`${path}/addnewnews/add`}>
                 <Button
                   type="Add News"
-                  className={BtnClass.addNews}
+                  className={BtnClass.add}
                 >
-                  {'Add News'}
+                  {'+'}
                 </Button>
               </Link>
               <h1>News</h1>
               {spinner ? (<div className={classes.spinner}><MDSpinner /></div>)
                 : (
-                  <ul>
+                  <div className={classes.container}>
                     {list}
-                  </ul>
+                  </div>
                 )
               }
             </>

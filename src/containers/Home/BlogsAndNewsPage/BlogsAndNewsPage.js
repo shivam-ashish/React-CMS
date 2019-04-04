@@ -2,6 +2,9 @@ import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import Button from '../../../commonComponents/Button/Button';
 import BtnClass from '../../../commonComponents/Button/Button.module.scss';
+import blogs from '../../../assets/blog.jpg';
+import classes from '../Home.module.scss';
+import news from '../../../assets/news.png';
 
 const BlogsAndNewsPage = (props) => {
   const { path } = props.match;
@@ -12,7 +15,14 @@ const BlogsAndNewsPage = (props) => {
           type="BLOGS"
           className={BtnClass.blogs}
         >
-          {'Blogs'}
+          <div className={classes.blogsBackground}>
+            <img
+              alt="Blogs Logo"
+              className={classes.blogsIcon}
+              src={blogs}
+            />
+          </div>
+          {/* <p>{'Blogs'}</p> */}
         </Button>
       </Link>
 
@@ -21,7 +31,14 @@ const BlogsAndNewsPage = (props) => {
           type="NEWS"
           className={BtnClass.news}
         >
-          {'NEWS'}
+        <div className={classes.blogsBackground}>
+            <img
+              alt="News Logo"
+              className={classes.blogsIcon}
+              src={news}
+            />
+          </div>
+          {/* {'NEWS'} */}
         </Button>
       </Link>
     </>

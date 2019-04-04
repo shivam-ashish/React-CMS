@@ -78,7 +78,7 @@ class AddNewPost extends Component {
       case 'add': return (
         <Button
           type="Add Your Post"
-          className={BtnClass.addYourPost}
+          className={BtnClass.addEdit}
           click={this.putData}
         >
           {'Add Your Post'}
@@ -87,7 +87,7 @@ class AddNewPost extends Component {
       case 'edit': return (
         <Button
           type="Edit Your Post"
-          className={BtnClass.editYourPost}
+          className={BtnClass.addEdit}
           click={this.editData}
         >
           {'Edit Your Post'}
@@ -140,7 +140,7 @@ class AddNewPost extends Component {
   }
 }
 const mapStateToProps = state => ({
-  user: state.user,
+  user: state.reducer.user,
 });
 
 export default withRouter(connect(mapStateToProps)(AddNewPost));

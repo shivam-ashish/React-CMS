@@ -32,21 +32,6 @@
     font-weight: 500;
     color: $black;
     }
-    button{
-    border: none;
-    outline: none;
-    height: 40px;
-    color: $buttonText;
-    font-size: $button-font;
-    background: $addEdit;
-    cursor: pointer;
-    width: 100%;
-    margin-top: 20px;
-    border-radius: 10px;
-    &:hover{
-    background: $addEditHover;
-    }
-}
 }
 .container{
     width: 50%;
