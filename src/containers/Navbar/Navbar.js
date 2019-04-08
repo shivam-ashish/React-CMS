@@ -12,9 +12,8 @@ class Navbar extends Component {
   }
 
   render() {
-    console.log(this.props);
-    const { path } = this.props.match;
-    const { displayName } = this.props.user;
+    const { match: { path } } = this.props;
+    const { user: { displayName } } = this.props;
     return (
       <div className={classes.navbar}>
         <ul className={classes.navlist}>

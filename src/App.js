@@ -8,7 +8,6 @@ import Home from './containers/Home/Home';
 // eslint-disable-next-line react/prefer-stateless-function
 class App extends Component {
   render() {
-    console.log(this.props);
     const { isLoggedIn } = this.props;
 
     return (

@@ -19,18 +19,20 @@ class BlogsPage extends Component {
       body: '',
       edit: false,
       spinner: false,
+      msg: false,
     };
   }
 
   componentDidMount() {
-    console.log('inside compoDidMount props ->', this.props, 'state ->', this.state);
     const { user: { uid } } = this.props;
     this.setState({
       spinner: true,
     });
     const database = Fire.database();
     const ref = database.ref('blogs');
-    ref.orderByChild('submittedBy').equalTo(uid).on('value', this.gotData, this.errData);
+    ref.orderByChild('submittedBy')
+      .equalTo(uid)
+      .on('value', this.gotData, this.errData);
   }
 
   editHandler = (titleVal, bodyVal) => {
@@ -43,12 +45,16 @@ class BlogsPage extends Component {
 
   gotData = (data) => {
     if (data.val() == null) {
-      this.setState({ spinner: true });
+      this.setState({
+        spinner: false,
+        msg: true,
+      });
     } else {
       const blogs = data.val();
       this.props.updateBlogs(blogs);
       this.setState({
         spinner: false,
+        msg: false,
       });
     }
   }
@@ -73,8 +79,6 @@ class BlogsPage extends Component {
       values = Object.values(blogs);
     }
 
-    console.log(keys, values);
-
     return (
       <div>
         {
@@ -94,8 +98,23 @@ class BlogsPage extends Component {
     );
   }
 
+  gotVal = () => {
+    const { msg } = this.state;
+    if (msg) {
+      return (
+        <div><h1>Nothing to Display</h1></div>
+      );
+    }
+    else {
+      return (
+        (<div className={classes.container}>
+          {this.showData()}
+          </div>)
+      );
+    }
+  }
+
   render() {
-    console.log('inside render props ->', this.props, 'state ->', this.state);
     const { spinner } = this.state;
     const { match: { path } } = this.props;
 
@@ -118,12 +137,10 @@ class BlogsPage extends Component {
               </Button>
             </Link>
             <h1>BLOGS</h1>
-            {spinner ? (<div className={classes.spinner}><MDSpinner /></div>)
-              : (
-                <div className={classes.container}>
-                  {this.showData()}
-                </div>
-              )
+            {
+              spinner
+                ? (<div className={classes.spinner}><MDSpinner /></div>)
+                : this.gotVal()
             }
           </>
         </Route>

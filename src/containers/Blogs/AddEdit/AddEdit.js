@@ -19,7 +19,6 @@ class AddNewPost extends Component {
   }
 
   componentDidMount() {
-    console.log('inside addEdit compoDidMount', this.props);
     const { editObject } = this.props;
 
     let updateState = {};

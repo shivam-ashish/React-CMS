@@ -19,15 +19,20 @@ class NewsPage extends Component {
       body: '',
       edit: false,
       spinner: false,
+      msg: false,
     };
   }
 
   componentDidMount() {
     const { user: { uid } } = this.props;
-    this.setState({ spinner: true });
+    this.setState({
+      spinner: true,
+    });
     const database = Fire.database();
     const ref = database.ref('news');
-    ref.orderByChild('submittedBy').equalTo(uid).on('value', this.gotData, this.errData);
+    ref.orderByChild('submittedBy')
+      .equalTo(uid)
+      .on('value', this.gotData, this.errData);
   }
 
   editHandler = (titleVal, bodyVal) => {
@@ -40,11 +45,17 @@ class NewsPage extends Component {
 
   gotData = (data) => {
     if (data.val() == null) {
-      this.setState({ spinner: true });
+      this.setState({
+        spinner: false,
+        msg: true,
+      });
     } else {
       const news = data.val();
       this.props.updateNews(news);
-      this.setState({ spinner: false });
+      this.setState({
+        spinner: false,
+        msg: false,
+      });
     }
   }
 
@@ -58,11 +69,8 @@ class NewsPage extends Component {
 
   showData = () => {
     const { news } = this.props;
-
     const { match: { path } } = this.props;
-
     let keys = [];
-
     let values = [];
 
     if (news) {
@@ -88,6 +96,22 @@ class NewsPage extends Component {
     );
   }
 
+  gotVal = () => {
+    const { msg } = this.state;
+    if (msg) {
+      return (
+        <div><h1>Nothing to Display</h1></div>
+      );
+    }
+    else {
+      return (
+        <div className={classes.container}>
+          {this.showData()}
+        </div>
+      )
+    }
+  }
+
   render() {
     const { spinner } = this.state;
     const { match: { path } } = this.props;
@@ -99,29 +123,24 @@ class NewsPage extends Component {
           render={() => <AddEdit editObject={this.state} />
           }
         />
-        <Route
-          path={`${path}`}
-          render={() => (
-            <>
-              <Link to={`${path}/addnewnews/add`}>
-                <Button
-                  type="Add News"
-                  className={BtnClass.add}
-                >
-                  {'+'}
-                </Button>
-              </Link>
-              <h1>News</h1>
-              {spinner ? (<div className={classes.spinner}><MDSpinner /></div>)
-                : (
-                  <div className={classes.container}>
-                    {this.showData()}
-                  </div>
-                )
-              }
-            </>
-          )}
-        />
+        <Route path={`${path}`}>
+          <>
+            <Link to={`${path}/addnewnews/add`}>
+              <Button
+                type="Add News"
+                className={BtnClass.add}
+              >
+                {'+'}
+              </Button>
+            </Link>
+            <h1>News</h1>
+            {
+              spinner
+                ? <div className={classes.spinner}><MDSpinner /></div>
+                : this.gotVal()
+            }
+          </>
+        </Route>
       </Switch>
     );
   }
