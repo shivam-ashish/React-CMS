@@ -96,15 +96,16 @@ class AddNewPost extends Component {
     const { title, body } = this.state;
     return (
       <div className={classes.post}>
-        <h1>
+        <h1 className={classes.heading}>
           { type.toUpperCase() }
           {' '}
         YOUR NEWS
         </h1>
         <div className={classes.container}>
-          <label htmlFor="title">Title</label>
+          <label className={classes.labelField} htmlFor="title">Title</label>
           <br />
           <input
+            className={classes.inputField}
             value={title}
             onChange={this.handleChange}
             type="text"
@@ -112,17 +113,17 @@ class AddNewPost extends Component {
             name="title"
           />
           <br />
-          <label htmlFor="body">
+          <label className={classes.labelField} htmlFor="body">
             Body
           </label>
           <br />
           <input
+            className={classes.inputField}
             value={body}
             onChange={this.handleChange}
             type="text"
             placeholder="Enter your Post"
             name="body"
-            className={classes.body}
           />
           <br />
           <Link to="/home/news">

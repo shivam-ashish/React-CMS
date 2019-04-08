@@ -29,7 +29,7 @@ const newsItem = (props) => {
             {'Edit'}
           </Button>
         </Link>
-        <h1>{val.title}</h1>
+        <h1 className={classes.heading}>{val.title}</h1>
       </div>
       {<br />}
       <div className={classes.lowerSection}>

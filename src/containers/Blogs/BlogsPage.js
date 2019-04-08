@@ -117,7 +117,7 @@ class BlogsPage extends Component {
                 {'+'}
               </Button>
             </Link>
-            <h1>BLOGS</h1>
+            <h1 className={classes.heading}>BLOGS</h1>
             {spinner ? (<div className={classes.spinner}><MDSpinner /></div>)
               : (
                 <div className={classes.container}>

@@ -111,7 +111,7 @@ class NewsPage extends Component {
                   {'+'}
                 </Button>
               </Link>
-              <h1>News</h1>
+              <h1 className={classes.heading}>News</h1>
               {spinner ? (<div className={classes.spinner}><MDSpinner /></div>)
                 : (
                   <div className={classes.container}>

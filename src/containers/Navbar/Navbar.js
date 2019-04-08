@@ -22,17 +22,17 @@ class Navbar extends Component {
             <li className={classes.displayName}>
               { displayName }
             </li>
-            <li>
+            <li className={classes.list}>
               Home
             </li>
           </Link>
           <Link to={`${path}/blogs`}>
-            <li>
+            <li className={classes.list}>
               Blogs
             </li>
           </Link>
           <Link to={`${path}/news`}>
-            <li>
+            <li className={classes.list}>
               News
             </li>
           </Link>
