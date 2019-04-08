@@ -44,6 +44,7 @@ class BlogsPage extends Component {
   }
 
   gotData = (data) => {
+    const { props } = this;
     if (data.val() == null) {
       this.setState({
         spinner: false,
@@ -51,7 +52,7 @@ class BlogsPage extends Component {
       });
     } else {
       const blogs = data.val();
-      this.props.updateBlogs(blogs);
+      props.updateBlogs(blogs);
       this.setState({
         spinner: false,
         msg: false,

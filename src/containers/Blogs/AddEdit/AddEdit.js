@@ -2,7 +2,6 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-// import Edit from './Edit';
 import firebase from '../../../config/fire';
 import classes from './AddEdit.module.scss';
 import Button from '../../../commonComponents/Button/Button';
@@ -20,13 +19,10 @@ class AddNewPost extends Component {
 
   componentDidMount() {
     const { editObject } = this.props;
-
     let updateState = {};
-
     if (editObject) {
       updateState = { ...editObject };
     }
-
     this.setState({
       ...updateState,
       timeStamp: `${new Date().getTime()}`,
@@ -74,24 +70,30 @@ class AddNewPost extends Component {
 
   addOrEdit = (type) => {
     switch (type) {
-      case 'add': return (
-        <Button
-          type="Add Your Post"
-          className={BtnClass.addEdit}
-          click={this.putData}
-        >
-          {'Add Your Post'}
-        </Button>
-      );
-      case 'edit': return (
-        <Button
-          type="Edit Your Post"
-          className={BtnClass.addEdit}
-          click={this.editData}
-        >
-          {'Edit Your Post'}
-        </Button>
-      );
+      case 'add':
+
+        return (
+          <Button
+            type="Add Your Post"
+            className={BtnClass.addEdit}
+            click={this.putData}
+          >
+            {'Add Your Post'}
+          </Button>
+        );
+
+      case 'edit':
+
+        return (
+          <Button
+            type="Edit Your Post"
+            className={BtnClass.addEdit}
+            click={this.editData}
+          >
+            {'Edit Your Post'}
+          </Button>
+        );
+
       default: return null;
     }
   }
@@ -103,31 +105,32 @@ class AddNewPost extends Component {
 
     return (
       <div className={classes.post}>
-        <h1>
+        <h1 className={classes.heading}>
           {type.toUpperCase()}
           {' '}
           YOUR POST
         </h1>
         <div className={classes.container}>
-          <label htmlFor="title">Title</label>
+          <label className={classes.labelField} htmlFor="title">Title</label>
           <br />
           <input
+            className={classes.inputField}
             onChange={this.handleChange}
             type="text"
             value={title}
             name="title"
           />
           <br />
-          <label htmlFor="body">
+          <label className={classes.labelField} htmlFor="body">
             Body
           </label>
           <br />
           <input
+            className={classes.inputField}
             onChange={this.handleChange}
             type="text"
             value={body}
             name="body"
-            className={classes.body}
           />
           <br />
           <Link to="/home/blogs">

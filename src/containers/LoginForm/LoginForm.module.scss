@@ -1,6 +1,7 @@
 @import "../Sass/main.scss";
 
 .box{
+
   .loginForm{
     width: 60%;
     position: absolute;
@@ -14,28 +15,18 @@
     padding: 20px 40px;
     box-shadow: 10px 6px 9px 1px $grey;
     border-radius: 20px;
-  h1{
+    
+  .heading{
     text-align: center;
     margin-bottom: 50px;
-    color: #414663;
+    color: $loginSignup;
   }
   
-  input{
+  .inputField{
     display: block;
     margin-bottom: 20px;
     width: 90%;
     padding: 10px;
-  }
-  
-  label{
-    font-size: $label-font;
-    margin: 0;
-    padding: 0;
-    font-weight: 500;
-    color: $black;
-  }
-  
-  input[type="text"],input[type="email"], input[type="password"]{
     border: none;
     border-bottom: 1px solid $black;
     background: none;
@@ -45,17 +36,12 @@
     font-size: $input-type-font;
   }
   
-  p{
-    text-align: center;
-    color: $slate-grey;
-    margin-top: 30px;
+  .labelField{
+    font-size: $label-font;
+    margin: 0;
+    padding: 0;
+    font-weight: 500;
+    color: $black;
   }
 }
-
-  .user{
-    height: 90px;
-    position: absolute;
-    left: calc(50% - 50px);
-    top: -62px;
-  }
 }

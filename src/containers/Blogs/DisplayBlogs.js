@@ -6,6 +6,7 @@ import classes from './Blogs.module.scss';
 
 const blogItem = (props) => {
   const { path, id, val } = props;
+
   return (
     <div>
       <div className={classes.upperSection}>
@@ -27,7 +28,7 @@ const blogItem = (props) => {
             {'Edit'}
           </Button>
         </Link>
-        <h1>{val.title}</h1>
+        <h1 className={classes.heading}>{val.title}</h1>
       </div>
       {<br />}
       <div className={classes.lowerSection}>

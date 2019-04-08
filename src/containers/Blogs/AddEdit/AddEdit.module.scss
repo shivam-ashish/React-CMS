@@ -1,7 +1,7 @@
 @import "../../Sass/main.scss";
 
 .post{
-    h1{
+    .heading{
     margin: 0px;
     padding: 0px;
     text-align: center;
@@ -9,7 +9,8 @@
     color: $blogs;
     font-weight: 600;
     }
-    input[type="text"]{
+
+    .inputField{
     display: inline-block;
     border: none;
     border-bottom: 1px solid $grey;
@@ -19,13 +20,12 @@
     color: $black;
     font-size: $input-type-font;
     margin-bottom: 20px;
-    }
-    input {
     display: block;
     margin-bottom: 20px;
     width: 90%;
     }
-    label{
+
+    .labelField{
     font-size: $label-font;
     margin: 0;
     padding: 0;

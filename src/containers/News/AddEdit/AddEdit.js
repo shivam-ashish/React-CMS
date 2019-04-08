@@ -32,8 +32,9 @@ class AddNewPost extends Component {
   }
 
   putData = () => {
+    const { props } = this;
     const { title, body, timeStamp } = this.state;
-    const { uid } = this.props.user;
+    const { uid } = props.user;
     const database = Fire.database();
     const ref = database.ref('news');
     const data = {
@@ -52,8 +53,9 @@ class AddNewPost extends Component {
   }
 
   editData = () => {
-    const { key } = this.props.match.params;
-    const { uid } = this.props.user;
+    const { props } = this;
+    const { key } = props.match.params;
+    const { uid } = props.user;
     const { title, body, timeStamp } = this.state;
     Fire.database().ref(`news/${key}`).update({
       title,
@@ -92,19 +94,22 @@ class AddNewPost extends Component {
   }
 
   render() {
-    const { type } = this.props.match.params;
+    const { props } = this;
+    const { type } = props.match.params;
     const { title, body } = this.state;
+
     return (
       <div className={classes.post}>
-        <h1>
+        <h1 className={classes.heading}>
           { type.toUpperCase() }
           {' '}
         YOUR NEWS
         </h1>
         <div className={classes.container}>
-          <label htmlFor="title">Title</label>
+          <label className={classes.labelField} htmlFor="title">Title</label>
           <br />
           <input
+            className={classes.inputField}
             value={title}
             onChange={this.handleChange}
             type="text"
@@ -112,17 +117,17 @@ class AddNewPost extends Component {
             name="title"
           />
           <br />
-          <label htmlFor="body">
+          <label className={classes.labelField} htmlFor="body">
             Body
           </label>
           <br />
           <input
+            className={classes.inputField}
             value={body}
             onChange={this.handleChange}
             type="text"
             placeholder="Enter your Post"
             name="body"
-            className={classes.body}
           />
           <br />
           <Link to="/home/news">

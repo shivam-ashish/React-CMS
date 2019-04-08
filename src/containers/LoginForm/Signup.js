@@ -53,13 +53,13 @@ class Signup extends Component {
 
     return (
       <div className={classes.loginForm}>
-        <h1>SignUp Page</h1>
-        <label htmlFor="email">Name : </label>
-        <input value={name} onChange={this.handleChange} type="text" name="name" />
-        <label htmlFor="email">Email Address : </label>
-        <input value={email} onChange={this.handleChange} type="email" name="email" />
-        <label htmlFor="email">Password : </label>
-        <input value={password} onChange={this.handleChange} type="password" name="password" />
+        <h1 className={classes.heading}>SignUp Page</h1>
+        <label className={classes.labelField} htmlFor="email">Name : </label>
+        <input className={classes.inputField} value={name} onChange={this.handleChange} type="text" name="name" />
+        <label className={classes.labelField} htmlFor="email">Email Address : </label>
+        <input className={classes.inputField} value={email} onChange={this.handleChange} type="email" name="email" />
+        <label className={classes.labelField} htmlFor="email">Password : </label>
+        <input className={classes.inputField} value={password} onChange={this.handleChange} type="password" name="password" />
         <Button
           type="Back to Login"
           click={toggle}

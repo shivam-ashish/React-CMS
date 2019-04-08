@@ -10,11 +10,13 @@ const reducer = (state = initialState, action) => {
         ...state,
         isLoggedIn: Boolean,
       };
+
     case 'UPDATE_USER':
       return {
         ...state,
         user: action.user,
       };
+
     default:
       return state;
   }
