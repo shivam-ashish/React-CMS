@@ -6,6 +6,7 @@ import classes from './News.module.scss';
 
 const newsItem = (props) => {
   const { id, val, path } = props;
+
   return (
     <div>
       <div className={classes.upperSection}>

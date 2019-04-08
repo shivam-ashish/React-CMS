@@ -39,11 +39,12 @@ class NewsPage extends Component {
   }
 
   gotData = (data) => {
+    const { props } = this;
     if (data.val() == null) {
       this.setState({ spinner: true });
     } else {
       const news = data.val();
-      this.props.updateNews(news);
+      props.updateNews(news);
       this.setState({ spinner: false });
     }
   }
@@ -69,6 +70,7 @@ class NewsPage extends Component {
       keys = Object.keys(news);
       values = Object.values(news);
     }
+
     return (
       <div>
         {
@@ -91,6 +93,7 @@ class NewsPage extends Component {
   render() {
     const { spinner } = this.state;
     const { match: { path } } = this.props;
+
     return (
       <Switch>
         <Route path={`${path}/addnewnews/:type`} component={AddEdit} />

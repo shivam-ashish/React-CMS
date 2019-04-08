@@ -5,8 +5,8 @@ import BtnClass from '../../commonComponents/Button/Button.module.scss';
 import classes from './Blogs.module.scss';
 
 const blogItem = (props) => {
-  console.log('value of props in displayBlogs', props);
   const { path, id, val } = props;
+
   return (
     <div>
       <div className={classes.upperSection}>

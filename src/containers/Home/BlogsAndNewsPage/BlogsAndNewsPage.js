@@ -8,6 +8,7 @@ import news from '../../../assets/news.png';
 
 const BlogsAndNewsPage = (props) => {
   const { path } = props.match;
+
   return (
     <>
       <Link to={`${path}/blogs`}>
@@ -22,7 +23,6 @@ const BlogsAndNewsPage = (props) => {
               src={blogs}
             />
           </div>
-          {/* <p>{'Blogs'}</p> */}
         </Button>
       </Link>
 
@@ -31,14 +31,13 @@ const BlogsAndNewsPage = (props) => {
           type="NEWS"
           className={BtnClass.news}
         >
-        <div className={classes.blogsBackground}>
+          <div className={classes.blogsBackground}>
             <img
               alt="News Logo"
               className={classes.blogsIcon}
               src={news}
             />
           </div>
-          {/* {'NEWS'} */}
         </Button>
       </Link>
     </>

@@ -23,7 +23,6 @@ class BlogsPage extends Component {
   }
 
   componentDidMount() {
-    console.log('inside compoDidMount props ->', this.props, 'state ->', this.state);
     const { user: { uid } } = this.props;
     this.setState({
       spinner: true,
@@ -42,11 +41,12 @@ class BlogsPage extends Component {
   }
 
   gotData = (data) => {
+    const { props } = this;
     if (data.val() == null) {
       this.setState({ spinner: true });
     } else {
       const blogs = data.val();
-      this.props.updateBlogs(blogs);
+      props.updateBlogs(blogs);
       this.setState({
         spinner: false,
       });
@@ -73,8 +73,6 @@ class BlogsPage extends Component {
       values = Object.values(blogs);
     }
 
-    console.log(keys, values);
-
     return (
       <div>
         {
@@ -95,7 +93,6 @@ class BlogsPage extends Component {
   }
 
   render() {
-    console.log('inside render props ->', this.props, 'state ->', this.state);
     const { spinner } = this.state;
     const { match: { path } } = this.props;
 

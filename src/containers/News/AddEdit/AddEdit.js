@@ -32,8 +32,9 @@ class AddNewPost extends Component {
   }
 
   putData = () => {
+    const { props } = this;
     const { title, body, timeStamp } = this.state;
-    const { uid } = this.props.user;
+    const { uid } = props.user;
     const database = Fire.database();
     const ref = database.ref('news');
     const data = {
@@ -52,8 +53,9 @@ class AddNewPost extends Component {
   }
 
   editData = () => {
-    const { key } = this.props.match.params;
-    const { uid } = this.props.user;
+    const { props } = this;
+    const { key } = props.match.params;
+    const { uid } = props.user;
     const { title, body, timeStamp } = this.state;
     Fire.database().ref(`news/${key}`).update({
       title,
@@ -92,8 +94,10 @@ class AddNewPost extends Component {
   }
 
   render() {
-    const { type } = this.props.match.params;
+    const { props } = this;
+    const { type } = props.match.params;
     const { title, body } = this.state;
+
     return (
       <div className={classes.post}>
         <h1 className={classes.heading}>

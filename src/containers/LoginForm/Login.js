@@ -37,6 +37,7 @@ class Login extends Component {
   render() {
     const { email, password, spinner } = this.state;
     const { toggle } = this.props;
+
     return (
       <div className={classes.loginForm}>
         <h1 className={classes.heading}>Login Here</h1>

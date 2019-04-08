@@ -33,12 +33,10 @@ class FirebaseAuth extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    isLoggedIn: state.isLoggedIn,
-    user: state.user,
-  };
-};
+const mapStateToProps = state => ({
+  isLoggedIn: state.isLoggedIn,
+  user: state.user,
+});
 
 const mapDispatchToProps = dispatch => ({
   changeLoginState: bool => dispatch({ type: 'LOGIN_STATE', isLoggedIn: bool }),
