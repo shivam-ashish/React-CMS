@@ -103,7 +103,7 @@ class BlogsPage extends Component {
     const { msg } = this.state;
     if (msg) {
       return (
-        <div><h1>Nothing to Display</h1></div>
+        <div><h1 className={classes.heading}>Nothing to Display</h1></div>
       );
     }
     else {
@@ -137,7 +137,7 @@ class BlogsPage extends Component {
                 {'+'}
               </Button>
             </Link>
-            <h1>BLOGS</h1>
+            <h1 className={classes.heading}>BLOGS</h1>
             {
               spinner
                 ? (<div className={classes.spinner}><MDSpinner /></div>)
