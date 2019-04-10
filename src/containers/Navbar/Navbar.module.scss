@@ -1,0 +1,33 @@
+@import '../Sass/main.scss';
+
+.navbar{
+    margin: 0;
+    text-align: center;
+    background: $navbar;
+    height: 50px;
+    padding-top: 10px;
+
+    .list{
+    display: inline-block;
+    margin: 10px;
+    color: $navbarText;
+
+    &:hover{
+        color: $navbarTextHover;
+    }
+    }
+}
+
+.navlist{
+    display: inline;
+}
+
+.displayName{
+    list-style-type: none;
+    color: $black;
+    font-size: $displayname-font;
+    cursor: not-allowed;
+    position: absolute;
+    left: 20px;
+    font-weight: 600;
+}

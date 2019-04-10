@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
-import classes from './LoginForm.module.css';
+import MDSpinner from 'react-md-spinner';
+import classes from './LoginForm.module.scss';
+import BtnClass from '../../commonComponents/Button/Button.module.scss';
 import Fire from '../../config/fire';
+import Button from '../../commonComponents/Button/Button';
 
 class Login extends Component {
   constructor(props) {
@@ -10,17 +13,20 @@ class Login extends Component {
     this.state = {
       email: '',
       password: '',
+      spinner: false,
     };
   }
 
   login = (e) => {
     const { email, password } = this.state;
+    this.setState({ spinner: true });
     e.preventDefault();
     Fire.auth().signInWithEmailAndPassword(email, password)
       .then(() => {
       })
       .catch((error) => {
-        console.log(error);
+        alert(error.message);
+        this.setState({ spinner: false });
       });
   }
 
@@ -29,28 +35,32 @@ class Login extends Component {
   }
 
   render() {
-    const { email, password } = this.state;
+    const { email, password, spinner } = this.state;
+    const { toggle } = this.props;
+
     return (
-      <div>
-        <div className={classes.loginForm}>
-          <h1>Login Here</h1>
-          <label htmlFor="email">Email Address : </label>
-          <input value={email} onChange={this.handleChange} type="email" name="email" />
-          <label htmlFor="email">Password : </label>
-          <input value={password} onChange={this.handleChange} type="password" name="password" />
-          <button
-            type="submit"
-            className={classes.loginBtn}
-            onClick={(evt) => {
-              this.login(evt);
-            }}>Login</button>
-          <button
-            type="submit"
-            className={classes.loginBtn}
-            onClick={this.props.toggle}>
-            Sign Up
-              </button>
-        </div>
+      <div className={classes.loginForm}>
+        <h1 className={classes.heading}>Login Here</h1>
+        <label className={classes.labelField} htmlFor="email">Email Address : </label>
+        <input className={classes.inputField} value={email} onChange={this.handleChange} type="email" name="email" />
+        <label className={classes.labelField} htmlFor="email">Password : </label>
+        <input className={classes.inputField} value={password} onChange={this.handleChange} type="password" name="password" />
+        <Button
+          type="Login"
+          className={BtnClass.login}
+          click={(evt) => {
+            this.login(evt);
+          }}
+        >
+          {spinner ? <MDSpinner /> : 'Login'}
+        </Button>
+        <Button
+          type="New SignUp"
+          className={BtnClass.signup}
+          click={toggle}
+        >
+          {'+'}
+        </Button>
       </div>
     );
   }

@@ -1,0 +1,48 @@
+@import "./typography.scss";
+
+/* Resets & Universal Styles */
+* {
+  font-family: sans-serif;
+}
+
+html, body {
+  height: 100%;
+}
+
+/* sass-lint:disable id-name-format */
+#content {
+  height: 100%;
+}
+/* sass-lint:enable id-name-format */
+
+// Resets margins and paddings for body, headers, ul, ol, p, and blockquote
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+ul,
+li,
+p,
+blockquote {
+  margin: 0;
+  padding: 0;
+}
+
+// Hard reset that removes all borders and radius of all form items.
+input,
+textarea,
+button {
+  outline: none;
+  border: 0;
+  border-radius: 0;
+  appearance: none;
+
+  &:hover,
+  &:active,
+  &:focus {
+    outline: none;
+  }
+}

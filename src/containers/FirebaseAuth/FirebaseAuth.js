@@ -1,39 +1,47 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
 import fire from '../../config/fire';
-import Home from '../Home/Home';
 import LoginForm from '../LoginForm/LoginForm';
 
 class FirebaseAuth extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      user: {},
-    };
-  }
-
   componentDidMount() {
     this.authListener();
   }
 
   authListener() {
+    const { history } = this.props;
+    const { changeLoginState, updateUser } = this.props;
     fire.auth().onAuthStateChanged((user) => {
       if (user) {
-        this.setState({ user });
+        changeLoginState(true);
+        updateUser(user);
+        history.push('/home');
       } else {
-        this.setState({ user: null });
+        changeLoginState(false);
+        updateUser(null);
       }
     });
   }
 
   render() {
-    const { user } = this.state;
     return (
       <div>
-        {user ? (<Home />) : (<LoginForm />)}
+        <LoginForm />
       </div>
     );
   }
 }
 
-export default FirebaseAuth;
+const mapStateToProps = state => ({
+  isLoggedIn: state.isLoggedIn,
+  user: state.user,
+});
+
+const mapDispatchToProps = dispatch => ({
+  changeLoginState: bool => dispatch({ type: 'LOGIN_STATE', isLoggedIn: bool }),
+  updateUser: updatedUser => dispatch({ type: 'UPDATE_USER', user: updatedUser }),
+});
+
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)((FirebaseAuth)));

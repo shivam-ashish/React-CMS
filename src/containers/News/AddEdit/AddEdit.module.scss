@@ -1,0 +1,50 @@
+@import "../../Sass/main.scss";
+
+.post{ 
+    .heading{
+    margin: 0px;
+    padding: 0px;
+    text-align: center;
+    font-size: $blogs-news-heading-font;
+    color: $news;
+    font-weight: 600;
+    }
+
+    .inputField{
+    display: inline-block;
+    border: none;
+    border-bottom: 1px solid $grey;
+    background: transparent;
+    outline: none;
+    height: 30px;
+    color: $black;
+    font-size: $input-type-font;
+    margin-bottom: 20px;
+    display: block;
+    margin-bottom: 20px;
+    width: 90%;
+    }
+
+    .labelField{
+    font-size: $label-font;
+    margin: 0;
+    padding: 0;
+    font-weight: 500;
+    color: $black;
+    }
+}
+
+.container{
+    width: 50%;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 350px;
+    height: auto;
+    box-sizing: border-box;
+    background: $white;
+    padding: 20px 40px;
+    box-shadow: 10px 6px 9px 1px $grey;
+}

@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Switch, Route, withRouter } from 'react-router-dom';
+import Navbar from '../Navbar/Navbar';
 import Fire from '../../config/fire';
-import classes from './Home.module.css';
+import classes from './Home.module.scss';
+import Blogs from '../Blogs/Blogs';
+import News from '../News/News';
+import BlogsAndNewsPage from './BlogsAndNewsPage/BlogsAndNewsPage';
 
 class Home extends Component {
   constructor(props) {
@@ -9,21 +13,26 @@ class Home extends Component {
     this.logout = this.logout.bind(this);
   }
 
-
   logout = () => {
     Fire.auth().signOut();
   }
 
   render() {
+    const { match: { path } } = this.props;
     return (
       <div className={classes.box}>
-        <button type="button" onClick={this.logout} className={classes.logOut}>Log Out</button>
-        <br />
-        <Link to="/blogs"><button type="button" className={classes.blogs}>BLOGS</button></Link>
-        <Link to="/news"><button type="button" className={classes.news}>NEWS</button></Link>
+        <Navbar />
+        <Switch>
+          <Route path={`${path}/blogs`} component={Blogs} />
+          <Route path={`${path}/news`} component={News} />
+          <Route
+            path={`${path}`}
+            component={BlogsAndNewsPage}
+          />
+        </Switch>
       </div>
     );
   }
 }
 
-export default Home;
+export default withRouter(Home);

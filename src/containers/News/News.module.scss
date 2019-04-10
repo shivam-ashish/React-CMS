@@ -1,0 +1,60 @@
+@import "../Sass/main.scss";
+
+   .heading {
+    margin: 0px;
+    padding: 0px;
+    text-align: center;
+    font-size: $blogs-news-heading-font;
+    color: $blogs;
+    font-weight: 600;
+   }
+
+   .container{
+     margin-top: 30px;
+     margin-left: 100px;
+     margin-right: 100px;
+     text-align: center;
+
+      .subContainers{
+      display: inline-block;
+      border: 1px solid $grey;
+      width: 80%;
+      min-height: 130px;
+      margin: 30px;
+      text-align: center;
+      padding: 0px; 
+      outline: none;
+      background: $blogsBackground;
+      color: $blogs;
+      border-radius: 10px;
+      cursor: pointer;
+      position: relative;
+      word-wrap: break-word;
+
+      .upperSection{
+        background: $loginSignup;
+        height: 45%;
+        text-align: center;
+        border-top-left-radius: 9px;
+
+        .heading{
+          position: relative;
+          top: 50%;
+          font-size: $heading-font;
+          color: $white;
+        }
+      }
+      
+      .lowerSection{
+        margin: 0;
+        padding: 10px;
+      }
+    }
+  }
+
+.spinner{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

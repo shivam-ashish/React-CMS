@@ -1,29 +1,23 @@
 import React, { Component } from 'react';
-import classes from './Blogs.module.css';
-import firebase from 'firebase';
-import Fire from '../../config/fire';
+import { Switch, Route } from 'react-router-dom';
+import classes from './Blogs.module.scss';
+import BlogsPage from './BlogsPage';
+
 // eslint-disable-next-line react/prefer-stateless-function
 class Blogs extends Component {
-  componentDidMount() {
-    const database = firebase.database();
-    const ref = database.ref('blogs');
-    ref.on('value', this.gotData, this.errData);
-  }
-
-  gotData = (data) => {
-    console.log(data.val());
-    
-  }
-
-  errData = (err) => {
-    console.log(err);
-    
-  }
-
   render() {
+    const { match: { path } } = this.props;
     return (
       <div className={classes.box}>
-        <h1>Blogs</h1>
+        <Switch>
+          <Route
+            path={`${path}`}
+            render={() => (
+              <BlogsPage />
+            )}
+          />
+        </Switch>
+
       </div>
     );
   }

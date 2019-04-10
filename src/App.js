@@ -1,39 +1,41 @@
 import React, { Component } from 'react';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Redirect, Switch } from 'react-router-dom';
 import Route from 'react-router-dom/Route';
+import { connect } from 'react-redux';
 import FirebaseAuth from './containers/FirebaseAuth/FirebaseAuth';
-import Blogs from './containers/Blogs/Blogs';
-import News from './containers/News/News';
-import { Provider } from './containers/DataStore/MyContext';
+import Home from './containers/Home/Home';
 
 // eslint-disable-next-line react/prefer-stateless-function
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      email: '',
-      password: '',
-      name: '',
-      display: false,
-    };
-  }
-
   render() {
+    const { isLoggedIn } = this.props;
+
     return (
       <BrowserRouter>
-        <div>
-          <Provider value={{
-            state: this.state,
-          }}
-          >
-            <Route path="/" exact component={FirebaseAuth} />
-            <Route path="/blogs" exact component={Blogs} />
-            <Route path="/news" exact component={News} />
-          </Provider>
-        </div>
+        <Switch>
+          <Route
+            path="/auth"
+            exact
+            render={() => (
+              <FirebaseAuth />
+            )}
+          />
+          {isLoggedIn && (
+            <Route
+              path="/home"
+              component={Home}
+            />
+          )}
+          <Redirect from="/" to="/auth" />
+        </Switch>
       </BrowserRouter>
     );
   }
 }
 
-export default App;
+const mapStateToProps = state => ({
+  isLoggedIn: state.reducer.isLoggedIn,
+  user: state.reducer.user,
+});
+
+export default connect(mapStateToProps)(App);

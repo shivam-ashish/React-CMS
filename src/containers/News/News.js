@@ -1,12 +1,24 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { Route } from 'react-router-dom';
+import classes from './News.module.scss';
+import NewsPage from './NewsPage';
 
+// eslint-disable-next-line react/prefer-stateless-function
 class News extends Component {
   render() {
+    const { props } = this;
+    const { path } = props.match;
+
     return (
-      <div>
-        <h1>News</h1>
+      <div className={classes.box}>
+        <Route
+          path={`${path}`}
+          render={() => (
+            <NewsPage />
+          )}
+        />
       </div>
-    )
+    );
   }
 }
 
