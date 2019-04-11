@@ -7,7 +7,7 @@ import classes from './AddEdit.module.scss';
 import Button from '../../../commonComponents/Button/Button';
 import BtnClass from '../../../commonComponents/Button/Button.module.scss';
 
-class AddNewPost extends Component {
+export class AddNewPost extends Component {
   constructor(props) {
     super(props);
     this.state = {
