@@ -42,9 +42,9 @@ class Login extends Component {
       <div className={classes.loginForm}>
         <h1 className={classes.heading}>Login Here</h1>
         <label className={classes.labelField} htmlFor="email">Email Address : </label>
-        <input className={classes.inputField} value={email} onChange={this.handleChange} type="email" name="email" />
+        <input id="email" className={classes.inputField} value={email} onChange={this.handleChange} type="email" name="email" />
         <label className={classes.labelField} htmlFor="email">Password : </label>
-        <input className={classes.inputField} value={password} onChange={this.handleChange} type="password" name="password" />
+        <input id="password" className={classes.inputField} value={password} onChange={this.handleChange} type="password" name="password" />
         <Button
           type="Login"
           className={BtnClass.login}

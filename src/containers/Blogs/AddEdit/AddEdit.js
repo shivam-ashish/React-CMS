@@ -106,7 +106,7 @@ export class AddNewPost extends Component {
     return (
       <div className={classes.post}>
         <h1 className={classes.heading}>
-          {type.toUpperCase()}
+          {/* {type.toUpperCase()} */}
           {' '}
           YOUR POST
         </h1>
@@ -114,6 +114,7 @@ export class AddNewPost extends Component {
           <label className={classes.labelField} htmlFor="title">Title</label>
           <br />
           <input
+            id="title"
             className={classes.inputField}
             onChange={this.handleChange}
             type="text"
@@ -126,6 +127,7 @@ export class AddNewPost extends Component {
           </label>
           <br />
           <input
+            id="body"
             className={classes.inputField}
             onChange={this.handleChange}
             type="text"

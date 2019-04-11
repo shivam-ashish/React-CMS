@@ -6,7 +6,7 @@ import classes from './Blogs.module.scss';
 
 const blogItem = (props) => {
   const { path, id, val } = props;
-
+  const { title, body } = val;
   return (
     <div>
       <div className={classes.upperSection}>
@@ -23,16 +23,16 @@ const blogItem = (props) => {
           <Button
             type="Edit"
             className={BtnClass.edit}
-            onClick={() => props.editHandler(val.title, val.body)}
+            onClick={() => props.editHandler(title, body)}
           >
             {'Edit'}
           </Button>
         </Link>
-        <h1 className={classes.heading}>{val.title}</h1>
+        <h1 className={classes.heading}>{title}</h1>
       </div>
       {<br />}
       <div className={classes.lowerSection}>
-        <p>{val.body}</p>
+        <p>{body}</p>
       </div>
     </div>
   );

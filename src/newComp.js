@@ -1,12 +1,17 @@
 import React from 'react';
-import { App } from './App';
 
 const newComp = () => {
   return (
     <div>
-      <App />
+      <form>
+        <h4>Add a comment</h4>
+      <textarea />
+      <div>
+      <button>Submit Comment</button>
+      </div>
+      </form>
     </div>
-  )
+  );
 }
 
 export default newComp;

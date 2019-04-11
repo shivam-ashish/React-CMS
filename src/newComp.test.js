@@ -1,8 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { shallow } from 'enzyme';
+import { mount } from 'enzyme';
 import NewComp from './newComp';
 import App from './App';
+
+let wrapped;
+
+beforeEach(() => {
+  wrapped = mount(<NewComp />);
+});
+afterEach(() => {
+  wrapped.unmount();
+});
 
 it('should render', () => {
   // const div = document.createElement('div');
@@ -10,7 +19,8 @@ it('should render', () => {
   // expect(div.innerHTML).toContain('Hey');
   // ReactDOM.unmountComponentAtNode(div);
 
-  const wrapped = shallow(<NewComp />);
-  expect(wrapped.find(App).length).toEqual(0);
+  expect(wrapped.find('textarea').length).toEqual(1);
+  expect(wrapped.find('button').length).toEqual(1);
+
 
 });
