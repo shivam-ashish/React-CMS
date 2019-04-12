@@ -31,3 +31,8 @@ it('has text fields where users can type in', () => {
   expect(wrapped.find('#title').prop('value')).toEqual('new title');
   expect(wrapped.find('#body').prop('value')).toEqual('new body');
 });
+
+it('checks the Link', () => {
+  expect(wrapped.find('Link').length).toEqual(1);
+  expect(wrapped.find('Link').prop('to')).toEqual('/home/blogs');
+});

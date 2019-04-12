@@ -24,7 +24,10 @@ class BlogsPage extends Component {
   }
 
   componentDidMount() {
-    const { user: { uid } } = this.props;
+    console.log(this.props);
+    
+    const { user } = this.props;
+    const { uid } = user;
     this.setState({
       spinner: true,
     });

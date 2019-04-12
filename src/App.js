@@ -6,7 +6,7 @@ import FirebaseAuth from './containers/FirebaseAuth/FirebaseAuth';
 import Home from './containers/Home/Home';
 
 // eslint-disable-next-line react/prefer-stateless-function
-export class App extends Component {
+class App extends Component {
   render() {
     const { isLoggedIn } = this.props;
 
