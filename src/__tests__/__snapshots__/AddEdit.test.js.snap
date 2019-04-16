@@ -1,0 +1,54 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`it matches the snapshot 1`] = `
+<div
+  className="post"
+>
+  <h1
+    className="heading"
+  >
+     
+    YOUR POST
+  </h1>
+  <div
+    className="container"
+  >
+    <label
+      className="labelField"
+      htmlFor="title"
+    >
+      Title
+    </label>
+    <br />
+    <input
+      className="inputField"
+      id="title"
+      name="title"
+      onChange={[Function]}
+      type="text"
+      value=""
+    />
+    <br />
+    <label
+      className="labelField"
+      htmlFor="body"
+    >
+      Body
+    </label>
+    <br />
+    <input
+      className="inputField"
+      id="body"
+      name="body"
+      onChange={[Function]}
+      type="text"
+      value=""
+    />
+    <br />
+    <a
+      href="/home/blogs"
+      onClick={[Function]}
+    />
+  </div>
+</div>
+`;

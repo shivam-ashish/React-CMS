@@ -1,4 +1,5 @@
 import React from 'react';
+import { create } from 'react-test-renderer';
 import { mount } from 'enzyme';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
@@ -32,4 +33,9 @@ it('has text fields where users can type in', () => {
   wrapped.update();
   expect(wrapped.find('#email').prop('value')).toEqual('username');
   expect(wrapped.find('#password').prop('value')).toEqual('password');
+});
+
+it('it matches the snapshot', () => {
+  const component = create(wrapped);
+  expect(component.toJSON()).toMatchSnapshot();
 });
