@@ -1,4 +1,5 @@
 import React from 'react';
+import { create } from 'react-test-renderer';
 import { mount } from 'enzyme';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
@@ -18,6 +19,7 @@ it('has a AddEdit component structure', () => {
   expect(wrapped.find('div').length).toEqual(2);
   expect(wrapped.find('h1').length).toEqual(1);
   expect(wrapped.find('input').length).toEqual(2);
+  expect(wrapped.find('Link').length).toEqual(1);
 });
 
 it('has text fields where users can type in', () => {
@@ -35,4 +37,9 @@ it('has text fields where users can type in', () => {
 it('checks the Link', () => {
   expect(wrapped.find('Link').length).toEqual(1);
   expect(wrapped.find('Link').prop('to')).toEqual('/home/blogs');
+});
+
+it('it matches the snapshot', () => {
+  const component = create(wrapped);
+  expect(component.toJSON()).toMatchSnapshot();
 });
